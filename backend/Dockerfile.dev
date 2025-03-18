@@ -1,0 +1,10 @@
+FROM node:22.14.0
+
+WORKDIR /app
+
+EXPOSE 3000
+
+COPY package*.json ./
+RUN npm install
+
+CMD ["npm", "run", "dev"]
