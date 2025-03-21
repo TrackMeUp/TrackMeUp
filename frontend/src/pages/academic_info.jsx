@@ -1,4 +1,4 @@
-import { Articulo } from "./Articulo"
+import { Articulo } from "../Articulo"
 
 export function InformacionAcademica () {
     return (
