@@ -1,6 +1,6 @@
-import { Separator } from './Separator'
-import { UserProfile } from './UserProfile'
-import { Mboton } from './Mboton'
+import { Separator } from './UI/Separator'
+import { UserProfile } from '../UserProfile'
+import { Mboton } from './UI/Mboton'
 
 export function Menu() {
     return (

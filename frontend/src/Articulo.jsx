@@ -1,4 +1,4 @@
-import { Separator } from "./Separator";
+import { Separator } from "./components/UI/Separator";
 
 export function Articulo ({ titulo, texto, info }) {
     return (

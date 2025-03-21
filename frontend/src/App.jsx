@@ -1,9 +1,9 @@
 import './app.css'
-import { Menu } from './Menu'
-import { Cabecera } from './Cabecera'
+import { Menu } from './components/Menu'
+import { Cabecera } from './components/Header'
 
 import { Articulo } from './Articulo'
-import { InformacionAcademica } from './InformacionAcademica'
+import { InformacionAcademica } from './pages/academic_info'
 
 export function App () {
   return (
