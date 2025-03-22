@@ -1,4 +1,4 @@
-import './app.css'
+import './styles/app.css'
 import { Menu } from './components/Menu'
 import { Cabecera } from './components/Header'
 
