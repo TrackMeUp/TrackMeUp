@@ -1,5 +1,6 @@
 import { useState } from 'react'; // Para usar funcionalidades de React en versiones anteriores
 //import './login.css';
+import { validateLogin } from "../../controllers/loginController";
 
 export function Login() {
 
@@ -7,24 +8,11 @@ export function Login() {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
 
-    const validateLogin = (event) => {
+    const handleLogin = (event) => { // Controlador del botón "Iniciar sesión"
 
         event.preventDefault(); // Evita el envío del formulario sin validar
 
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (!user || !password) {
-            alert("Debe rellenar todos los campos para iniciar sesión.");
-            return;
-        }
-
-        if (!emailRegex.test(user)) {
-            alert("El usuario debe ser un correo electrónico.");
-            return;
-        }
-
-        if (password.length < 6) {
-            alert("La contraseña debe tener al menos 6 caracteres.");
+        if (!validateLogin(user, password)) { // Validación en frontend
             return;
         }
     };
@@ -34,7 +22,7 @@ export function Login() {
 
         <section>
 
-            <form id="loginForm" action="login" onSubmit={validateLogin}>
+            <form id="loginForm" action="login" onSubmit={handleLogin}>
                 <div>
                     <label htmlFor="user">Usuario: </label>
                     <input type="text" id="user" name="user" value={user} onChange={(e) => setUser(e.target.value)} />
