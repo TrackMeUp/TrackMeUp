@@ -4,8 +4,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
+    env_file:
+      - ./frontend/.env
     ports:
-      - "${FRONTEND_PORT}:5173"
+      - "5173:5173"
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -17,29 +19,27 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
+    env_file:
+      - ./backend/.env
     ports:
-      - "${BACKEND_PORT}:3000"
+      - "3000:3000"
+    environment:
+      # Overrides MYSQL_HOST in ./backend/.env to connect backend to db.
+      - MYSQL_HOST=db
     volumes:
       - ./backend:/app
       - /app/node_modules
-    environment:
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
       - db
+
   db:
     container_name: db
     image: mysql:8.4.4
     restart: unless-stopped
+    env_file:
+      - ./backend/.env
     ports:
-      - "${DB_PORT}:3306"
-    environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
       - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql
