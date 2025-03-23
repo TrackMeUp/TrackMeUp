@@ -15,6 +15,16 @@ app.get("/api", (req, res) => {
   res.json({ message: "👌" });
 });
 
+app.get("/api/health", async (req, res) => {
+  try {
+    await pool.query("SELECT 1");
+    res.status(200).json({status: "healthy", database: "connected"});
+  } catch (error) {
+    console.error("Health check failed.", error);
+    res.status(503).json({status: "unhealthy", database: "disconnected"});
+  }
+});
+
 app.get("/api/docente/:id", async (req, res) => {
   try {
     const idDocente = req.params.id;
