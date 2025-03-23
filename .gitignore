@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .editorconfig
-
+.direnv
+.envrc
 .env
+*.nix
+flake.lock
+
 datagen.js
