@@ -1,12 +1,18 @@
-import { Articulo } from "../Articulo"
-//import {Link} from "react-router-dom";
+import { Articulo } from "../components/UI/Articulo"
 
-export function Perfil() {
+export function Profile() {
     return (
         <>
-            <div className="perfil-container">
-                <Articulo titulo="Información personal" texto="Nombre: " info="Alumno" />
-                <Articulo titulo="Configuración" texto="Contraseña: " info="Cambiar contraseña" />
+            <div className="informacion-container">
+
+                <Articulo titulo="Información personal" entradas={[
+                    { texto: "Nombre:", info: "Alumno" },
+                    { texto: "Nombre padre/tutor:", info: "Padre" },
+                    { texto: "Correo:", info: "alumno.apellido@gmail.com" }]}/>
+
+                <Articulo titulo="Configuración" entradas={[
+                    { texto: "Contraseña:", info: "Cambiar contrasña" },
+                    { texto: "Notificaciones:", info: "Notificaciones" }]}/>
 
                 {/* <Link to="/changePassword">
                     <button>Cambiar contraseña</button>
