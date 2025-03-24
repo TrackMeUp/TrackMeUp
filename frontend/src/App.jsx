@@ -15,6 +15,7 @@ import { Performance } from './pages/performance';
 import { Communication } from './pages/communication';
 import { Announcements } from './pages/announcements';
 import { Notifications } from './pages/notice_board';
+import { Login } from './pages/login';
 
 
 export function App() {
@@ -23,6 +24,7 @@ export function App() {
 
     <Routes>
       <Route element={<Layout />}>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/academic_info" element={<AcademicInfo />} />
