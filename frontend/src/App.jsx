@@ -6,8 +6,8 @@ import { Route, Routes } from 'react-router-dom';
 import './styles/app.css'
 
 import { Layout } from './Layout';
-import { Home } from './pages/Home';
-import { Profile } from './pages/Profile';
+import { Home } from './pages/home';
+import { Profile } from './pages/profile';
 import AcademicInfo from './pages/academic_info';
 import { Calendar } from './pages/calendar';
 import { Activities } from './pages/activities';
