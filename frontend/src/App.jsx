@@ -1,11 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css';  // Importa estilos
+import 'bootstrap/dist/js/bootstrap.bundle.min'; // Importa JavaScript
 
-import 'bootstrap/dist/css/bootstrap.min.css'  // Importa estilos
-import 'bootstrap/dist/js/bootstrap.bundle.min' // Importa JavaScript
+import React, { useState } from 'react';
 
-
-import React, { use, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import './styles/app.css'
+import { Route, Routes, Navigate } from 'react-router-dom';
+import './styles/app.css';
 
 import { Layout } from './Layout';
 import { Home } from './pages/home';
@@ -17,34 +16,23 @@ import { Performance } from './pages/performance';
 import { Communication } from './pages/communication';
 import { Announcements } from './pages/announcements';
 import { Notifications } from './pages/notice_board';
-
-import { Login } from './pages/login';
-
-// Un hook useState false (No hay usuario autenticado)
-// Un hook setIsAuthenticated para cambiar el estado del usuario autenticado
-// Un hook useNavigate para redireccionar a la página de inicio
-// Tenemos que lograr que cuando el usuario autentique se le asigne un valor true a isAuthenticated
-// Si isAuthenticated es true, se muestra el layout
-
-// El cerrar sesión dará valor de isAuthenticated(false) y asi volvera a login
+import { Login } from './pages/login'; // Importa la página de Login
 
 export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const Navigate = useNavigate();
 
+  // Función que maneja el login (cuando se da clic en "Iniciar sesión")
   const handleLogin = () => {
-    setIsAuthenticated(true);
-    Navigate('/home');
-  }
+    setIsAuthenticated(true);  // El usuario está autenticado
+  };
 
   return (
-    <>
-
     <Routes>
+      {/* Si el usuario está autenticado, redirige a la app principal */}
       <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />} />
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
-
-      // Si isAuthenticated es true, se muestra el layout
+      
+      {/* Rutas protegidas solo para usuarios autenticados */}
       <Route element={<Layout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
@@ -57,7 +45,5 @@ export function App() {
         <Route path="/notice_board" element={<Notifications />} />
       </Route>
     </Routes>
-    </>
-  )
-  }
-
+  );
+}

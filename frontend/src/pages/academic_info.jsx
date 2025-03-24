@@ -9,7 +9,7 @@ import { Articulo } from "../components/UI/Articulo"
 const AcademicInfo = () => {
     return (
         <>
-            <div className="informacion-container">
+            <div className="informacion-container" >
 
                 <Articulo titulo="Curso" entradas={[
                     { texto: "Curso:", info: "Curso" },
