@@ -1,11 +1,10 @@
-export function Mboton({ name, url }) {
+import { Link } from 'react-router-dom';
+
+export function Mboton({ name, url, ruta }) {
     return (
-        <button className="m-opcion">
-            <img 
-            className='m-icono'
-            alt={name} src={url}/>
-        <strong className='m-pagina'>{name}</strong>
-    
-        </button>
+        <Link to={ruta} className="m-opcion">
+            <img className='m-icono' alt={name} src={url}/>
+            <strong className='m-pagina'>{name}</strong>
+        </Link>
 )
 }

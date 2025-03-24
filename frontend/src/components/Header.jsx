@@ -1,6 +1,6 @@
 import logo from '../assets/Logo.png';
 
-export function Cabecera() {
+export function Header() {
     return (
         <header className="c">
             <div className="c-contenedor">

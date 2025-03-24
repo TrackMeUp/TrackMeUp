@@ -1,3 +1,4 @@
+
 export function Home() {
     return (
       <div className="container mt-5">
@@ -29,6 +30,7 @@ export function Home() {
           <h2>¿Listo para mejorar tu experiencia académica?</h2>
           <a href="/registro" className="btn btn-success btn-lg mt-3">Regístrate gratis</a>
         </section>
+
       </div>
     );
   }
