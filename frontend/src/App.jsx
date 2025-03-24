@@ -1,3 +1,7 @@
+
+import 'bootstrap/dist/css/bootstrap.min.css'  // Importa estilos
+import 'bootstrap/dist/js/bootstrap.bundle.min' // Importa JavaScript
+
 import { Route, Routes } from 'react-router-dom';
 import './styles/app.css'
 
@@ -12,9 +16,11 @@ import { Communication } from './pages/communication';
 import { Announcements } from './pages/announcements';
 import { Notifications } from './pages/notice_board';
 
+
 export function App() {
   return (
     <>
+
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
@@ -31,3 +37,4 @@ export function App() {
     </>
   )
   }
+
