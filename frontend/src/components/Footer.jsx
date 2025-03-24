@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="c">
       <div className="c-contenedor flex flex-col md:flex-row justify-between items-center p-4">
         <p className="text-sm mb-2 md:mb-0 text-gray-600">© 2025 TrackMeUp. Todos los derechos reservados.</p>
-
+       
         <div className="flex space-x-4">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xl hover:text-blue-500">
             <FaFacebookF />
