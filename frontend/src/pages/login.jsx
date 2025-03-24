@@ -1,36 +1,44 @@
-import { useState } from 'react'; // Para usar funcionalidades de React en versiones anteriores
+import { useState } from "react"; // Para usar funcionalidades de React en versiones anteriores
+import { UserController } from "../controllers/UserController";
 //import './login.css';
-import { validateLogin } from "../../controllers/loginController";
 
 export function Login() {
-
     // Validación del formulario (Cliente)
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = (event) => { // Controlador del botón "Iniciar sesión"
+    const userController = new UserController();
 
+    const handleLogin = async (event) => {
+        // Controlador del botón "Iniciar sesión"
         event.preventDefault(); // Evita el envío del formulario sin validar
 
-        if (!validateLogin(user, password)) { // Validación en frontend
-            return;
-        }
+        const result = await userController.login(user, password);
     };
 
-
     return (
-
         <section>
-
             <form id="loginForm" action="login" onSubmit={handleLogin}>
                 <div>
                     <label htmlFor="user">Usuario: </label>
-                    <input type="text" id="user" name="user" value={user} onChange={(e) => setUser(e.target.value)} />
+                    <input
+                        type="text"
+                        id="user"
+                        name="user"
+                        value={user}
+                        onChange={(e) => setUser(e.target.value)}
+                    />
                 </div>
 
                 <div>
                     <label htmlFor="password">Contraseña: </label>
-                    <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
 
                 <div>
@@ -40,12 +48,8 @@ export function Login() {
                 <div>
                     <a href="">¿Has olvidado tu contraseña?</a>
                     {/* Completar ruta */}
-
                 </div>
-
             </form>
-
         </section>
     );
-
-};
+}
