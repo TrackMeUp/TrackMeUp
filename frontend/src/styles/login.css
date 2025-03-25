@@ -1,0 +1,91 @@
+/* Estilo del formulario de acceso */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding-top: 90px;
+}
+
+  .login-card {
+    width: 100%;
+    height: 100vh;
+    padding: 24px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    flex-direction: column;
+    margin:0 auto;
+  }
+  
+  .login-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Estilos para los inputs */
+  .login-group {
+    margin-bottom: 15px;
+    width: 50vh;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .form-data {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Botón de inicio de sesión */
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #7ed957;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 15px;
+  }
+  
+  .login-button:hover {
+    background-color: #205a07;
+  
+  }
+
+  .passw-button {
+    margin-top: 20px;
+    
+  }
+  
+  /* Estilo responsive */
+  @media (max-width: 768px) {
+    .login-card {
+      max-width: 90%;
+    }
+    .login-group {
+        width: 100%;
+    }
+  }
+
+  
+  
+
