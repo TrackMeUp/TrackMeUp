@@ -2,6 +2,8 @@ import { useState } from "react"; // Para usar funcionalidades de React en versi
 import { UserController } from "../controllers/UserController";
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../styles/login.css';
+import { Link } from "react-router-dom";
+
 
 export function Login() {
     // Validación del formulario (Cliente)
@@ -24,7 +26,7 @@ export function Login() {
                     <div className="login-card">
                         <h3 className="login-title">Acceso</h3>
                         <div className="login-group">
-                            <label htmlFor="user" className="form-label">Usuario: </label> <br/>
+                            <label htmlFor="user" className="form-label">Usuario: </label> <br />
                             <input
                                 type="text"
                                 className="form-data"
@@ -33,11 +35,11 @@ export function Login() {
                                 value={user}
                                 onChange={(e) => setUser(e.target.value)}
                             />
-                           
+
                         </div>
 
                         <div className="login-group">
-                            <label htmlFor="password" className="form-label">Contraseña: </label> <br/>
+                            <label htmlFor="password" className="form-label">Contraseña: </label> <br />
                             <input
                                 type="password"
                                 className="form-data"
@@ -52,10 +54,17 @@ export function Login() {
                             <button type="submit" className="login-button">Iniciar sesión</button>
                         </div>
 
-                        <div>
-                            <a href="" className = "passw-button">¿Has olvidado tu contraseña?</a>
-                            {/* Completar ruta */}
+                        <div className="passw-button">
+                            <Link to=" "> {/* Completar ruta */}
+                                ¿Has olvidado tu contraseña?
+                            </Link>
+
+
                         </div>
+
+                        <Link to="/admin" className="btn btn-primary mt-5">
+                            Enlace temporal: vista de Administrador
+                        </Link>
                     </div>
                 </div>
             </form>

@@ -16,6 +16,7 @@ import { Communication } from './pages/communication';
 import { Announcements } from './pages/announcements';
 import { Notifications } from './pages/notice_board';
 import { Login } from './pages/login';
+import { AdminView } from "./pages/admin/adminView";
 
 
 export function App() {
@@ -34,6 +35,7 @@ export function App() {
         <Route path="/communication" element={<Communication />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/notice_board" element={<Notifications />} />
+        <Route path="/admin" element={<AdminView />} />
       </Route>
     </Routes>
     </>
