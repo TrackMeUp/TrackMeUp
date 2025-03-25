@@ -1,13 +1,15 @@
+const User = require("../models/user");
+
 class UserController {
-    validateUserData(user, password) {
+    validateUserData(email, password) {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         const errors = {};
 
-        if (!user) {
-            errors.user = "User required";
-        } else if (!emailRegex.test(user)) {
-            errors.user = "User format";
+        if (!email) {
+            errors.email = "Email required";
+        } else if (!emailRegex.test(email)) {
+            errors.email = "Email format";
         }
 
         if (!password) {
@@ -19,14 +21,14 @@ class UserController {
         return errors;
     }
 
-    loginUser(req, res) {
+    async loginUser(req, res) {
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status#successful_responses
         try {
-            const { user, password } = req.body;
-            const errors = this.validateUserData(user, password);
+            const { email, password } = req.body;
+            const errors = this.validateUserData(email, password);
 
             // Si la validación contiene errores, los devuelve como respuesta.
-            if (Object.keys(errors).lenght > 0) {
+            if (Object.keys(errors).length > 0) {
                 return res.status(400).json({
                     success: false,
                     message: "User data validation failed.",
@@ -34,17 +36,25 @@ class UserController {
                 });
             }
 
-            // TODO: Lógica de login e integración con la base de datos.
+            const user = await User.getByEmail(email);
+
+            if (!user || user.password !== password) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid username or password",
+                });
+            }
 
             res.status(200).json({
                 success: true,
                 message: "Successful login",
+                user: user,
             });
-        } catch (error) {
+        } catch (err) {
             res.status(500).json({
                 success: false,
                 message: "Server error",
-                error: error.message,
+                error: err.message,
             });
         }
     }
