@@ -1,9 +1,8 @@
-
-import 'bootstrap/dist/css/bootstrap.min.css'  // Importa estilos
-import 'bootstrap/dist/js/bootstrap.bundle.min' // Importa JavaScript
+import 'bootstrap/dist/css/bootstrap.min.css';  // Importa estilos
+import 'bootstrap/dist/js/bootstrap.bundle.min'; // Importa JavaScript
 
 import { Route, Routes } from 'react-router-dom';
-import './styles/app.css'
+import './styles/app.css';
 
 import { Layout } from './Layout';
 import { Home } from './pages/home';
@@ -22,23 +21,23 @@ import { AdminView } from "./pages/admin/adminView";
 export function App() {
   return (
     <>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/academic_info" element={<AcademicInfo />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/performance" element={<Performance />} />
+          <Route path="/communication" element={<Communication />} />
+          <Route path="/announcements" element={<Announcements />} />
+          <Route path="/notice_board" element={<Notifications />} />
+          <Route path="/admin" element={<AdminView />} />
+        </Route>
+      </Routes>
 
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/academic_info" element={<AcademicInfo />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/activities" element={<Activities />} />
-        <Route path="/performance" element={<Performance />} />
-        <Route path="/communication" element={<Communication />} />
-        <Route path="/announcements" element={<Announcements />} />
-        <Route path="/notice_board" element={<Notifications />} />
-        <Route path="/admin" element={<AdminView />} />
-      </Route>
-    </Routes>
+
     </>
-  )
-  }
-
+  );
+}
