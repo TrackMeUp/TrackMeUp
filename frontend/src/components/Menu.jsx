@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Separator } from './UI/Separator';
 import { UserProfile } from './Menu/UserProfile';
 import { Mboton } from './Menu/menu_botton';
-import AcademicInfo from '../pages/academic_info';
+
 
 export function Menu() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -74,7 +74,7 @@ export function Menu() {
                 </article>
             </nav>
 
-            <AcademicInfo menuOpen={menuOpen} />
+            
         </>
     );
 }
