@@ -1,0 +1,68 @@
+/* Contenedor */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding-top: 90px;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-card {
+    width: 100%;
+    height: 100vh;
+    padding: 24px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    flex-direction: column;
+    margin:0 auto;
+  }
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Botones */
+.admin-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 50vh;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: white;
+    background-color: #f47f3a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #ec2a8b;
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+    .admin-card {
+        max-width: 90%;
+    }
+    .admin-buttons {
+        width: 100%;
+    }
+}
