@@ -2,15 +2,15 @@
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  padding-top: 90px;
+  min-height: 100vh;  /* Asegura que ocupe toda la altura de la pantalla */
+  padding-top: 90px;  /* Se reserva espacio para el Header */
 }
 
 .layout-content {
   display: flex;
   flex: 1;
+  flex-direction: column;
 }
-
 
 /* Menu */
 .m-contenedor {
@@ -25,7 +25,7 @@
   top: 90px;
   left: 0;
   position: fixed;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 90px); /* Ajusta el tamaño del menú */
   z-index: 999;
   box-sizing: border-box;
 }
@@ -68,7 +68,6 @@
   margin: 8px 0;
 }
 
-
 /* User */
 .u-profile {
   display: flex;
@@ -93,7 +92,6 @@
   font-weight: 500;
   color: #333;
 }
-
 
 /* Cabecera */
 .c {
@@ -121,7 +119,6 @@
   height: 85px;
   object-fit: contain;
 }
-
 
 /* Articulo */
 .a {
@@ -155,7 +152,6 @@
   margin-left: 40px;
 }
 
-
 /* Contenido */
 .content {
   margin-left: 290px; /* Respeta el espacio del menú */
@@ -164,3 +160,5 @@
   flex: 1; /* Ocupa el espacio restante */
   background-color: #ffffff;
 }
+
+
