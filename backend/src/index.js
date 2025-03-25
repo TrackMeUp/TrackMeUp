@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
 const healthRoutes = require("./routes/healthRoutes");
@@ -6,12 +7,7 @@ const healthRoutes = require("./routes/healthRoutes");
 const app = express();
 const PORT = 3000;
 
-// Conexión con la base de datos
-const pool = require("./db/connection");
-// Permite conectar con la base de datos utilizando `req.app.locals.pool`.
-// Ver: https://expressjs.com/en/4x/api.html#app.locals
-app.locals.pool = pool;
-
+app.use(cors());
 app.use(express.json());
 
 // Rutas API

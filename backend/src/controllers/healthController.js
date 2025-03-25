@@ -1,8 +1,10 @@
+const pool = require("../db/connection");
+
 class HealthController {
     async checkHealth(req, res) {
         try {
             // Prueba la conexión con la base de datos.
-            await req.app.locals.pool.query("SELECT 1");
+            await pool.query("SELECT 1");
 
             res.status(200).json({
                 status: "healthy",
