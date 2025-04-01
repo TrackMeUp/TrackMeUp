@@ -1,18 +1,18 @@
-const pool = require("../db/connection");
+import pool from "../db/connection.js";
 
 class User {
-    static async getByEmail(email) {
-        try {
-            const [rows] = await pool.execute(
-                "SELECT * FROM usuario WHERE email = ?",
-                [email],
-            );
+  static async getByEmail(email) {
+    try {
+      const [rows] = await pool.execute(
+        "SELECT * FROM usuario WHERE email = ?",
+        [email],
+      );
 
-            return rows[0] || null;
-        } catch (err) {
-            throw err;
-        }
+      return rows[0] || null;
+    } catch (err) {
+      throw err;
     }
+  }
 }
 
-module.exports = User;
+export default User;
