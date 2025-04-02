@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 
 class UserController {
-  #validateUserData(email, password) {
+  static #validateUserData(email, password) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const errors = {};
@@ -21,7 +21,7 @@ class UserController {
     return errors;
   }
 
-  async loginUser(req, res) {
+  static async loginUser(req, res) {
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status#successful_responses
     try {
       const { email, password } = req.body;
@@ -31,7 +31,7 @@ class UserController {
       if (Object.keys(errors).length > 0) {
         return res.status(400).json({
           success: false,
-          message: "User data validation failed.",
+          message: "User data validation failed",
           errors,
         });
       }
@@ -60,4 +60,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default UserController;
