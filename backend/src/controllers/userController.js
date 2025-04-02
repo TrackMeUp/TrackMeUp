@@ -45,13 +45,13 @@ class UserController {
         });
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Successful login",
         user: user,
       });
     } catch (err) {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: "Login process failed",
         error: err.message,
