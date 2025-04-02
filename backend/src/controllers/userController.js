@@ -53,7 +53,7 @@ class UserController {
     } catch (err) {
       res.status(500).json({
         success: false,
-        message: "Server error",
+        message: "Login process failed",
         error: err.message,
       });
     }
