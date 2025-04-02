@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 
 class UserController {
-  validateUserData(email, password) {
+  #validateUserData(email, password) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const errors = {};
@@ -25,7 +25,7 @@ class UserController {
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status#successful_responses
     try {
       const { email, password } = req.body;
-      const errors = this.validateUserData(email, password);
+      const errors = this.#validateUserData(email, password);
 
       // Si la validación contiene errores, los devuelve como respuesta.
       if (Object.keys(errors).length > 0) {
