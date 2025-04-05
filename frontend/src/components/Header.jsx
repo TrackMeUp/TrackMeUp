@@ -5,7 +5,7 @@ export function Header() {
         <header className="c">
             <div className="c-contenedor">
                 <a href="index.html">
-                    <img className='c-logo' alt="logo" src={logo}/>
+                    <img className='c-logo' alt="logo" src={logo} />
                 </a>
             </div>
         </header>

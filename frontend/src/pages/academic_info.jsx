@@ -1,11 +1,12 @@
 import { Articulo } from "../components/UI/Articulo";
 import { useState, useEffect } from "react";
 
-const AcademicInfo = ({ menuOpen }) => {
+export function AcademicInfo({ menuOpen }) {
+    //const AcademicInfo = ({ menuOpen }) => {
     const cursoData = Array(3).fill({ texto: "Curso:", info: "Curso" });
-    const asignaturasData = Array.from({ length: 6 }, (_, i) => ({ texto: `Asignatura ${i + 1}:`, info: `Asignatura ${i + 1}` }));
+    const asignaturasData = Array.from({ length: 6 }, (_, i) => ({ texto: `Asignatura ${i + 1}:`, info: `Asignatura ${i + 1}`}));
     const horarioData = [{ texto: "Consultar horario:", info: "Horario" }];
-  
+
     return (
         <div
             className="container-fluid"
@@ -30,6 +31,6 @@ const AcademicInfo = ({ menuOpen }) => {
             </div>
         </div>
     );
-};
+}
 
-export default AcademicInfo;
+//export default AcademicInfo;

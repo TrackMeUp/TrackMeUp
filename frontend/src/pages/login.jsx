@@ -59,12 +59,12 @@ export function Login() {
                                 ¿Has olvidado tu contraseña?
                             </Link>
 
-
                         </div>
 
-                        <Link to="/admin" className="btn btn-primary mt-5">
+                        {/*<Link to="/admin" className="btn btn-primary mt-5">
                             Enlace temporal: vista de Administrador
-                        </Link>
+                        </Link>*/}
+
                     </div>
                 </div>
             </form>
