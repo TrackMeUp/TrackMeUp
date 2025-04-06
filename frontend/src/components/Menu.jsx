@@ -51,11 +51,14 @@ export function Menu() {
                 <article className={`m-contenedor ${menuOpen ? 'd-block' : 'd-none d-md-block'}`}>
                     <UserProfile name="USUARIO" avatarUrl="https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png" />
 
+                    {/*
                     <Separator />
                     <Mboton name="Login" url="https://www.systemuicons.com/images/icons/mail.svg" ruta="/login" />
                     <Separator />
 
-                    <Mboton name="Inicio" url="https://www.systemuicons.com/images/icons/list.svg" ruta="/" />
+                    */}
+
+                    <Mboton name="Inicio" url="https://www.systemuicons.com/images/icons/list.svg" ruta="/home" />
                     <Mboton name="Perfil" url="https://www.systemuicons.com/images/icons/user_male.svg" ruta="/profile" />
                     <Mboton name="Información académica" url="https://www.systemuicons.com/images/icons/bookmark_book.svg" ruta="/academic_info" />
                     <Mboton name="Calendario" url="https://www.systemuicons.com/images/icons/calendar_date.svg" ruta="/calendar" />
@@ -74,7 +77,7 @@ export function Menu() {
                 </article>
             </nav>
 
-            
+
         </>
     );
 }
