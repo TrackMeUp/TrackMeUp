@@ -14,10 +14,6 @@ export function Profile() {
                     { texto: "Contraseña:", info: "Cambiar contrasña" },
                     { texto: "Notificaciones:", info: "Notificaciones" }]}/>
 
-                {/* <Link to="/changePassword">
-                    <button>Cambiar contraseña</button>
-                </Link> */}
-
             </div>
         </>
     )

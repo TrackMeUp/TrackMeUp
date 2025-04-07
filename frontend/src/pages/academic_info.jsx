@@ -1,10 +1,4 @@
 import { Articulo } from "../components/UI/Articulo"
-
-
-      {/* <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
-            <div className="row w-100 justify-content-center">
-                <div className="col-12 col-md-8 col-lg-6"> 
-                    <h2 className="text-center mb-4">Información Académica</h2> */}
                    
 const AcademicInfo = () => {
     return (
