@@ -2,8 +2,8 @@
 .layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;  /* Asegura que ocupe toda la altura de la pantalla */
-  padding-top: 90px;  /* Se reserva espacio para el Header */
+  min-height: 100vh;
+  padding-top: 90px; 
 }
 
 .layout-content {
