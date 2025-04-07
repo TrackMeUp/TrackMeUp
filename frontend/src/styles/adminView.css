@@ -40,7 +40,7 @@ h2 {
     width: 100%;
     max-width: 50vh;
 }
-
+    /*
 button {
     width: 100%;
     padding: 12px;
@@ -56,7 +56,7 @@ button {
 button:hover {
     background-color: #ec2a8b;
 }
-
+*/
 /* Diseño responsive */
 @media (max-width: 768px) {
     .admin-card {
