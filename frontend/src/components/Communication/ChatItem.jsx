@@ -8,7 +8,6 @@ export function ChatItem({ avatar, nombre, fecha, nuevo, activo }) {
                 <div className="chat-nombre">{nombre}</div>
                 <div className="chat-fecha">{fecha}</div>
             </div>
-            {nuevo && <div className="nuevo-indicador">2</div>}
         </button>
     );
 }

@@ -35,6 +35,22 @@ export function Communication() {
                 contenido: "Muy bien, gracias. ¿Y tú?",
                 fecha: "2025-04-07",
                 hora: "14:35"
+              },
+              {
+                id_mensaje: 3,
+                remitente: "true",
+                avatar: 'https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png',
+                contenido: "¿Podemos hablar sobre el proyecto?",
+                fecha: "2025-04-07",
+                hora: "16:28"
+              },
+              {
+                id_mensaje: 2,
+                remitente: "false",
+                avatar: 'https://banner2.cleanpng.com/20180401/eww/avinxqqry.webp',
+                contenido: "Claro, ¿qué necesitas saber?",
+                fecha: "2025-04-07",
+                hora: "14:35"
               }
           ]
       },
