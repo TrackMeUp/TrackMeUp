@@ -1,8 +1,8 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
-const userRoutes = require("./routes/userRoutes");
-const healthRoutes = require("./routes/healthRoutes");
+import userRoutes from "./routes/userRoutes.js";
+import healthRoutes from "./routes/healthRoutes.js";
 
 const app = express();
 const PORT = 3000;
@@ -18,14 +18,14 @@ app.use("/api/health", healthRoutes);
 // Debe ser el último middleware (`app.use`).
 // Ver: https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({
-        success: false,
-        message: "Server error",
-        error: err.message,
-    });
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    message: "Server error",
+    error: err.message,
+  });
 });
 
 app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
+  console.log(`Listening on port: ${PORT}`);
 });
