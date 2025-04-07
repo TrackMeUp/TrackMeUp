@@ -1,32 +1,25 @@
-import { useState } from "react";
+import { useState } from "react"; // Para usar funcionalidades de React en versiones anteriores
 import { UserController } from "../controllers/UserController";
 
-export function Login({ onLogin }) {
+//import './login.css';
+
+export function Login() {
+    // Validación del formulario (Cliente)
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
 
     const userController = new UserController();
 
     const handleLogin = async (event) => {
-        event.preventDefault();
-
-        // Validación del login (por ejemplo, llamada a validateLogin)
-        const isValid = validateLogin(user, password);
-        if (!isValid) return;
+        // Controlador del botón "Iniciar sesión"
+        event.preventDefault(); // Evita el envío del formulario sin validar
 
         const result = await userController.login(user, password);
-        if (result.success) {
-            // Si el login es exitoso, cambia el estado de autenticación
-            onLogin();  // Llama a la función que pasaste como prop
-        } else {
-            setError("Error en el inicio de sesión. Intenta nuevamente.");
-        }
     };
 
     return (
         <section>
-            <form onSubmit={handleLogin}>
+            <form id="loginForm" action="login" onSubmit={handleLogin}>
                 <div>
                     <label htmlFor="user">Usuario: </label>
                     <input
@@ -37,6 +30,7 @@ export function Login({ onLogin }) {
                         onChange={(e) => setUser(e.target.value)}
                     />
                 </div>
+
                 <div>
                     <label htmlFor="password">Contraseña: </label>
                     <input
@@ -47,9 +41,14 @@ export function Login({ onLogin }) {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                {error && <p style={{ color: "red" }}>{error}</p>} {/* Mostrar error */}
+
                 <div>
                     <button type="submit">Iniciar sesión</button>
+                </div>
+
+                <div>
+                    <a href="">¿Has olvidado tu contraseña?</a>
+                    {/* Completar ruta */}
                 </div>
             </form>
         </section>
