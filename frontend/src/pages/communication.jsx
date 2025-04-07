@@ -32,7 +32,7 @@ export function Communication() {
           fecha: '2025-04-06',
           nuevo: false,
           mensajes: [
-              { id_mensaje: 1, texto: '¿Me puedes ayudar con el proyecto?', fecha: '2025-04-06', hora: '16:45' }
+              { id_mensaje: 1, texto: '¿Has recibido el mensaje?', fecha: '2025-04-06', hora: '16:45' }
           ]
       }
   ];
