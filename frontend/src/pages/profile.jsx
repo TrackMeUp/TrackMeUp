@@ -11,7 +11,7 @@ export function Profile() {
                     { texto: "Correo:", info: "alumno.apellido@gmail.com" }]}/>
 
                 <Articulo titulo="Configuración" entradas={[
-                    { texto: "Contraseña:", info: "Cambiar contrasña" },
+                    { texto: "Contraseña:", info: "Cambiar contraseña" },
                     { texto: "Notificaciones:", info: "Notificaciones" }]}/>
 
             </div>

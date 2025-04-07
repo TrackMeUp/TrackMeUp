@@ -9,10 +9,11 @@ export function Editor() {
           </select>
           <button><b>B</b></button>
           <button><i>I</i></button>
-          {/* Agregá más botones si querés */}
+          <button><s>S</s></button>
         </div>
         <textarea placeholder="Escribir mensaje..." />
+        <button className="sendButton">Enviar</button>
       </div>
     );
-  }
+}
   

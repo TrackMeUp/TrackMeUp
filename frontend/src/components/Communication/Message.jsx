@@ -1,29 +1,14 @@
-/*export function Message({ texto, hora }) {
-    return (
-      <div className="mensaje">
-        <img
-          className="avatar"
-          src="https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png"
-          alt="avatar"
-        />
-        <div className="mensaje-contenido">
-          <p className="mensaje-texto">{texto}</p>
-          <span className="mensaje-hora">{hora}</span>
-        </div>
-      </div>
-    );
-  }
-  */
-
-  
-  export function Message({ entradas }) {
+export function Message({ entradas }) {
     return (
         <div className="mensajes">
             {entradas.map((entrada) => (
-                <div key={entrada.id_mensaje} className="mensaje">
+                <div
+                    key={entrada.id_mensaje}
+                    className={`mensaje ${entrada.remitente === 'true' ? 'mensaje-true' : 'mensaje-false'}`}
+                >
                     <img className="avatar" src={entrada.avatar} alt="avatar" />
-                    <div className="mensaje-contenido">
-                        <p className="mensaje-texto">{entrada.texto}</p>
+                    <div className={`mensaje-contenido ${entrada.remitente === 'true' ? 'mensaje-contenido-true' : 'mensaje-contenido-false'}`}>
+                        <p className="mensaje-texto">{entrada.contenido}</p>
                         <span className="mensaje-hora">{entrada.fecha} {entrada.hora}</span>
                     </div>
                 </div>
@@ -31,5 +16,3 @@
         </div>
     );
 }
-
-  
