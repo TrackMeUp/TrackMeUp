@@ -1,3 +1,5 @@
+// PIE DE PÁGINA
+
 //import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import logo from '../assets/Logo.png'; // Si quieres agregar el logo
 
