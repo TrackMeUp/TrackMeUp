@@ -1,4 +1,6 @@
-import logo from '../assets/Logo.png';
+// CABECERA
+
+import logo from '../assets/Logo.png'; // Importa la imagen del logo
 
 export function Header() {
     return (

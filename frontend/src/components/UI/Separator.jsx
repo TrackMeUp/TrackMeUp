@@ -1,4 +1,6 @@
+// Componente de React que actúa como separador de bloques
+
 export function Separator() {
-    return <hr className="s" />;
-  }
-  
+  // Devuelve un elemento <hr> con una clase CSS llamada s
+  return <hr className="s" />;
+}

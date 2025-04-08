@@ -8,7 +8,6 @@ import './styles/index.css' // Importar el CSS global
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 
-
 root.render(
     <BrowserRouter>
         <App />

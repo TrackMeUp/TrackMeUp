@@ -10,19 +10,12 @@ describe('Prueba de inicio de sesión', () => {
     cy.get('#password').type('contraseña'); // Completar campo contraseña
     cy.get('.login-button').click(); // Pulsar botón iniciar sesión
 
-    // cy.url().should('include', '/'); // Verificar que accede correctamente a la página home
-    
     cy.url().should('include', 'http://localhost:5173/home'); // Verificar que accede correctamente a la página home
-
-    // cy.contains('').should('be.visible'); // Verificar que se muestra contenido después de iniciar sesión
 
   })
 
   it('Se muestra un mensaje de error si no se completan todos los campos', () => {
     cy.visit('http://localhost:5173/login') // Visitar la página de login
-
-    //cy.get('#user').type('usuario@prueba.com');
-    //cy.get('#password').type('');
     cy.get('.login-button').click();
 
     cy.on('window:alert', (text) => {
@@ -53,14 +46,14 @@ describe('Prueba de inicio de sesión', () => {
       expect(text).to.equal('La contraseña debe tener al menos 6 caracteres.'); // Verificar que se muestra un mensaje de error
     })
   })
-  
+
   it('Se muestra un mensaje informativo al solicitar un cambio de contraseña', () => {
     cy.visit('http://localhost:5173/login') // Visitar la página de login
     cy.get('.passw-button').click();
 
     cy.on('window:alert', (text) => {
-      
-      expect(text).to.equal('El centro de estudios se pondrá en contacto contigo próximamente para proporcionarte una nueva contraseña.'); 
+
+      expect(text).to.equal('El centro de estudios se pondrá en contacto contigo próximamente para proporcionarte una nueva contraseña.');
     })
   })
 
@@ -69,6 +62,6 @@ describe('Prueba de inicio de sesión', () => {
     // Previene que Cypress falle el test con excepciones no controladas
     return false;
   })
-  
-  
+
+
 })
