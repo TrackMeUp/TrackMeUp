@@ -1,8 +1,7 @@
 import { Articulo } from "../components/UI/Articulo"
                    
-const AcademicInfo = () => {
+export function AcademicInfo (){
     return (
-        <>
             <div className="informacion-container" >
 
                 <Articulo titulo="Curso" entradas={[
@@ -22,8 +21,5 @@ const AcademicInfo = () => {
                     { texto: "Consultar horario:", info: "Horario" }]}/>  
 
             </div>
-        </div>
     );
 }
-
-//export default AcademicInfo;
