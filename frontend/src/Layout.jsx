@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Menu } from './components/Menu';
+//import { Footer } from './components/Footer';
+
 
 export function Layout() {
   return (
@@ -12,8 +14,6 @@ export function Layout() {
         <Outlet />
         </div>
         </div>
-        
     </div>
   );
 };
-

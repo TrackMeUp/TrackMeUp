@@ -22,9 +22,8 @@ const AcademicInfo = () => {
                     { texto: "Consultar horario:", info: "Horario" }]}/>  
 
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-export default AcademicInfo;
-
+//export default AcademicInfo;
