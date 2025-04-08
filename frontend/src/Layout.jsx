@@ -7,14 +7,13 @@ import { Menu } from './components/Menu';
 export function Layout() {
   return (
     <div className='layout'>
-      <Header />
-      <Menu />
-      {/* <Footer /> */}
-
-      <div className='content'>
+        <Header />
+        <div className='layout-content'>
+        <Menu />
+        <div className='content'>
         <Outlet />
-      </div>
-
+        </div>
+        </div>
     </div>
   );
 };

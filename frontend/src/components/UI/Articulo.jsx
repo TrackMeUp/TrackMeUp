@@ -5,12 +5,14 @@ export function Articulo({ titulo, entradas = [] }) {
         <article className="a">
             <h1 className="a-titulo">{titulo}</h1>
             {entradas.map((entrada, index) => (
-                <div key={index} className="detalle">
-                    <p className="a-texto">{entrada.texto}</p>
-                    <p className="a-info">{entrada.info}</p>
+                <div key={index}>
+                    <div className="detalle">
+                        <p className="a-texto"><b>{entrada.texto}</b></p>
+                        <p className="a-info">{entrada.info}</p>
+                    </div>
+                {index !== entradas.length - 1 && <Separator />}
                 </div>
             ))}
-            <Separator />
         </article>
     );
 }
