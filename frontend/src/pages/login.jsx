@@ -1,11 +1,13 @@
-import { useState } from "react"; // Para usar funcionalidades de React en versiones anteriores
-import { UserController } from "../controllers/UserController";
+// Formulario de acceso
+
+import { useState } from "react"; // Importa el hook useState de la biblioteca de React
+import { UserController } from "../controllers/UserController"; // Importa el fichero userController.js
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import '../styles/login.css';
-import { Link, useNavigate } from "react-router-dom";
+import '../styles/login.css'; // Incluye el estilo CSS del fichero login.css
+import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate de la biblioteca react-router-dom
 
-import { Header } from '../components/Header'; // Incluimos la cabecera en el login
+import { Header } from '../components/Header'; // Incluye la cabecera en el login
 
 
 export function Login() {
@@ -29,6 +31,13 @@ export function Login() {
             alert(result.errors.server)
         }
     };
+
+    const handleChangePassw = async (event) => {
+        // Controlador del botón "¿Has olvidado tu contraseña?
+        event.preventDefault();
+        alert('El centro de estudios se pondrá en contacto contigo próximamente para proporcionarte una nueva contraseña.');
+    };
+
 
     return (
 
@@ -72,19 +81,8 @@ export function Login() {
                             </div>
 
                             <div className="passw-button">
-                                <Link to=" "> {/* Completar ruta */}
-                                    ¿Has olvidado tu contraseña?
-                                </Link>
-
+                                <a href="#" onClick={handleChangePassw}>¿Has olvidado tu contraseña?</a>
                             </div>
-
-                            {/*
-                            
-                            <Link to="/admin" className="btn btn-primary mt-5">
-                            Enlace temporal: vista de Administrador
-                            </Link>
-                            
-                            */}
 
                         </div>
                     </div>
