@@ -3,10 +3,9 @@ import pool from "../db/connection.js";
 class User {
   static async getByEmail(email) {
     try {
-      const [rows] = await pool.execute(
-        "SELECT * FROM usuario WHERE email = ?",
-        [email],
-      );
+      const [rows] = await pool.execute("SELECT * FROM user WHERE email = ?", [
+        email,
+      ]);
 
       return rows[0] || null;
     } catch (err) {

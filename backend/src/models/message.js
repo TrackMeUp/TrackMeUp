@@ -4,8 +4,8 @@ class Message {
   static async getConversacionesUsuario(idUsuario) {
     try {
       const [rows] = await pool.execute(
-        "SELECT * FROM mensaje WHERE id_usuario_autor = ?"
-        ,[idUsuario],
+        "SELECT * FROM message WHERE author_user_id = ?",
+        [idUsuario],
       );
 
       return rows;
