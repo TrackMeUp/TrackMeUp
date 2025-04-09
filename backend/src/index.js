@@ -3,6 +3,7 @@ import cors from "cors";
 
 import userRoutes from "./routes/userRoutes.js";
 import healthRoutes from "./routes/healthRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 // Rutas API
 app.use("/api/users", userRoutes);
 app.use("/api/health", healthRoutes);
+app.use("/api/mensajes", messageRoutes);
 
 // Maneja cualquier error no controlado de forma explícita.
 // Debe ser el último middleware (`app.use`).
