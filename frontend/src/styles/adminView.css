@@ -41,7 +41,7 @@ h2 {
     max-width: 50vh;
 }
 
-.userManagement > button {
+.admin-buttons button {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
@@ -53,7 +53,7 @@ h2 {
     transition: background 0.3s ease-in-out;
 }
 
-.userManagement > button:hover {
+.admin-buttons button:hover {
     background-color: #ec2a8b;
 }
 
