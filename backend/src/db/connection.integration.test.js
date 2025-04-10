@@ -22,20 +22,19 @@ describe("Database connection integration", () => {
 
     const tableNames = tables.map((table) => table.TABLE_NAME);
     const expectedTables = [
-      "actividad",
+      "activity",
       "admin",
-      "asignatura",
-      "curso",
-      "docente",
-      "entrada_tablon_anuncios",
-      "entrega",
-      "estudiante",
-      "estudiante_asignatura",
-      "horario",
-      "mensaje",
-      "padre",
-      "rol",
-      "usuario",
+      "bulletin_board_entry",
+      "course",
+      "message",
+      "parent",
+      "schedule",
+      "student",
+      "student_subject",
+      "subject",
+      "submission",
+      "teacher",
+      "user",
     ];
 
     for (const expectedTableName of expectedTables) {

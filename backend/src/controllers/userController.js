@@ -48,12 +48,102 @@ class UserController {
       return res.status(200).json({
         success: true,
         message: "Successful login",
-        user: user,
+        user: {
+          user_id: user.user_id,
+          role: user.role,
+        },
       });
     } catch (err) {
       return res.status(500).json({
         success: false,
         message: "Login process failed",
+        error: err.message,
+      });
+    }
+  }
+
+  static async getUsers(req, res) {
+    try {
+      const users = await User.getAll();
+
+      return res.status(200).json({
+        success: true,
+        users,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Could not fetch users",
+        error: err.message,
+      });
+    }
+  }
+
+  static async createUser(req, res) {
+    try {
+      const user = await User.create(req.body);
+
+      return res.status(200).json({
+        success: true,
+        message: "User created",
+        user_id: user.insertId,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: "User creation failed",
+        error: err.message,
+      });
+    }
+  }
+
+  static async updateUser(req, res) {
+    try {
+      const { id } = req.params;
+      const updated = await User.update(id, req.body);
+
+      if (!updated) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found or not updated",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "User updated",
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "User update failed",
+        error: err.message,
+      });
+    }
+  }
+
+  static async deleteUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const deleted = await User.delete(id);
+
+      if (!deleted) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "User deleted",
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: "User deletion failed",
         error: err.message,
       });
     }
