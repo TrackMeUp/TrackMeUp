@@ -5,7 +5,7 @@ export function ChatItem({ avatar, nombre, fecha, activo }) {
         <button 
             className={`chat-item ${activo ? 'chat-item-activo' : ''}`}
         >
-            <img className="avatar" src="frontend\src\assets\1.png" alt="avatar" />
+            <img className="avatar" src={`../../../public/${avatar}.png`} alt="avatar" />
             <div className="chat-info">
                 <div className="chat-nombre">{nombre}</div>
                 <div className="chat-fecha">{new Date(fecha).toLocaleString('es-ES', {

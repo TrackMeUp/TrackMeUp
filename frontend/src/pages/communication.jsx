@@ -9,12 +9,12 @@ export function Communication() {
     const [selectedChatData, setSelectedChatData] = useState(null); // Para los mensajes de la conversación seleccionada
 
 
-    const usuarioId = 6;
+    const usuarioId = parseInt(localStorage.getItem("user_id"), 10);
     // Llamada a la API para obtener las conversaciones
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/mensajes/get_conversaciones/6');
+                const response = await fetch(`http://localhost:3000/api/mensajes/get_conversaciones/${usuarioId}`);
                 const data = await response.json();
                 setEntradas(data); // Guardamos las conversaciones en el estado
             } catch (error) {

@@ -17,6 +17,15 @@ export class UserController {
             };
         }
 
+        const user = result.data.user;
+        console.log("Usuario recibido:", user);
+
+        const fullName = `${user.first_name} ${user.last_name1} ${user.last_name2}`;
+
+            localStorage.setItem("user_id", user.user_id);
+            localStorage.setItem("user_email", user.email);
+            localStorage.setItem("user_name", fullName);
+
         return {
             success: true,
             data: result.data,
