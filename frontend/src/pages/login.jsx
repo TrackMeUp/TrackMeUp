@@ -24,9 +24,12 @@ export function Login() {
         event.preventDefault(); // Evita el envío del formulario sin validar
 
         const result = await userController.login(user, password);
+        
         if (result.success) {
             localStorage.setItem("user", user);
-            navigate('/home');
+            localStorage.setItem("user_role", result.user.role.name);
+
+            navigate('/');
         } else {
             alert(result.errors.server)
         }

@@ -23,11 +23,10 @@ import { LogOut } from './pages/logout';
 import { AdminView } from "./pages/admin/adminView";
 import { UserManagement } from "./pages/admin/user_management";
 
-
 export function App() {
   return (
+    // Si el usuario ha iniciado sesión, se muestra el menú de navegación (Layout)
     <Routes>
-      {/* Si el usuario ha iniciado sesión, se muestra el menú de navegación (Layout) */}
       <Route path="/" element={localStorage.getItem("user") ? <Navigate to="/home" /> : <Navigate to="/login" />} />
 
       <Route path="/login" element={<Login />} />
