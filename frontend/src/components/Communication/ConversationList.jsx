@@ -1,4 +1,5 @@
 import { ChatItem } from './ChatItem';
+
 export function ConversationList({ entradas, onSelectChat, selectedChatId }) {
     return (
         <div className="comunicacion-listado">
@@ -8,17 +9,16 @@ export function ConversationList({ entradas, onSelectChat, selectedChatId }) {
             </div>
 
             {entradas.map((entrada) => (
-                <div 
-                    key={entrada.id_mensaje} 
-                    onClick={() => onSelectChat(entrada.id_mensaje)}
+                <div
+                    key={entrada.id_persona_conversa} // Usamos id_persona_conversa como clave
+                    onClick={() => onSelectChat(entrada.id_persona_conversa)} // Pasamos id_persona_conversa para la selección
                 >
                     <div className="lista-conversaciones">
                         <ChatItem
-                            avatar={entrada.avatar}
-                            nombre={entrada.usuario}
-                            fecha={entrada.fecha}
-                            nuevo={entrada.nuevo}
-                            activo={entrada.id_mensaje === selectedChatId}
+                            avatar={entrada.id_persona_conversa}
+                            nombre={entrada.persona_conversa}
+                            fecha={entrada.fecha_ultimo_mensaje}
+                            activo={entrada.id_persona_conversa === selectedChatId} // Comparas con id_persona_conversa
                         />
                     </div>
                 </div>
@@ -26,3 +26,5 @@ export function ConversationList({ entradas, onSelectChat, selectedChatId }) {
         </div>
     );
 }
+
+

@@ -3,10 +3,14 @@ import { UserProfile } from './Menu/UserProfile'
 import { Mboton } from './Menu/menu_botton'
 
 export function Menu() {
+
+    const usuarioId = parseInt(localStorage.getItem("user_id"), 10);
+    const usuarioNombre = localStorage.getItem("user_name");
+
     return (
     <article className="m-contenedor">
 
-    <UserProfile name='USUARIO' avatarUrl='https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png' />
+    <UserProfile name={`${usuarioNombre}`} avatarUrl={`../../public/${usuarioId}.png`} />
 
     <Mboton name='Inicio' url='https://www.systemuicons.com/images/icons/list.svg' ruta="/" />
     <Mboton name='Perfil' url='https://www.systemuicons.com/images/icons/user_male.svg' ruta="/profile"/>

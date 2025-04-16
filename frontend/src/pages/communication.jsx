@@ -1,94 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ConversationList } from "../components/Communication/ConversationList";
-
 import { Message } from "../components/Communication/Message";
 import { Editor } from "../components/Communication/Editor";
 
 export function Communication() {
-  const [selectedChat, setSelectedChat] = useState(null); // guardar el chat seleccionado
-
-  const handleSelectChat = (chatId) => {
-      setSelectedChat(chatId); // actualizar estado
-  };
-
-  // ejemplo (recibir del backend)
-  const entradas = [
-      {
-          id_mensaje: 1,
-          avatar: 'https://banner2.cleanpng.com/20180401/eww/avinxqqry.webp',
-          usuario: 'Juan Pérez',
-          fecha: '2025-04-07',
-          nuevo: true,
-          mensajes: [
-            {
-                id_mensaje: 1,
-                remitente: "true",
-                avatar: 'https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png',
-                contenido: "Hola, ¿cómo estás?",
-                fecha: "2025-04-07",
-                hora: "14:30"
-              },
-              {
-                id_mensaje: 2,
-                remitente: "false",
-                avatar: 'https://banner2.cleanpng.com/20180401/eww/avinxqqry.webp',
-                contenido: "Muy bien, gracias. ¿Y tú?",
-                fecha: "2025-04-07",
-                hora: "14:35"
-              },
-              {
-                id_mensaje: 3,
-                remitente: "true",
-                avatar: 'https://cdn.pixabay.com/photo/2018/11/13/22/01/avatar-3814081_1280.png',
-                contenido: "¿Podemos hablar sobre el proyecto?",
-                fecha: "2025-04-07",
-                hora: "16:28"
-              },
-              {
-                id_mensaje: 2,
-                remitente: "false",
-                avatar: 'https://banner2.cleanpng.com/20180401/eww/avinxqqry.webp',
-                contenido: "Claro, ¿qué necesitas saber?",
-                fecha: "2025-04-07",
-                hora: "14:35"
-              }
-          ]
-      },
-      {
-          id_mensaje: 2,
-          avatar: 'https://banner2.cleanpng.com/20180331/eow/avibquy0n.webp',
-          usuario: 'Ana Gómez',
-          fecha: '2025-04-06',
-          nuevo: false,
-          mensajes: [
-              { id_mensaje: 1, remitente:"false", avatar:'https://banner2.cleanpng.com/20180331/eow/avibquy0n.webp', contenido: '¿Has recibido el mensaje?', fecha: '2025-04-06', hora: '16:45' }
-          ]
-      }
-  ];
-
-  // Filtrar el chat seleccionado para mostrar los mensajes
-  const selectedChatData = entradas.find(chat => chat.id_mensaje === selectedChat);
-
-  return (
-      <div className="comunicacion-container">
-
-              <ConversationList
-                  entradas={entradas}
-                  onSelectChat={handleSelectChat}
-                  selectedChatId={selectedChat}
-              />
+    const [entradas, setEntradas] = useState([]);
+    const [selectedChat, setSelectedChat] = useState(null);
+    const [selectedChatData, setSelectedChatData] = useState(null); // Para los mensajes de la conversación seleccionada
 
 
-          <div className="comunicacion-chat">
-              {selectedChatData ? (
-                  <Message entradas={selectedChatData.mensajes} 
-                           avatar={selectedChatData.avatar}
-                           usuario={selectedChatData.usuario}/>
-              ) : (
-                  <p>Selecciona un chat para ver los mensajes.</p>
-              )}
-              <Editor />
-          </div>
-      </div>
-  );
+    const usuarioId = parseInt(localStorage.getItem("user_id"), 10);
+    // Llamada a la API para obtener las conversaciones
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:3000/api/mensajes/get_conversaciones/${usuarioId}`);
+                const data = await response.json();
+                setEntradas(data); // Guardamos las conversaciones en el estado
+            } catch (error) {
+                console.error('Error al obtener las conversaciones:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    // Función para manejar la selección de un chat
+    const handleSelectChat = async (idPersonaConversa) => {
+        setSelectedChat(idPersonaConversa);
+
+        // Obtener los mensajes entre el usuario actual y la persona seleccionada
+        try {
+            const response = await fetch(`http://localhost:3000/api/mensajes/get_mensajes/${usuarioId}/${idPersonaConversa}`);
+            const data = await response.json();
+            setSelectedChatData(data); // Guardamos los mensajes en el estado
+        } catch (error) {
+            console.error('Error al obtener los mensajes:', error);
+        }
+    };
+
+    // Buscar los datos del chat seleccionado
+    const selectedChatDataFound = entradas.find(entrada => entrada.id_persona_conversa === selectedChat);
+
+    return (
+        <div className="comunicacion-container">
+            <ConversationList
+                entradas={entradas}  // Datos de las conversaciones
+                onSelectChat={handleSelectChat}  // Función para manejar la selección
+                selectedChatId={selectedChat}  // El chat actualmente seleccionado
+            />
+
+            <div className="comunicacion-chat">
+                {selectedChatData ? (
+                    selectedChatData.length > 0 ? (
+                        <Message 
+                            entradas={selectedChatData}  // Los mensajes de la conversación seleccionada
+                            usuarioId={usuarioId}
+                        />
+                    ) : (
+                        <p>No hay mensajes en esta conversación.</p>
+                    )
+                ) : (
+                    <p>Selecciona un chat para ver los mensajes.</p>
+                )}
+                <Editor />
+            </div>
+        </div>
+    );
 }

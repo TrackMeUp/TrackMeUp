@@ -17,6 +17,24 @@ class MessageController {
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   };
+
+  static obtenerMensajesEntreUsuarios = async (req, res) => {
+    const { id1, id2 } = req.params;
+
+    if (isNaN(id1) || isNaN(id2)) {
+      return res.status(400).json({ error: "ID de usuario inválido" });
+    }
+
+    try {
+      const mensajes = await Message.getMensajesEntreDosUsuarios(id1, id2);
+      
+      return res.status(200).json(mensajes);
+    } catch (error) {
+      console.error("Error al obtener mensajes entre usuarios:", error);
+      return res.status(500).json({ error: "Error interno del servidor" });
+    }
+  };
+
 }
 
 export default MessageController;
