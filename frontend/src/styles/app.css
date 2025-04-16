@@ -110,6 +110,10 @@
   z-index: 1000;
 }
 
+.admin-layout > .c {
+  position: sticky !important;
+}
+
 .c-contenedor {
   background-color: white;
   width: 280px;

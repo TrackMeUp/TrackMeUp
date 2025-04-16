@@ -107,9 +107,17 @@ describe("UserController", () => {
 
     it("should return 200 on successful login", async () => {
       const userMock = {
-        id: 999,
+        user_id: 999,
+        first_name: "test",
+        last_name1: "test",
+        last_name2: "test",
         email: "test@test.com",
         password: "password",
+        role: {
+          name: "admin",
+          admin_id: 1,
+          access_level: 1,
+        },
       };
 
       request.body = { email: userMock.email, password: userMock.password };
@@ -121,7 +129,7 @@ describe("UserController", () => {
       expect(response.json).toHaveBeenCalledWith({
         success: true,
         message: "Successful login",
-        user: userMock,
+        user: { user_id: userMock.user_id, role: userMock.role },
       });
     });
 

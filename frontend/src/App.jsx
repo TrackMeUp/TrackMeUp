@@ -5,6 +5,7 @@ import { Route, Routes, Navigate } from 'react-router-dom'; // Importa los compo
 import './styles/app.css'; // Importa el fichero de estilo css
 
 import { Layout } from './Layout';
+import { AdminLayout } from "./pages/admin/admin_layout"
 
 import { Home } from './pages/home';
 import { Profile } from './pages/profile';
@@ -20,19 +21,17 @@ import { Login } from './pages/login';
 import { LogOut } from './pages/logout';
 
 import { AdminView } from "./pages/admin/adminView";
-
+import { UserManagement } from "./pages/admin/user_management";
 
 export function App() {
-
   return (
-
     // Si el usuario ha iniciado sesión, se muestra el menú de navegación (Layout)
-    <>
-      <Routes>
-        <Route path="/" element={localStorage.getItem("user") ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
+    <Routes>
+      <Route path="/" element={localStorage.getItem("user") ? <Navigate to="/home" /> : <Navigate to="/login" />} />
 
-        <Route element={<Layout />}>
+      <Route path="/login" element={<Login />} />
+
+      <Route element={<Layout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/academic_info" element={<AcademicInfo />} />
@@ -43,12 +42,15 @@ export function App() {
         <Route path="/notice_board" element={<NoticeBoard />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/logout" element={<LogOut />} />
+      </Route>
 
+      <Route element={ localStorage.getItem("user_role") === "admin"
+        ? <AdminLayout />
+        : <Navigate to="/" />
+      }>
         <Route path="/admin" element={<AdminView />} />
-
-        </Route>
-      </Routes>
-
-    </>
+        <Route path="/admin/user_management" element={<UserManagement />} />
+      </Route>
+    </Routes>
   );
 }
