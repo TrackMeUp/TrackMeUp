@@ -63,7 +63,12 @@ export function Communication() {
                 ) : (
                     <p>Selecciona un chat para ver los mensajes.</p>
                 )}
-                <Editor />
+                <Editor
+                    authorId={usuarioId}
+                    recipientId={selectedChat}
+                    onMessageSent={() => handleSelectChat(selectedChat)}
+                />
+
             </div>
         </div>
     );

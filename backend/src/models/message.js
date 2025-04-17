@@ -65,6 +65,26 @@ class Message {
     }
   }
 
+  static async createMessage(authorId, recipientId, content) {
+    try {
+      const now = new Date();
+      const formattedDate = now.toISOString().slice(0, 19).replace('T', ' ');
+  
+      const [result] = await pool.execute(
+        `INSERT INTO message (author_user_id, recipient_user_id, date, content) VALUES (?, ?, ?, ?)`,
+        [authorId, recipientId, formattedDate, content]
+      );
+  
+      return {
+        success: true,
+        messageId: result.insertId,
+        date: formattedDate
+      };
+    } catch (err) {
+      throw err;
+    }
+  }  
+
 }
 
 export default Message;
