@@ -35,6 +35,34 @@ class MessageController {
     }
   };
 
+  static async createMessage(req, res) {
+    try {
+      const { authorId, recipientId, content } = req.body;
+
+      if (!authorId || !recipientId || !content) {
+        return res.status(400).json({
+          success: false,
+          message: "Missing required fields"
+        });
+      }
+
+      const result = await Message.createMessage(authorId, recipientId, content);
+
+      res.status(201).json({
+        success: true,
+        message: "Message created successfully",
+        data: result
+      });
+
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: "Error creating message",
+        error: err.message
+      });
+    }
+  };
+
 }
 
 export default MessageController;
