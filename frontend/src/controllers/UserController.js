@@ -28,7 +28,7 @@ export class UserController {
 
         return {
             success: true,
-            users: result.data.user,
+            user: result.data.user,
         };
     }
 }
