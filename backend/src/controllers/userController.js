@@ -50,6 +50,7 @@ class UserController {
         message: "Successful login",
         user: {
           user_id: user.user_id,
+          full_name: `${user.first_name} ${user.last_name1} ${user.last_name2}`,
           role: user.role,
         },
       });
