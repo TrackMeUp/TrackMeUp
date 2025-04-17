@@ -22,7 +22,7 @@ export class UserController {
 
             localStorage.setItem("user_id", user.user_id);
             localStorage.setItem("user_email", user.email);
-            localStorage.setItem("user_name", user.fullName);
+            localStorage.setItem("user_name", user.full_name);
 
         return {
             success: true,
