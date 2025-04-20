@@ -1,0 +1,90 @@
+/* Estilo del calendario */
+
+.calendar-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #f7f2fa;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 500px;
+}
+
+.calendar-grid-wrapper {
+  overflow-x: auto;
+}
+
+.calendar-day-name {
+  text-align: center;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calendar-day:hover {
+  background: #7ed957;
+}
+
+.btn-calendar {
+  border: none;
+  background: none;
+  padding: 0.6em 1.2em;
+  cursor: pointer;
+}
+
+
+/* Pantallas más pequeñas */
+
+@media (max-width: 600px) {
+  .calendar-container {
+    padding: 0.5rem;
+  }
+
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .calendar-day {
+    padding: 3px;
+    font-size: 0.8rem;
+  }
+
+  .calendar-day-name {
+    font-size: 0.75rem;
+  }
+}
