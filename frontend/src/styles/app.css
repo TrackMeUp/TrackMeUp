@@ -2,16 +2,32 @@
 .layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  padding-top: 90px; 
+  height: 100vh;
+  width: 100vw;
 }
+
 
 .layout-content {
   display: flex;
   flex: 1;
-  height: 100%;
   overflow: hidden;
 }
+
+/* Contenido */
+.content {
+  padding: 16px;
+  flex: 1;
+  background-color: #ffffff;
+  height: calc(100vh - 90px);
+  width: 100%; /* Añadido */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-left: 290px; /* Solo si estás compensando por el menú fijo */
+  box-sizing: border-box; /* Esto ayuda a evitar scroll lateral raro */
+}
+
+
 
 /* Menu */
 .m-contenedor {
@@ -160,15 +176,6 @@
   font-size: 16px;
   color: #777;
   margin-left: 40px;
-}
-
-/* Contenido */
-.content {
-  margin-left: 290px;
-  padding: 16px;
-  overflow-y: auto;
-  flex: 1;
-  background-color: #ffffff;
 }
 
 
@@ -402,4 +409,72 @@ textarea {
   font-size: 14px;
   font-weight: bold;
   align-self: flex-end;
+}
+
+
+/* Activities */
+.activities-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  height: 100%;
+  width: 100%;
+  padding: 20px 50px 0 50px;
+}
+
+.activities-column {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  background-color: #dddfe7;
+  border-radius: 8px;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.activities-header {
+  padding: 30px 20px 10px 20px;
+  flex-shrink: 0;
+}
+
+.activities-header h2 {
+  font-size: 25px;
+  margin: 0;
+}
+
+.activities-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0 10px 10px 10px;
+}
+
+.activities-column h2 {
+  font-size: 25px;
+  margin-top: 30px;
+}
+
+.activity {
+  background: #fff;
+  border: 25px solid #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 25px;
+  margin-bottom: -25px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.activity-title {
+  margin-top: 25px;
+  font-size: 1.1rem;
+}
+
+.activity-detail {
+  margin-top: -10px;
+  font-size: 0.9rem;
+}
+
+.activity-date {
+  margin-top: 24px;
+  margin-bottom: -10px;
+  font-size: 0.9rem;
 }

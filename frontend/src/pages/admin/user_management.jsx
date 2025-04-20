@@ -1,3 +1,4 @@
+/*
 import { useState, useEffect } from "react";
 import {
   getUsers,
@@ -21,8 +22,9 @@ import {
 } from "react-bootstrap";
 
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-
+*/
 export function UserManagement() {
+  /*
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -143,8 +145,10 @@ export function UserManagement() {
       parent_student_id: null,
     });
   };
-
+*/
   return (
+    <h1>G</h1>
+    /*
     <Container fluid className="mt-3">
       <Row className="mb-3">
         <Col md={3}>
@@ -386,5 +390,6 @@ export function UserManagement() {
         </Modal.Footer>
       </Modal>
     </Container>
+    */
   );
 }
