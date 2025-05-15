@@ -13,13 +13,12 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .main-container {
     display: flex;
     flex: 1;
-    margin-top: 90px;
     height: calc(100vh - 90px);
     overflow: hidden;
   }

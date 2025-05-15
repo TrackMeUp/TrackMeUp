@@ -4,6 +4,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  padding-top: 90px;
 }
 
 
@@ -19,12 +20,13 @@
   flex: 1;
   background-color: #ffffff;
   height: calc(100vh - 90px);
-  width: 100%; /* Añadido */
+  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin-left: 290px; /* Solo si estás compensando por el menú fijo */
-  box-sizing: border-box; /* Esto ayuda a evitar scroll lateral raro */
+  margin-left: 290px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 
@@ -140,6 +142,11 @@
   padding-left: 17px;
   height: 85px;
   object-fit: contain;
+}
+
+
+.informacion-container {
+  overflow-y: auto;
 }
 
 /* Articulo */
@@ -419,22 +426,23 @@ textarea {
   gap: 16px;
   height: 100%;
   width: 100%;
-  padding: 20px 50px 0 50px;
 }
 
 .activities-column {
   display: flex;
   flex-direction: column;
-  width: 33%;
+  width: 33.33%;
   background-color: #dddfe7;
   border-radius: 8px;
-  height: calc(100vh - 80px);
+  height: 100%;
   overflow: hidden;
 }
 
 .activities-header {
   padding: 30px 20px 10px 20px;
   flex-shrink: 0;
+  background-color: #dddfe7;
+  z-index: 1;
 }
 
 .activities-header h2 {

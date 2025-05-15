@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export function Message({ entradas, usuarioId }) {
+    const mensajesEndRef = useRef(null);
+
+    useEffect(() => {
+        if (mensajesEndRef.current) {
+            mensajesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [entradas]);
+
     return (
         <div className="mensajes">
             {entradas.map((mensaje) => (
@@ -13,6 +21,9 @@ export function Message({ entradas, usuarioId }) {
                         <p className="mensaje-texto">{mensaje.content}</p>
                         <span className="mensaje-hora">
                                 {new Date(mensaje.date).toLocaleTimeString([], {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
                                     hour: '2-digit',
                                     minute: '2-digit',
                             })}
@@ -20,6 +31,7 @@ export function Message({ entradas, usuarioId }) {
                     </div>
                 </div>
             ))}
+            <div ref={mensajesEndRef} />
         </div>
     );
 }
