@@ -1,26 +1,29 @@
+// ActivitiesList.jsx
+import { Droppable } from "@hello-pangea/dnd";
 import { Activity } from "./Activity";
 
 export function ActivitiesList({ title, status, actividades }) {
-    const filteredActivities = actividades.filter(
-      (actividad) => actividad.estado === status
-    );
-  
-    return (
-      <div className="activities-column">
-        <div className="activities-header">
-          <h2>{title}</h2>
-        </div>
-        <div className="activities-content">
-          {filteredActivities.map((actividad) => (
-            <Activity
-              key={actividad.id}
-              asignatura={actividad.asignatura}
-              titulo={actividad.titulo}
-              fechaEntrega={actividad.fechaEntrega}
-            />
-          ))}
-        </div>
+  const filteredActivities = actividades.filter(a => a.estado === status);
+
+  return (
+    <div className="activities-column">
+      <div className="activities-header">
+        <h3>{title}</h3>
       </div>
-    );
-  }
-  
+      <Droppable droppableId={status}>
+        {(provided) => (
+          <div
+            className="activities-content"
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {filteredActivities.map((actividad, index) => (
+              <Activity key={actividad.id} actividad={actividad} index={index} />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </div>
+  );
+}

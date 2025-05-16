@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "cypress": "^14.2.1"
+  },
+  "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1"
   }
 }

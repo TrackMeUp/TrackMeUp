@@ -1,9 +1,21 @@
-export function Activity({ asignatura, titulo, fechaEntrega }) {
+// Activity.jsx
+import { Draggable } from "@hello-pangea/dnd";
+
+export function Activity({ actividad, index }) {
   return (
-    <div className="activity">
-        <p className="activity-detail">{asignatura}</p>
-        <h4 className="activity-title">{titulo}</h4>
-        <p className="activity-date">{fechaEntrega}</p>
-    </div>
+    <Draggable draggableId={actividad.id} index={index}>
+      {(provided) => (
+        <div
+          className="activity"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <strong>{actividad.asignatura}</strong>
+          <p>{actividad.titulo}</p>
+          <small>{actividad.fechaEntrega}</small>
+        </div>
+      )}
+    </Draggable>
   );
 }

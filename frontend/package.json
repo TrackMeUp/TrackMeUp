@@ -12,6 +12,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
     "bootstrap": "^5.3.3",
     "fuse.js": "^7.1.0",
     "react": "^19.0.0",

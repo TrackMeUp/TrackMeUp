@@ -419,69 +419,91 @@ textarea {
 }
 
 
-/* Activities */
+/* Activities Container */
 .activities-container {
   display: flex;
   flex-direction: row;
   gap: 16px;
   height: 100%;
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
+/* Each Column */
 .activities-column {
   display: flex;
   flex-direction: column;
   width: 33.33%;
-  background-color: #dddfe7;
-  border-radius: 8px;
-  height: 100%;
-  overflow: hidden;
+  background-color: #f1f3f7;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Column Header */
 .activities-header {
-  padding: 30px 20px 10px 20px;
-  flex-shrink: 0;
-  background-color: #dddfe7;
-  z-index: 1;
+  padding: 20px;
+  background-color: #e0e4ec;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 
 .activities-header h2 {
-  font-size: 25px;
+  font-size: 22px;
   margin: 0;
+  color: #333;
 }
 
+.activities-column > h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  padding: 20px;
+  background-color: #dddfe7;
+}
+
+
+/* Scrollable content */
 .activities-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   flex-grow: 1;
   overflow-y: auto;
-  padding: 0 10px 10px 10px;
+  padding: 12px;
+  min-height: 100px;
 }
 
-.activities-column h2 {
-  font-size: 25px;
-  margin-top: 30px;
-}
-
+/* Activity Card */
 .activity {
-  background: #fff;
-  border : 10px solid #fff;
+  background: #ffffff;
   border-radius: 8px;
   padding: 1rem;
-  margin: 12px 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.activity:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Text styling inside cards */
 .activity-title {
-  margin-top: 25px;
   font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0.3rem;
+  color: #1a1a1a;
 }
 
 .activity-detail {
-  margin-top: -10px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
 }
 
 .activity-date {
-  margin-top: 24px;
-  margin-bottom: -10px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
 }
