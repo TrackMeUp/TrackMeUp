@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.past-day {
+  background-color: #e0e0e0;
+}
+
 
 /* Pantallas más pequeñas */
 

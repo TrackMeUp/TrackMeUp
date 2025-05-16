@@ -41,15 +41,23 @@ export function Calendar() {
           {daysOfWeek.map((day) => (
             <div key={day} className="calendar-day-name">{day}</div>
           ))}
+          
+          {calendarDays.map((day, index) => { // Mostrar los días pasados de otro color
 
-          {calendarDays.map((day, index) => {
+            const isPastDay = day === null || (() => {
+              const dayDate = new Date(year, month, day);
+              
+              // Comparación de fechas
+              return dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            })();
+
             return (
               <div
                 key={index}
-                className={`calendar-day ${""}`}
+                className={`calendar-day ${isPastDay ? "past-day" : ""}`}
                 onClick={() => day && openDay(day)}
               >
-                {day}
+                {day || ""}
               </div>
             );
           })}
