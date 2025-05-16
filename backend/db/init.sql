@@ -356,3 +356,67 @@ INSERT INTO subject (course_id, name, class_group, teacher_id) VALUES
 (19, 'Artes', 'B', 7),
 (20, 'Tecnología', 'B', 8),
 (21, 'Física', 'A', 1);
+
+INSERT INTO student_subject (student_id, subject_id) VALUES
+(1, 1),  -- estudiante 1 en Matemáticas curso 1
+(1, 2),  -- estudiante 1 en Lenguaje curso 1
+(2, 3),  -- estudiante 2 en Ciencias curso 2
+(2, 4),  -- estudiante 2 en Historia curso 2
+(3, 5),
+(3, 6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 15),
+(8, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20),
+(11, 21);
+
+INSERT INTO schedule (subject_id, weekday, start_time, end_time) VALUES
+(1, 'monday', '08:00:00', '09:00:00'),
+(2, 'tuesday', '09:00:00', '10:00:00'),
+(3, 'wednesday', '10:00:00', '11:00:00'),
+(4, 'thursday', '11:00:00', '12:00:00'),
+(5, 'friday', '08:00:00', '09:00:00'),
+(6, 'monday', '09:00:00', '10:00:00'),
+(7, 'tuesday', '10:00:00', '11:00:00'),
+(8, 'wednesday', '11:00:00', '12:00:00'),
+(9, 'thursday', '08:00:00', '09:00:00'),
+(10, 'friday', '09:00:00', '10:00:00');
+
+
+INSERT INTO bulletin_board_entry (subject_id, content, attachment_url, title) VALUES
+(1, 'Recordatorio: examen de matemáticas la próxima semana', NULL, 'Examen Próximo'),
+(2, 'Se subieron los apuntes de lenguaje', 'http://example.com/apuntes_lenguaje.pdf', 'Apuntes Lenguaje'),
+(3, 'Científicos famosos para repasar', NULL, 'Material de Repaso'),
+(4, 'Tarea sobre la Revolución Francesa', NULL, 'Tarea Historia');
+
+
+INSERT INTO activity (subject_id, title, content, start_date, end_date, type) VALUES
+(1, 'Examen Parcial', 'Examen de matemáticas sobre álgebra', '2025-04-15 09:00:00', '2025-04-15 10:00:00', 'exam'),
+(2, 'Ensayo de lenguaje', 'Ensayo sobre literatura contemporánea', '2025-04-10 00:00:00', '2025-04-17 23:59:59', 'assignment'),
+(3, 'Trabajo de ciencias', 'Experimento y reporte', '2025-04-20 08:00:00', '2025-04-25 17:00:00', 'assignment'),
+(4, 'Examen de historia', 'Historia mundial desde la Edad Media', '2025-04-22 10:00:00', '2025-04-22 11:00:00', 'exam'),
+(5, 'Examen de inglés', 'Prueba de vocabulario y gramática', '2025-04-18 09:00:00', '2025-04-18 10:00:00', 'exam'),
+(6, 'Proyecto de tecnología', 'Diseño y construcción de un puente', '2025-04-15 08:00:00', '2025-04-30 17:00:00', 'assignment'),
+(7, 'Examen de educación física', 'Prueba de habilidades deportivas', '2025-04-25 10:00:00', '2025-04-25 11:00:00', 'exam'),
+(8, 'Tarea de artes', 'Crear una obra maestra con reciclaje', '2025-04-20 08:00:00', '2025-04-27 17:00:00', 'assignment');
+
+
+INSERT INTO submission (student_id, activity_id, grade, content, student_comment, teacher_comment, submission_date, status, start_date) VALUES
+(1, 1, 8.5, 'Archivo de examen', 'Me costó la última pregunta', 'Buen trabajo', '2025-04-15 09:55:00', 'completed', '2025-04-15 09:00:00'),
+(2, 2, NULL, 'Ensayo sobre literatura', NULL, NULL, NULL, 'pending', '2025-04-10 00:00:00'),
+(3, 3, 9.0, 'Reporte de experimento', 'Fue divertido hacer el experimento', 'Excelente detalle', '2025-04-24 16:00:00', 'completed', '2025-04-20 08:00:00'),
+(4, 4, NULL, 'Estudio para examen', NULL, NULL, NULL, 'in_progress', '2025-04-22 10:00:00'),
+(5, 5, NULL, 'Prueba de vocabulario', NULL, NULL, NULL, 'pending', '2025-04-18 09:00:00'),
+(6, 6, NULL, 'Diseño del puente', NULL, NULL, NULL, 'pending', '2025-04-15 08:00:00'),
+(7, 7, 7.0, 'Prueba de habilidades', 'Me costó un poco', 'Buen esfuerzo', '2025-04-25 11:05:00', 'completed', '2025-04-25 10:00:00'),
+(8, 8, NULL, 'Obra maestra reciclada', NULL, NULL, NULL, 'pending', '2025-04-20 08:00:00');
