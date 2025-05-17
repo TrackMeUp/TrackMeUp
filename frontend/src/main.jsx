@@ -10,6 +10,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
     <BrowserRouter>
-        <App />
+      <div className="app">
+        <div className="main-container">
+          <App />
+        </div>
+      </div>
     </BrowserRouter>
-)
+  )
+  
