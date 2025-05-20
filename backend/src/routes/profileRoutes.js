@@ -4,7 +4,8 @@ import ProfileController from "../controllers/profileController.js";
 
 const router = express.Router();
 
-router.get("/:id", ProfileController.obtenerPerfil);
-
+router.get("/:id/:rol", (req, res) =>
+    ProfileController.obtenerPerfil(req, res),
+);
 
 export default router;
