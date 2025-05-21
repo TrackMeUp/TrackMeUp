@@ -358,65 +358,60 @@ INSERT INTO subject (course_id, name, class_group, teacher_id) VALUES
 (21, 'Física', 'A', 1);
 
 INSERT INTO student_subject (student_id, subject_id) VALUES
-(1, 1),  -- estudiante 1 en Matemáticas curso 1
-(1, 2),  -- estudiante 1 en Lenguaje curso 1
-(2, 3),  -- estudiante 2 en Ciencias curso 2
-(2, 4),  -- estudiante 2 en Historia curso 2
-(3, 5),
-(3, 6),
-(4, 7),
-(4, 8),
-(5, 9),
-(5, 10),
-(6, 11),
-(6, 12),
-(7, 13),
-(7, 14),
-(8, 15),
-(8, 16),
-(9, 17),
-(9, 18),
-(10, 19),
-(10, 20),
-(11, 21);
+(1, 1), (1, 2), (1, 3),
+(2, 1), (2, 2),
+(3, 4), (3, 5),
+(4, 6), (4, 7),
+(5, 8), (5, 9),
+(6, 10), (6, 11),
+(7, 12), (7, 13),
+(8, 14), (8, 15);
 
 INSERT INTO schedule (subject_id, weekday, start_time, end_time) VALUES
 (1, 'monday', '08:00:00', '09:00:00'),
-(2, 'tuesday', '09:00:00', '10:00:00'),
-(3, 'wednesday', '10:00:00', '11:00:00'),
-(4, 'thursday', '11:00:00', '12:00:00'),
-(5, 'friday', '08:00:00', '09:00:00'),
-(6, 'monday', '09:00:00', '10:00:00'),
-(7, 'tuesday', '10:00:00', '11:00:00'),
-(8, 'wednesday', '11:00:00', '12:00:00'),
-(9, 'thursday', '08:00:00', '09:00:00'),
-(10, 'friday', '09:00:00', '10:00:00');
+(2, 'monday', '09:15:00', '10:15:00'),
+(3, 'tuesday', '08:00:00', '09:00:00'),
+(4, 'tuesday', '09:15:00', '10:15:00'),
+(5, 'wednesday', '10:30:00', '11:30:00'),
+(6, 'wednesday', '11:45:00', '12:45:00'),
+(7, 'thursday', '08:00:00', '09:00:00'),
+(8, 'thursday', '09:15:00', '10:15:00'),
+(9, 'friday', '10:30:00', '11:30:00'),
+(10, 'friday', '11:45:00', '12:45:00');
 
 
 INSERT INTO bulletin_board_entry (subject_id, content, attachment_url, title) VALUES
-(1, 'Recordatorio: examen de matemáticas la próxima semana', NULL, 'Examen Próximo'),
-(2, 'Se subieron los apuntes de lenguaje', 'http://example.com/apuntes_lenguaje.pdf', 'Apuntes Lenguaje'),
-(3, 'Científicos famosos para repasar', NULL, 'Material de Repaso'),
-(4, 'Tarea sobre la Revolución Francesa', NULL, 'Tarea Historia');
-
+(1, 'Repaso para el examen final el próximo viernes.', NULL, 'Aviso examen'),
+(2, 'Se subirán las notas provisionales mañana.', NULL, 'Notas provisionales'),
+(3, 'Nuevo material disponible en la plataforma.', 'http://ejemplo.com/material.pdf', 'Material extra'),
+(4, 'Se cancela la clase del jueves.', NULL, 'Cancelación clase'),
+(5, 'Proyecto final entregado hasta el 10 de mayo.', NULL, 'Entrega proyecto');
 
 INSERT INTO activity (subject_id, title, content, start_date, end_date, type) VALUES
-(1, 'Examen Parcial', 'Examen de matemáticas sobre álgebra', '2025-04-15 09:00:00', '2025-04-15 10:00:00', 'exam'),
-(2, 'Ensayo de lenguaje', 'Ensayo sobre literatura contemporánea', '2025-04-10 00:00:00', '2025-04-17 23:59:59', 'assignment'),
-(3, 'Trabajo de ciencias', 'Experimento y reporte', '2025-04-20 08:00:00', '2025-04-25 17:00:00', 'assignment'),
-(4, 'Examen de historia', 'Historia mundial desde la Edad Media', '2025-04-22 10:00:00', '2025-04-22 11:00:00', 'exam'),
-(5, 'Examen de inglés', 'Prueba de vocabulario y gramática', '2025-04-18 09:00:00', '2025-04-18 10:00:00', 'exam'),
-(6, 'Proyecto de tecnología', 'Diseño y construcción de un puente', '2025-04-15 08:00:00', '2025-04-30 17:00:00', 'assignment'),
-(7, 'Examen de educación física', 'Prueba de habilidades deportivas', '2025-04-25 10:00:00', '2025-04-25 11:00:00', 'exam'),
-(8, 'Tarea de artes', 'Crear una obra maestra con reciclaje', '2025-04-20 08:00:00', '2025-04-27 17:00:00', 'assignment');
+(1, 'Examen Parcial Matemáticas', 'Evaluación de álgebra y geometría', '2025-05-10 08:00:00', '2025-05-10 10:00:00', 'exam'),
+(2, 'Trabajo de Lenguaje', 'Análisis de texto literario', '2025-05-12 09:00:00', '2025-05-15 23:59:59', 'assignment'),
+(3, 'Laboratorio de Ciencias', 'Informe sobre reacciones químicas', '2025-05-05 14:00:00', '2025-05-07 14:00:00', 'assignment'),
+(4, 'Examen Historia', 'Repaso de la Edad Media', '2025-05-20 10:00:00', '2025-05-20 12:00:00', 'exam'),
+(5, 'Presentación Inglés', 'Exposición oral sobre cultura británica', '2025-05-18 11:00:00', '2025-05-18 11:30:00', 'assignment'),
+(6, 'Evaluación Educación Física', 'Prueba de resistencia y flexibilidad', '2025-05-22 15:00:00', '2025-05-22 16:00:00', 'exam'),
+(7, 'Tarea Artes', 'Creación de una obra pictórica', '2025-05-08 09:00:00', '2025-05-14 17:00:00', 'assignment'),
+(8, 'Proyecto Tecnología', 'Desarrollo de un prototipo básico', '2025-05-11 10:00:00', '2025-05-20 18:00:00', 'assignment'),
+(1, 'Examen Final Matemáticas', 'Evaluación global de curso', '2025-06-15 08:00:00', '2025-06-15 10:00:00', 'exam'),
+(3, 'Examen Ciencias', 'Temas de biología y química', '2025-06-10 09:00:00', '2025-06-10 11:00:00', 'exam'),
+(4, 'Ensayo Historia', 'Análisis de la Revolución Industrial', '2025-05-25 08:00:00', '2025-06-01 23:59:59', 'assignment'),
+(5, 'Exposición Inglés', 'Tema sobre literatura americana', '2025-06-05 11:00:00', '2025-06-05 11:30:00', 'assignment');
 
 
 INSERT INTO submission (student_id, activity_id, grade, content, student_comment, teacher_comment, submission_date, status, start_date) VALUES
-(1, 1, 8.5, 'Archivo de examen', 'Me costó la última pregunta', 'Buen trabajo', '2025-04-15 09:55:00', 'completed', '2025-04-15 09:00:00'),
-(2, 2, NULL, 'Ensayo sobre literatura', NULL, NULL, NULL, 'pending', '2025-04-10 00:00:00'),
-(3, 3, 9.0, 'Reporte de experimento', 'Fue divertido hacer el experimento', 'Excelente detalle', '2025-04-24 16:00:00', 'completed', '2025-04-20 08:00:00'),
-(4, 4, NULL, 'Estudio para examen', NULL, NULL, NULL, 'in_progress', '2025-04-22 10:00:00'),
-(5, 5, NULL, 'Prueba de vocabulario', NULL, NULL, NULL, 'pending', '2025-04-18 09:00:00'),
-(6, 6, NULL, 'Diseño del puente', NULL, NULL, NULL, 'pending', '2025-04-15 08:00:00'),
-(7, 7, 7.0, 'Prueba de habilidades', 'Me costó un poco', 'Buen esfuerzo', '2025-04-25 11:05:00', 'completed', '2025-04-25 10:00:00'),
-(8, 8, NULL, 'Obra maestra reciclada', NULL, NULL, NULL, 'pending', '2025-04-20 08:00:00');
+(4, 1, 8.5, 'Archivo examen parcial.pdf', 'Me costó un poco la geometría', 'Buen trabajo en general', '2025-05-10 09:45:00', 'completed', '2025-05-10 08:00:00'),
+(5, 2, 9.0, 'Análisis texto.docx', 'Incluí ejemplos adicionales', 'Excelente análisis', '2025-05-14 22:00:00', 'completed', '2025-05-12 09:00:00'),
+(10, 3, 7.5, 'Informe laboratorio.pdf', 'Faltaron algunas observaciones', 'Revisar metodología', '2025-05-07 13:30:00', 'completed', '2025-05-05 14:00:00'),
+(12, 4, NULL, 'Examen historia', NULL, NULL, NULL, 'pending', '2025-05-20 10:00:00'),
+(15, 5, 10, 'Presentación.pptx', 'Preparé un video adicional', 'Muy buena presentación', '2025-05-18 11:25:00', 'completed', '2025-05-18 11:00:00'),
+(17, 6, NULL, 'Evaluación EF', NULL, NULL, NULL, 'in_progress', '2025-05-22 15:00:00'),
+(20, 7, 8.0, 'Obra pictórica foto.jpg', 'Intenté usar técnicas nuevas', 'Buen uso de color', '2025-05-14 16:45:00', 'completed', '2025-05-08 09:00:00'),
+(22, 8, NULL, 'Proyecto tecnología.docx', 'Trabajando en prototipo', NULL, NULL, 'in_progress', '2025-05-11 10:00:00'),
+(4, 9, NULL, 'Examen final matemáticas', NULL, NULL, NULL, 'pending', '2025-06-15 08:00:00'),
+(10, 10, NULL, 'Examen ciencias', NULL, NULL, NULL, 'pending', '2025-06-10 09:00:00'),
+(12, 11, NULL, 'Ensayo historia.docx', NULL, NULL, NULL, 'pending', '2025-05-25 08:00:00'),
+(15, 12, NULL, 'Exposición inglés.pptx', NULL, NULL, NULL, 'pending', '2025-06-05 11:00:00');
