@@ -14,7 +14,6 @@ import { Calendar } from './pages/calendar';
 import { Activities } from './pages/activities';
 import { Performance } from './pages/performance';
 import { Communication } from './pages/communication';
-import { NoticeBoard } from './pages/notice_board';
 import { Announcements } from './pages/announcements';
 
 import { Login } from './pages/login';
@@ -39,7 +38,6 @@ export function App() {
         <Route path="/activities" element={<Activities />} />
         <Route path="/performance" element={<Performance />} />
         <Route path="/communication" element={<Communication />} />
-        <Route path="/notice_board" element={<NoticeBoard />} />
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/logout" element={<LogOut />} />
       </Route>
