@@ -27,7 +27,7 @@ export function Profile() {
     useEffect(() => {
         const obtenerDatosUsuario = async () => {
             try {
-                const respuesta = await fetch(`http://localhost:3000/api/usuario/${usuarioId}/${rol}`);
+                const respuesta = await fetch(`http://localhost:3000/api/profile/${usuarioId}/${rol}`);
                 const datos = await respuesta.json();
                 setUsuario(datos);
 
