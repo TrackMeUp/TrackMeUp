@@ -31,3 +31,5 @@ dist-ssr
 flake.lock
 
 datagen.js
+*.antonio
+docker-compose_antonio.yml
