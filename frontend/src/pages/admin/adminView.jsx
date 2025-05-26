@@ -7,8 +7,7 @@ import "../../styles/adminView.css"; // Importación del css de adminView
 export function AdminView() {
 
     return (
-        <h1>Bienvenido a la página de administración</h1>
-/*
+
         <div className="admin-container">
             <div className="admin-card">
                 <h2>Panel de control</h2>
@@ -27,6 +26,5 @@ export function AdminView() {
                 </div>
             </div>
         </div>
-        */
     );
 }
