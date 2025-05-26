@@ -15,7 +15,7 @@ import { Activities } from './pages/activities';
 import { Performance } from './pages/performance';
 import { Communication } from './pages/communication';
 import { NoticeBoard } from './pages/notice_board';
-import  Announcements  from './pages/announcements';
+import { Announcements } from './pages/announcements';
 
 import { Login } from './pages/login';
 import { LogOut } from './pages/logout';
