@@ -8,7 +8,7 @@ import '../styles/login.css'; // Incluye el estilo CSS del fichero login.css
 import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate de la biblioteca react-router-dom
 
 import { Header } from '../components/Header'; // Incluye la cabecera en el login
-
+import { Footer } from '../components/Footer'; // Incluye el pie de página en el login
 
 export function Login() {
 
@@ -44,7 +44,6 @@ export function Login() {
 
     return (
 
-        // Cabecera
         <div className='layout'>
             <Header />
 
@@ -91,6 +90,9 @@ export function Login() {
                     </div>
                 </form>
             </section>
+
+            <Footer />
+
         </div>
     );
 }

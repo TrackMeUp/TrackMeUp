@@ -12,6 +12,7 @@
   display: flex;
   flex: 1;
   overflow: hidden;
+  padding-bottom: 80px;
 }
 
 /* Contenido */
@@ -147,6 +148,38 @@
 
 .informacion-container {
   overflow-y: auto;
+}
+
+/* Pie de página */
+.footer {
+  width: 100%;
+  height: 90px;
+  background-color: white;
+  padding: 20px;
+  color: #737373;
+  padding: 0 40px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 20px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.footer-contenedor {
+  background-color: white;
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 /* Articulo */

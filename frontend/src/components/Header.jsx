@@ -1,6 +1,6 @@
 // CABECERA
 
-import logo from '../assets/Logo.png'; // Importa la imagen del logo
+import logo from '../assets/TrackMeUp_logo.png'; // Importa la imagen del logo
 
 export function Header() {
     return (
