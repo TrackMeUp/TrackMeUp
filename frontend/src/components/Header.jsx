@@ -1,18 +1,15 @@
 // CABECERA
 
-import logo from '../assets/Logo.png';
+import logo from '../assets/Logo.png'; // Importa la imagen del logo
 
-export function Header({ onToggleMenu }) {
+export function Header() {
     return (
         <header className="c">
             <div className="c-contenedor">
-                <button className="hamburger" onClick={onToggleMenu}>
-                    ☰
-                </button>
                 <a href="/">
                     <img className='c-logo' alt="logo" src={logo} />
                 </a>
             </div>
         </header>
-    );
+    )
 }
