@@ -62,16 +62,12 @@ export function App() {
 
         {/* Rutas para rol "Administrador" */}
         <Route element={<AdminRoute />}>
-
-          <Route element={<AdminLayout />}>
-            <Route path="/admin" element={<AdminView />} />
-            <Route path="/admin/user_management" element={<UserManagement />} />
-          </Route>
+          <Route path="/admin" element={<AdminView />} />
+          <Route path="/admin/user_management" element={<UserManagement />} />
+        </Route>
 
         </Route>
 
-      </Route>
-
-    </Routes>
+      </Routes>
   );
 }

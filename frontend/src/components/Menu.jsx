@@ -14,7 +14,7 @@ export function Menu() {
 
             <UserProfile name={`${usuarioNombre}`} avatarUrl={`../../public/${usuarioId}.png`} />
 
-            <Mboton name='Inicio' url='https://www.systemuicons.com/images/icons/list.svg' ruta="/" />
+            <Mboton name='Inicio' url='https://www.systemuicons.com/images/icons/list.svg' ruta="/home" />
             <Mboton name='Perfil' url='https://www.systemuicons.com/images/icons/user_male.svg' ruta="/profile" />
             <Mboton name='Información académica' url='https://www.systemuicons.com/images/icons/bookmark_book.svg' ruta="/academic_info" />
             <Mboton name='Calendario' url='https://www.systemuicons.com/images/icons/calendar_date.svg' ruta="/calendar" />
