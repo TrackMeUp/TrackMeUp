@@ -1,9 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';  // Importa estilos
 import 'bootstrap/dist/js/bootstrap.bundle.min'; // Importa JavaScript
+import { useEffect } from 'react';
 
 import { Route, Routes, Navigate } from 'react-router-dom'; // Importa los componentes Route, Routes, Navigate de React
 import './styles/app.css'; // Importa el fichero de estilo css
 
+// Rutas
 import { Layout } from './Layout';
 import { AdminLayout } from "./pages/admin/admin_layout"
 
@@ -18,37 +20,58 @@ import { Announcements } from './pages/announcements';
 
 import { Login } from './pages/login';
 import { LogOut } from './pages/logout';
+import { PrivateRoute } from "./components/PrivateRoute";
 
+// Usuario "Administrador"
+import { AdminRoute } from './components/AdminRoute';
 import { AdminView } from "./pages/admin/adminView";
 import { UserManagement } from "./pages/admin/user_management";
 
+
 export function App() {
+
+  useEffect(() => {
+    const sessionAlive = sessionStorage.getItem("session_alive");
+
+    if (!sessionAlive) {
+      localStorage.clear();  // El usuario abrió una nueva ventana sin cerrar sesión antes
+    }
+  }, []);
+
+  const user = localStorage.getItem("user");
+
   return (
     // Si el usuario ha iniciado sesión, se muestra el menú de navegación (Layout)
     <Routes>
-      <Route path="/" element={localStorage.getItem("user") ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-
+      <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
 
-      <Route element={<Layout />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/academic_info" element={<AcademicInfo />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/activities" element={<Activities />} />
-        <Route path="/performance" element={<Performance />} />
-        <Route path="/communication" element={<Communication />} />
-        <Route path="/announcements" element={<Announcements />} />
-        <Route path="/logout" element={<LogOut />} />
+      <Route element={<PrivateRoute />}>
+
+        <Route element={<Layout />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/academic_info" element={<AcademicInfo />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/performance" element={<Performance />} />
+          <Route path="/communication" element={<Communication />} />
+          <Route path="/announcements" element={<Announcements />} />
+          <Route path="/logout" element={<LogOut />} />
+        </Route>
+
+        {/* Rutas para rol "Administrador" */}
+        <Route element={<AdminRoute />}>
+
+          <Route element={<AdminLayout />}>
+            <Route path="/admin" element={<AdminView />} />
+            <Route path="/admin/user_management" element={<UserManagement />} />
+          </Route>
+
+        </Route>
+
       </Route>
 
-      <Route element={ localStorage.getItem("user_role") === "admin"
-        ? <AdminLayout />
-        : <Navigate to="/" />
-      }>
-        <Route path="/admin" element={<AdminView />} />
-        <Route path="/admin/user_management" element={<UserManagement />} />
-      </Route>
     </Routes>
   );
 }

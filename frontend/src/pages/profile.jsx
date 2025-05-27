@@ -84,13 +84,14 @@ export function Profile() {
         </>
     );
 
-    // Vista de Padre/Tutor
+    // Vista de Padre
     const ParentView = () => (
         <>
             <div className="informacion-container">
 
                 <Articulo titulo="Información personal" entradas={[
                     { texto: "Nombre:", info: `${usuario.first_name} ${usuario.last_name1} ${usuario.last_name2}` },
+                    
                     {
                         texto: "Nombre alumno:", info: Array.isArray(usuario.students) && usuario.students.length > 0 ? usuario.students.map(student =>
                             [student.first_name, student.last_name1, student.last_name2].filter(Boolean).join(" ")).join(", ") : "No disponible"

@@ -9,7 +9,9 @@ export function LogOut() {
     
     useEffect(() => {
         localStorage.clear();
+        sessionStorage.clear();  // Limpia la sesión activa
         navigate('/login');
+
     }, [navigate]);
     
     return null;

@@ -7,8 +7,8 @@ export function Articulo({ titulo, entradas = [] }) {
             {entradas.map((entrada, index) => (
                 <div key={index}>
                     <div className="detalle">
-                        <p className="a-texto"><b>{entrada.texto}</b></p>
-                        <p className="a-info">{entrada.info}</p>
+                        <div className="a-texto"><b>{entrada.texto}</b></div>
+                        <div className="a-info">{entrada.info}</div>
                     </div>
                 {index !== entradas.length - 1 && <Separator />}
                 </div>
