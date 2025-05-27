@@ -24,12 +24,17 @@ export function Login() {
         event.preventDefault(); // Evita el envío del formulario sin validar
 
         const result = await userController.login(user, password);
-        
+
         if (result.success) {
-            localStorage.setItem("user", user);
+
+            localStorage.setItem("user", JSON.stringify(result.user));
             localStorage.setItem("user_role", result.user.role.name);
 
-            navigate('/');
+            // Para borrar datos de sesión al cerrar la ventana
+            sessionStorage.setItem("session_alive", "true");
+
+            navigate('/home');
+            
         } else {
             alert(result.errors.server)
         }
