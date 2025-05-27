@@ -178,8 +178,6 @@ CREATE TABLE submission (
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
-
 INSERT INTO user (first_name, last_name1, last_name2, email, password) VALUES
 ('Ana', 'García', 'López', 'ana.garcia@example.com', 'pass123'),
 ('Luis', 'Pérez', 'Martínez', 'luis.perez@example.com', 'pass123'),

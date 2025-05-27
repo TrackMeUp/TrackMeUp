@@ -10,12 +10,10 @@ import academicInfoRoutes from "./routes/academicInfoRoutes.js";
 
 
 const app = express();
-const announcementsRoutes = require('./routes/announcements.routes');
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/announcements', announcementsRoutes);
 
 // Rutas API
 app.use("/api/users", userRoutes);
@@ -41,6 +39,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
-
-
-
