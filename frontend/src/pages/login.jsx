@@ -33,7 +33,7 @@ export function Login() {
             // Para borrar datos de sesión al cerrar la ventana
             sessionStorage.setItem("session_alive", "true");
 
-            if (result.user.role.name = "admin") {
+            if (result.user.role.name === "admin") {
                 
                 navigate('/admin');
             }
