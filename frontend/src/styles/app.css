@@ -12,7 +12,6 @@
   display: flex;
   flex: 1;
   overflow: hidden;
-  padding-bottom: 80px;
 }
 
 /* Contenido */
@@ -20,8 +19,8 @@
   padding: 16px;
   flex: 1;
   background-color: #ffffff;
-  height: calc(100vh - 90px);
-  width: 100%;
+
+
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -157,16 +156,12 @@
   background-color: white;
   padding: 20px 40px;
   color: #737373;
- 
   border-top: 1px solid #e5e7eb;
   display: flex;
   align-items: center;
   justify-content: center; 
-
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: relative;
   z-index: 1000;
   
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
