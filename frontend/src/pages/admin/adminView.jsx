@@ -13,15 +13,15 @@ export function AdminView() {
                 <h2>Panel de control</h2>
                 <div className="admin-buttons">
                     <Link to="user_management">
-                        <button>Gestión de usuarios</button>
+                        <button>Gestión de Usuarios</button>
                     </Link>
 
                     <Link to="academic_management">
-                        <button>Gestión de curso académico</button>
+                        <button>Gestión Académica</button>
                     </Link>
 
-                    <Link to="admin_performance">
-                        <button>Gestión de rendimiento académico</button>
+                    <Link to="performance_management">
+                        <button>Gestión de Rendimiento Académico</button>
                     </Link>
                 </div>
             </div>
