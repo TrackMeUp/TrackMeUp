@@ -16,6 +16,6 @@ export function Layout() {
 
       </div>
       <Footer />
-      </div>
+    </div>
   );
 };
