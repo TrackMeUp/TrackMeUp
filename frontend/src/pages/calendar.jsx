@@ -151,7 +151,6 @@ export function Calendar() {
           <div key={idx} className="modal-event-item">
             <strong>{e.title}</strong><br />
             {e.activity_content}<br />
-            Fecha: {new Date(e.tipoEvento === "Inicio" ? e.start_date : e.end_date).toLocaleDateString()}
           </div>
         ))}
 
