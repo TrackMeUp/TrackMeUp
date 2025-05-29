@@ -7,8 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import '../styles/login.css'; // Incluye el estilo CSS del fichero login.css
 import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate de la biblioteca react-router-dom
 
-import { Header } from '../components/Header'; // Incluye la cabecera en el login
-import { Footer } from '../components/Footer'; // Incluye el pie de página en el login
+import logo from '../assets/TrackMeUp.svg'; // Importa la imagen del logo
 
 export function Login() {
 
@@ -34,7 +33,7 @@ export function Login() {
             sessionStorage.setItem("session_alive", "true");
 
             if (result.user.role.name === "admin") {
-                
+
                 navigate('/admin');
             }
 
@@ -42,8 +41,8 @@ export function Login() {
 
                 navigate('/home');
             }
-               
-            
+
+
         } else {
             alert(result.errors.server)
         }
@@ -58,17 +57,20 @@ export function Login() {
 
     return (
 
-        <div className='layout'>
-            <Header />
+        <div className='layout-login'>
 
             {/* Formulario */}
             <section>
                 <form id="loginForm" action="login" onSubmit={handleLogin}>
                     <div className="login-containter">
                         <div className="login-card">
+
+                            <p> <img className="logo" alt="Logotipo Track Me Up" src={logo} /> </p>
+
                             <h3 className="login-title">Acceso</h3>
+
                             <div className="login-group">
-                                <label htmlFor="user" className="form-label">Usuario: </label> <br />
+                                <label htmlFor="user" className="form-label">Usuario: </label>
                                 <input
                                     type="text"
                                     className="form-data"
@@ -81,7 +83,7 @@ export function Login() {
                             </div>
 
                             <div className="login-group">
-                                <label htmlFor="password" className="form-label">Contraseña: </label> <br />
+                                <label htmlFor="password" className="form-label">Contraseña: </label>
                                 <input
                                     type="password"
                                     className="form-data"
@@ -104,8 +106,6 @@ export function Login() {
                     </div>
                 </form>
             </section>
-
-            <Footer />
 
         </div>
     );
