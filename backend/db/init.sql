@@ -178,6 +178,8 @@ CREATE TABLE submission (
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+
 INSERT INTO user (first_name, last_name1, last_name2, email, password) VALUES
 ('Ana', 'García', 'López', 'ana.garcia@example.com', 'pass123'),
 ('Luis', 'Pérez', 'Martínez', 'luis.perez@example.com', 'pass123'),
@@ -415,3 +417,12 @@ INSERT INTO submission (student_id, activity_id, grade, content, student_comment
 (10, 10, NULL, 'Examen ciencias', NULL, NULL, NULL, 'pending', '2025-06-10 09:00:00'),
 (12, 11, NULL, 'Ensayo historia.docx', NULL, NULL, NULL, 'pending', '2025-05-25 08:00:00'),
 (15, 12, NULL, 'Exposición inglés.pptx', NULL, NULL, NULL, 'pending', '2025-06-05 11:00:00');
+
+CREATE TABLE IF NOT EXISTS announcements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by INT NOT NULL,
+    FOREIGN KEY (created_by) REFERENCES user(user_id)
+);
