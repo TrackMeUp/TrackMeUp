@@ -358,10 +358,10 @@ INSERT INTO subject (course_id, name, class_group, teacher_id) VALUES
 (21, 'Física', 'A', 1);
 
 INSERT INTO student_subject (student_id, subject_id) VALUES
-(1, 1), (1, 2), (1, 3),
+(1, 1), (1, 2), (1, 3), (1, 4),
 (2, 1), (2, 2),
 (3, 4), (3, 5),
-(4, 6), (4, 7), (4, 9)
+(4, 6), (4, 7), 
 (5, 8), (5, 9),
 (6, 10), (6, 11),
 (7, 12), (7, 13),
@@ -399,8 +399,9 @@ INSERT INTO activity (subject_id, title, content, start_date, end_date, type) VA
 (1, 'Examen Final Matemáticas', 'Evaluación global de curso', '2025-06-15 08:00:00', '2025-06-15 10:00:00', 'exam'),
 (3, 'Examen Ciencias', 'Temas de biología y química', '2025-06-10 09:00:00', '2025-06-10 11:00:00', 'exam'),
 (4, 'Ensayo Historia', 'Análisis de la Revolución Industrial', '2025-05-25 08:00:00', '2025-06-01 23:59:59', 'assignment'),
-(5, 'Exposición Inglés', 'Tema sobre literatura americana', '2025-06-05 11:00:00', '2025-06-05 11:30:00', 'assignment');
-(9, 'Lectura', 'Adventures of Huckleberry Finn', '2025-05-30 11:00:00', '2025-06-28 11:30:00', 'assignment');
+(5, 'Exposición Inglés', 'Tema sobre literatura americana', '2025-06-05 11:00:00', '2025-06-05 11:30:00', 'assignment'),
+(9, 'Lectura', 'Adventures of Huckleberry Finn', '2025-05-30 11:00:00', '2025-06-28 11:30:00', 'assignment'),
+(4, 'Redacción', 'Primera Guerra Mundial', '2025-04-20 10:00:00', '2025-05-20 12:00:00', 'assignment');
 
 
 INSERT INTO submission (student_id, activity_id, grade, content, student_comment, teacher_comment, submission_date, status, start_date) VALUES
@@ -416,3 +417,4 @@ INSERT INTO submission (student_id, activity_id, grade, content, student_comment
 (10, 10, NULL, 'Examen ciencias', NULL, NULL, NULL, 'pending', '2025-06-10 09:00:00'),
 (12, 11, NULL, 'Ensayo historia.docx', NULL, NULL, NULL, 'pending', '2025-05-25 08:00:00'),
 (15, 12, NULL, 'Exposición inglés.pptx', NULL, NULL, NULL, 'pending', '2025-06-05 11:00:00');
+(1, 10, NULL, 'Primera Guerra Mundial', NULL, NULL, NULL, 'pending', '2025-04-20 10:00:00');
