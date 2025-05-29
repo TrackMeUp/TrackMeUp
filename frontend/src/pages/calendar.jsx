@@ -50,6 +50,8 @@ export function Calendar() {
         const res = await fetch(url);
         const data = await res.json();
 
+        console.log(data);
+
         // Agrupar eventos por fecha
         const eventosPorFecha = {};
 

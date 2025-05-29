@@ -7,6 +7,7 @@ import messageRoutes from "./routes/messageRoutes.js";
 import activityRoutes from "./routes/activityRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import academicInfoRoutes from "./routes/academicInfoRoutes.js";
+import announcements from "./routes/announcementsRoutes.js";
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use("/api/actividades", activityRoutes);
 
 app.use("/api/profile", profileRoutes);
 app.use("/api/academic_info", academicInfoRoutes);
+app.use("/api/announcements", announcements);
 
 // Maneja cualquier error no controlado de forma explícita.
 // Debe ser el último middleware (`app.use`).
