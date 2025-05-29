@@ -1,7 +1,8 @@
 // Página de Calendario
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import '../styles/calendar.css'; // Incluye el estilo CSS
+import { Modal } from "../components/Calendar/Modal.jsx"
 
 const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
@@ -15,6 +16,9 @@ export function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [events, setEvents] = useState({});
   const [selectedDay, setSelectedDay] = useState(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalEvents, setModalEvents] = useState([]);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -54,18 +58,17 @@ export function Calendar() {
           const fechaInicio = new Date(actividad.start_date);
           const fechaLimite = new Date(actividad.end_date);
 
-          const startKey = `${fechaInicio.getFullYear()}-${fechaInicio.getMonth() + 1}-${fechaInicio.getDate()}`;
-          const endKey = `${fechaLimite.getFullYear()}-${fechaLimite.getMonth() + 1}-${fechaLimite.getDate()}`;
+          const eventoInicio = { ...actividad, tipoEvento: "Inicio de actividad" };
+          const eventoLimite = { ...actividad, tipoEvento: "Límite de entrega" };
 
-          const eventoInicio = { ...actividad, tipoEvento: "Inicio" };
-          const eventoLimite = { ...actividad, tipoEvento: "Límite" };
+          const fechas = [fechaInicio, fechaLimite];
 
-          if (!eventosPorFecha[startKey]) eventosPorFecha[startKey] = [];
-          eventosPorFecha[startKey].push(eventoInicio);
+          fechas.forEach((fecha, i) => {
 
-          if (!eventosPorFecha[endKey]) eventosPorFecha[endKey] = [];
-          eventosPorFecha[endKey].push(eventoLimite);
-
+            const key = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
+            if (!eventosPorFecha[key]) eventosPorFecha[key] = [];
+            eventosPorFecha[key].push(i === 0 ? eventoInicio : eventoLimite);
+          });
         });
 
         setEvents(eventosPorFecha);
@@ -78,6 +81,13 @@ export function Calendar() {
     fetchEvents();
 
   }, [userId, userRole, currentDate]);
+
+  // Modal para visualizar actividades
+  const openModal = (day, eventos) => {
+    setSelectedDay(day);
+    setModalEvents(eventos);
+    setModalOpen(true);
+  };
 
 
   return (
@@ -110,6 +120,9 @@ export function Calendar() {
             const dateKey = `${year}-${month + 1}-${day}`;
             const eventosDelDia = events[dateKey] || [];
 
+            const tipos = [...new Set(eventosDelDia.map(e => e.type === 'exam' ? 'Examen' : 'Actividad'))];
+            const tipoTexto = tipos.length === 2 ? 'Examen \n Actividad' : (tipos[0] || '');
+
             const dayDate = new Date(year, month, day);
 
             const isPastDay = dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -118,35 +131,31 @@ export function Calendar() {
             return (
               <div key={index}
                 className={`calendar-day ${isPastDay ? "past-day" : ""} ${isSelected ? "selected-day" : ""}`}
-                onClick={() => setSelectedDay(day)}
-                title={eventosDelDia.map(e => `${e.title} - ${e.tipoEvento}: ${new Date(e.tipoEvento === "Inicio" ? e.start_date : e.end_date).toLocaleDateString()}`).join("\n")}
+                onClick={() => eventosDelDia.length > 0 && openModal(day, eventosDelDia)}
               >
+
                 <div>{day}</div>
-
                 {eventosDelDia.length > 0 && (
-
-                  <ul className="event-list">
-
-                    {eventosDelDia.slice(0, 2).map((e) => (
-
-                      <li key={e.activity_id || e.submission_id}>
-                        {e.title} <br />
-                        {e.tipoEvento}: {new Date(e.tipoEvento === "Inicio" ? e.start_date : e.end_date).toLocaleDateString()}
-                      </li>
-
-                    ))}
-
-                    {eventosDelDia.length > 2 && <li>+{eventosDelDia.length - 2} más</li>}
-
-                  </ul>
-
+                  <div className="event-type">{tipoTexto}</div>
                 )}
-
               </div>
             );
           })}
         </div>
       </div>
+
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+
+        <h2>Actividades del {selectedDay} de {currentDate.toLocaleString("default", { month: "long" })}</h2>
+        {modalEvents.map((e, idx) => (
+          <div key={idx} className="modal-event-item">
+            <strong>{e.title}</strong><br />
+            {e.activity_content}<br />
+            Fecha: {new Date(e.tipoEvento === "Inicio" ? e.start_date : e.end_date).toLocaleDateString()}
+          </div>
+        ))}
+
+      </Modal>
     </div>
   );
-};
+}
