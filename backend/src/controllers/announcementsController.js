@@ -17,13 +17,13 @@ class AnnouncementsController {
 
       switch (rol) {
         case "student":
-          announcement = await Announcements.getBulletinBoardEntries(userId);
+          announcement = await Announcements.getStudentAnnouncements(userId);
           break;
         case "parent":
-          announcement = await Announcements.getBulletinBoardEntries(userId);
+          announcement = await Announcements.getStudentAnnouncements(userId);
           break;
         case "teacher":
-          announcement = await Announcements.getBulletinBoardEntries(userId);
+          announcement = await Announcements.getTeacherAnnouncements(userId);
           break;
         default:
           throw new Error("Rol no válido");

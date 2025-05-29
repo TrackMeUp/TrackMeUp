@@ -7,14 +7,28 @@ export function Announcements() {
 
     const [announcement, setAnnouncement] = useState(null);
     const [error, setError] = useState(null);
-    const usuarioId = parseInt(localStorage.getItem("user_id"), 10);
+    //const teacherId = parseInt(localStorage.getItem("teacher_id"), 10);
+    //const studentId = parseInt(localStorage.getItem("student_id"), 10);
     const rol = localStorage.getItem("user_role");
+    const user = JSON.parse(localStorage.getItem("user"));
+    const id = user.role[rol + "_id"];
 
     useEffect(() => {
         const obtenerTablonAnuncios = async () => {
 
             try {
-                const respuesta = await fetch(`http://localhost:3000/api/announcements/${usuarioId}/${rol}`);
+
+                let url = `http://localhost:3000/api/announcements/${id}/${rol}`;
+                /*
+                                if (userRole === "teacher") {
+                
+                                    url = `http://localhost:3000/api/announcements/${teacherId}/${rol}`;
+                
+                                } else {
+                                    url = `http://localhost:3000/api/announcements/${studentId}/${rol}`;
+                                }
+                */
+                const respuesta = await fetch(url);
                 const datos = await respuesta.json();
 
                 if (!respuesta.ok) {
@@ -23,18 +37,18 @@ export function Announcements() {
 
                 setAnnouncement(datos);
                 console.log(datos);
-                
+
             } catch (error) {
                 console.error("Error al obtener la información académica:", error);
                 setError("No se pudo cargar la información académica.");
             }
         };
 
-        if (usuarioId && rol) {
+        if (id && rol) {
             obtenerTablonAnuncios();
         }
 
-    }, [usuarioId, rol]);
+    }, [id, rol]);
 
     if (error) {
         return <div>{error}</div>;
@@ -45,52 +59,90 @@ export function Announcements() {
     }
 
 
-
     // Vista de "Estudiante"
     const StudentView = () => (
         <>
-            <div className="informacion-container">
-                <Articulo titulo="Nueva entrada" entradas={[
-                    { texto: "Título:", info: announcement.entry_title || "No disponible" },
-                    { texto: "Contenido:", info: announcement.entry_content || "No disponible" },
-                    { texto: "Asignatura:", info: announcement.entry_subject || "No disponible"},
-                    { texto: "Profesor:", info: announcement.entry_teacher || "No disponible"},
-                ]}
-                />
-            </div>
+            <h1>Tablón de anuncios</h1>
+
+            {
+                announcement.length > 0 ? (
+                    announcement.map((entry) => (
+                        <div className="informacion-container" key={entry.entry_id}>
+                            <Articulo
+                                titulo="Nueva entrada"
+                                entradas={[
+                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
+                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
+                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
+                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
+                                ]}
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay entradas disponibles.</p>
+                )
+            }
         </>
     );
 
     // Vista de "Estudiante"
     const ParentView = () => (
         <>
-           <div className="informacion-container">
-                <Articulo titulo="Nueva entrada" entradas={[
-                    { texto: "Título:", info: announcement.entry_title || "No disponible" },
-                    { texto: "Contenido:", info: announcement.entry_content || "No disponible" },
-                    { texto: "Asignatura:", info: announcement.entry_subject || "No disponible"},
-                    { texto: "Profesor:", info: announcement.entry_teacher || "No disponible"},
-                ]}
-                />
-            </div>
+
+            <h1>Tablón de anuncios</h1>
+
+            {
+                announcement.length > 0 ? (
+                    announcement.map((entry) => (
+                        <div className="informacion-container" key={entry.entry_id}>
+                            <Articulo
+                                titulo="Nueva entrada"
+                                entradas={[
+                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
+                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
+                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
+                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
+                                ]}
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay entradas disponibles.</p>
+                )
+            }
         </>
     );
 
     // Vista de "Personal docente"
     const TeacherView = () => (
         <>
-            <div className="informacion-container">
-                <Articulo titulo="Nueva entrada" entradas={[
-                    { texto: "Título:", info: announcement.entry_title || "No disponible" },
-                    { texto: "Contenido:", info: announcement.entry_content || "No disponible" },
-                    { texto: "Asignatura:", info: announcement.entry_subject || "No disponible"},
-                    { texto: "Profesor:", info: announcement.entry_teacher || "No disponible"},
-                ]}
-                />
-            </div>
+            <h1>Tablón de anuncios</h1>
 
-            <button>Nueva entrada</button>
+            {
+                announcement.length > 0 ? (
+                    announcement.map((entry) => (
+                        <div className="informacion-container" key={entry.entry_id}>
+                            <Articulo
+                                titulo="Nueva entrada"
+                                entradas={[
+                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
+                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
+                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
+                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
+                                ]}
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay entradas disponibles.</p>
+                )
+            }
+
+            <button>Añadir entrada</button>
+
         </>
+
     );
 
 
