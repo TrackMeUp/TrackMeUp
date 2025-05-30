@@ -59,93 +59,6 @@ export function Announcements() {
     }
 
 
-    // Vista de "Estudiante"
-    const StudentView = () => (
-        <>
-            <h1>Tablón de anuncios</h1>
-
-            {
-                announcement.length > 0 ? (
-                    announcement.map((entry) => (
-                        <div className="informacion-container" key={entry.entry_id}>
-                            <Articulo
-                                titulo="Nueva entrada"
-                                entradas={[
-                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
-                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
-                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
-                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
-                                ]}
-                            />
-                        </div>
-                    ))
-                ) : (
-                    <p>No hay entradas disponibles.</p>
-                )
-            }
-        </>
-    );
-
-    // Vista de "Estudiante"
-    const ParentView = () => (
-        <>
-
-            <h1>Tablón de anuncios</h1>
-
-            {
-                announcement.length > 0 ? (
-                    announcement.map((entry) => (
-                        <div className="informacion-container" key={entry.entry_id}>
-                            <Articulo
-                                titulo="Nueva entrada"
-                                entradas={[
-                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
-                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
-                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
-                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
-                                ]}
-                            />
-                        </div>
-                    ))
-                ) : (
-                    <p>No hay entradas disponibles.</p>
-                )
-            }
-        </>
-    );
-
-    // Vista de "Personal docente"
-    const TeacherView = () => (
-        <>
-            <h1>Tablón de anuncios</h1>
-
-            {
-                announcement.length > 0 ? (
-                    announcement.map((entry) => (
-                        <div className="informacion-container" key={entry.entry_id}>
-                            <Articulo
-                                titulo="Nueva entrada"
-                                entradas={[
-                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
-                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
-                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
-                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
-                                ]}
-                            />
-                        </div>
-                    ))
-                ) : (
-                    <p>No hay entradas disponibles.</p>
-                )
-            }
-
-            <button>Añadir entrada</button>
-
-        </>
-
-    );
-
-
     const renderVistaPorRol = () => {
 
         switch (rol) {
@@ -162,3 +75,90 @@ export function Announcements() {
 
     return <div className="informacion-container">{renderVistaPorRol()}</div>;
 }
+
+
+    // Vista de "Estudiante"
+    const StudentView = ({ announcement }) => (
+        <>
+            <h1>Tablón de anuncios</h1>
+
+            {announcement.length > 0 ? (announcement.map((entry) => (
+
+                        <div className="informacion-container" key={entry.entry_id}>
+                            <Articulo
+                                titulo="Nueva entrada"
+                                entradas={[
+                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
+                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
+                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
+                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
+                                ]}
+                            />
+                        </div>
+                    ))
+                ) : (
+
+                    <p>No hay entradas disponibles.</p>
+                )
+            }
+        </>
+    );
+
+    // Vista de "Estudiante"
+    const ParentView = ({ announcement }) => (
+        <>
+
+            <h1>Tablón de anuncios</h1>
+
+            {announcement.length > 0 ? (announcement.map((entry) => (
+
+                        <div className="informacion-container" key={entry.entry_id}>
+                            <Articulo
+                                titulo="Nueva entrada"
+                                entradas={[
+                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
+                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
+                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
+                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
+                                ]}
+                            />
+                        </div>
+                    ))
+                ) : (
+
+                    <p>No hay entradas disponibles.</p>
+                )
+            }
+        </>
+    );
+
+    // Vista de "Personal docente"
+    const TeacherView = ({ announcement }) => (
+        <>
+            <h1>Tablón de anuncios</h1>
+
+            {announcement.length > 0 ? (announcement.map((entry) => (
+
+                        <div className="informacion-container" key={entry.entry_id}>
+                            <Articulo
+                                titulo="Nueva entrada"
+                                entradas={[
+                                    { texto: "Título:", info: entry.entry_title || "No disponible" },
+                                    { texto: "Contenido:", info: entry.entry_content || "No disponible" },
+                                    { texto: "Asignatura:", info: entry.entry_subject || "No disponible" },
+                                    { texto: "Profesor:", info: entry.entry_teacher || "No disponible" },
+                                ]}
+                            />
+                        </div>
+                    ))
+                ) : (
+
+                    <p>No hay entradas disponibles.</p>
+                )
+            }
+
+            <button>Añadir entrada</button>
+
+        </>
+
+    );
