@@ -7,8 +7,6 @@ export function Announcements() {
 
     const [announcement, setAnnouncement] = useState(null);
     const [error, setError] = useState(null);
-    //const teacherId = parseInt(localStorage.getItem("teacher_id"), 10);
-    //const studentId = parseInt(localStorage.getItem("student_id"), 10);
     const rol = localStorage.getItem("user_role");
     const user = JSON.parse(localStorage.getItem("user"));
     const id = user.role[rol + "_id"];
@@ -19,15 +17,7 @@ export function Announcements() {
             try {
 
                 let url = `http://localhost:3000/api/announcements/${id}/${rol}`;
-                /*
-                                if (userRole === "teacher") {
-                
-                                    url = `http://localhost:3000/api/announcements/${teacherId}/${rol}`;
-                
-                                } else {
-                                    url = `http://localhost:3000/api/announcements/${studentId}/${rol}`;
-                                }
-                */
+
                 const respuesta = await fetch(url);
                 const datos = await respuesta.json();
 
@@ -66,8 +56,8 @@ export function Announcements() {
 
             {
                 announcement.length > 0 ? (
-                    announcement.map((entry) => (
-                        <div className="informacion-container" key={entry.entry_id}>
+                    announcement.map((entry, index) => (
+                        <div className="informacion-container" key={index}>
                             <Articulo
                                 titulo="Nueva entrada"
                                 entradas={[
@@ -94,8 +84,8 @@ export function Announcements() {
 
             {
                 announcement.length > 0 ? (
-                    announcement.map((entry) => (
-                        <div className="informacion-container" key={entry.entry_id}>
+                    announcement.map((entry, index) => (
+                        <div className="informacion-container" key={index}>
                             <Articulo
                                 titulo="Nueva entrada"
                                 entradas={[
@@ -121,8 +111,8 @@ export function Announcements() {
 
             {
                 announcement.length > 0 ? (
-                    announcement.map((entry) => (
-                        <div className="informacion-container" key={entry.entry_id}>
+                    announcement.map((entry, index) => (
+                        <div className="informacion-container" key={index}>
                             <Articulo
                                 titulo="Nueva entrada"
                                 entradas={[
