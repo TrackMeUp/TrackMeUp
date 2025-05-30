@@ -20,7 +20,7 @@ export function Menu() {
                     <Mboton name="Panel de Administración" url="https://www.systemuicons.com/images/icons/settings.svg" ruta="/admin" />
                     <Mboton name="Gestión de Usuarios" url="https://www.systemuicons.com/images/icons/users.svg" ruta="/admin/user_management" />
                     <Mboton name="Gestión Académica" url="https://www.systemuicons.com/images/icons/clipboard.svg" ruta="/admin/academic_management" />
-                    <Mboton name="Gestión de Rendimiento" url="https://www.systemuicons.com/images/icons/graph_bar.svg" ruta="/admin/performance_management" />
+                    {/* <Mboton name="Gestión de Rendimiento" url="https://www.systemuicons.com/images/icons/graph_bar.svg" ruta="/admin/performance_management" /> */}
                     
                     <Separator />
                     
