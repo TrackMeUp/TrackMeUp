@@ -26,6 +26,8 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { AdminRoute } from './components/AdminRoute';
 import { AdminView } from "./pages/admin/adminView";
 import { UserManagement } from "./pages/admin/user_management";
+import { AcademicManagement } from "./pages/admin/academic_management";
+import { PerformanceManagement } from "./pages/admin/performance_management";
 
 
 export function App() {
@@ -44,9 +46,11 @@ export function App() {
     // Si el usuario ha iniciado sesión, se muestra el menú de navegación (Layout)
     <Routes>
       <Route path="/" element={user ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={user ? <Navigate to="/home" /> : <Login />} />
 
       <Route element={<PrivateRoute />}>
+
+        {/* Rutas para roles: "Estudiante", "Padre", "Profesor" */}
 
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
@@ -66,6 +70,10 @@ export function App() {
           <Route element={<AdminLayout />}>
             <Route path="/admin" element={<AdminView />} />
             <Route path="/admin/user_management" element={<UserManagement />} />
+            <Route path="/admin/academic_management" element={<AcademicManagement />} />
+            <Route path="/admin/performance_management" element={<PerformanceManagement />} />
+            <Route path="/performance" element={<Performance />} />
+            <Route path="/logout" element={<LogOut />} />
           </Route>
 
         </Route>

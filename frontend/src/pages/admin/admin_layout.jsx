@@ -1,11 +1,23 @@
+// Menú de navegación Administrador
+
 import { Outlet } from "react-router-dom";
 import { Header } from "../../components/Header";
+import { Menu } from '../../components/Menu';
+import { Footer } from '../../components/Footer';
 
 export function AdminLayout() {
   return (
-    <div className="admin-layout">
+    <div className='layout'>
       <Header />
-      <Outlet />
+      <div className='layout-content'>
+        <Menu />
+        <div className='content'>
+          <Outlet />
+        </div>
+
+      </div>
+      <Footer />
     </div>
   );
-}
+};
+
