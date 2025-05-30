@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+// Cerrar sesión
+
+import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate de la biblioteca react-router-dom
+import { useEffect } from "react"; // Importa el hook useEffect de la biblioteca react-router-dom
 
 export function LogOut() {
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  useEffect(() => {
-    // Solo ejecuta si no estamos ya en /login para evitar bucle
-    if (location.pathname !== '/login') {
-      localStorage.clear();
-      sessionStorage.clear();
-      navigate('/login', { replace: true }); // Reemplaza en historial para evitar loops
-    }
-  }, [location, navigate]);
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        localStorage.clear();
+        sessionStorage.clear();  // Limpia la sesión activa
+        navigate('/login');
 
-  return null; // No renderiza nada
+    }, [navigate]);
+    
+    return null;
 }
