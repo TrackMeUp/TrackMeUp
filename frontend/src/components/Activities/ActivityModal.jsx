@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Modal,
   Button,
@@ -6,10 +6,15 @@ import {
   Alert
 } from "react-bootstrap";
 
-export function StudentResolveModal({ isOpen, onClose, actividad }) {
-  const { subject_name, title, end_date, activity_content, submission_id } = actividad;
-  const [respuesta, setRespuesta] = useState(actividad.student_comment || "");
+export function StudentResolveModal({ isOpen, onClose, actividad, onSuccess }) {
+  const { subject_name, title, end_date, activity_content, submission_id, student_comment } = actividad;
+  const [respuesta, setRespuesta] = useState(student_comment || "");
   const [guardado, setGuardado] = useState(null);
+
+  // Actualizar la respuesta cuando cambia la actividad
+  useEffect(() => {
+    setRespuesta(student_comment || "");
+  }, [student_comment, actividad]);
 
   const handleGuardar = async () => {
     try {
@@ -26,8 +31,14 @@ export function StudentResolveModal({ isOpen, onClose, actividad }) {
 
       if (!response.ok) throw new Error("Error al guardar respuesta");
 
+      // Actualiza la vista principal si hay callback
+      if (onSuccess) {
+        onSuccess();
+      }
+
       setGuardado("guardado");
       setTimeout(() => setGuardado(null), 2000);
+      onClose(); // Cierra el modal tras guardar
     } catch (error) {
       console.error(error);
       setGuardado("error");
