@@ -46,6 +46,18 @@ class Announcements {
     return rows;
   }
 
+  static async createAnnouncement(data) {
+    try {
+      const [result] = await pool.execute(
+        'INSERT INTO bulletin_board_entry (subject_id, content, title, attachment_url) VALUES (?, ?, ?, ?)',
+        [data.subject_id, data.content, data.title, data.attachment_url || null]
+      );
+
+      return { insertId: result.insertId };
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Announcements;

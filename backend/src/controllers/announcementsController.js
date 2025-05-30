@@ -41,6 +41,38 @@ class AnnouncementsController {
     }
     
   }
+
+  static async createAnnouncement(req, res) {
+    try {
+      const { subject_id, title, content, attachment_url } = req.body;
+
+      if (!subject_id || !title || !content) {
+        return res.status(400).json({
+          success: false,
+          message: "Subject ID, title, and content are required"
+        });
+      }
+
+      const result = await Announcements.createAnnouncement({
+        subject_id,
+        title,
+        content,
+        attachment_url
+      });
+
+      return res.status(201).json({
+        success: true,
+        message: "Announcement created successfully",
+        entry_id: result.insertId
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Could not create announcement",
+        error: err.message
+      });
+    }
+  }
 }
 
 export default AnnouncementsController;

@@ -177,6 +177,32 @@ class SubjectController {
       res.status(500).json({ success: false, message: "Error al obtener grupos" });
     }
   }
+
+  static async getSubjectsByTeacherId(req, res) {
+    try {
+      const { teacherId } = req.params;
+      
+      if (!teacherId) {
+        return res.status(400).json({
+          success: false,
+          message: "Teacher ID is required"
+        });
+      }
+
+      const subjects = await Subject.getByTeacherId(teacherId);
+
+      return res.status(200).json({
+        success: true,
+        subjects: subjects
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Could not fetch subjects",
+        error: err.message
+      });
+    }
+  }
 }
 
 export default SubjectController;
