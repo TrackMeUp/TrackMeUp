@@ -109,6 +109,7 @@ export function Activity({ actividad, index, rol, status, onUpdateData }) {
           isOpen={showResolveModal}
           onClose={() => setShowResolveModal(false)}
           actividad={actividad}
+          onSuccess={onUpdateData}  // CALLBACK para refrescar actividades
         />
       )}
 
