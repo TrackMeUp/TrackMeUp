@@ -1,27 +1,27 @@
 import { useState } from "react";
 import { ChatItem } from './ChatItem';
-import { CommunicationModal } from './CommunicationModal'; // Importamos el modal
+import { CommunicationModal } from './CommunicationModal';
 
-export function ConversationList({ entradas, onSelectChat, selectedChatId, onDataUpdate }) {
-    const [isModalOpen, setIsModalOpen] = useState(false); // Estado del modal
+export function ConversationList({ entradas, onSelectChat, selectedChatId, onDataUpdate, users }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
+
+    const handleNewMessageSent = (recipientId) => {
+        onDataUpdate(recipientId); // Refresh and select the correct chat
+        handleCloseModal();
+    };
 
     return (
         <div className="comunicacion-listado">
             <div className="comunicacion-header">
                 <h2>Mensajes</h2>
-                <button
-                    className="nuevo-btn"
-                    onClick={() => setIsModalOpen(true)} // Abrimos el modal al hacer clic
-                >
-                    NUEVO +
-                </button>
+                <button className="nuevo-btn" onClick={handleOpenModal}>NUEVO +</button>
             </div>
 
             {entradas.map((entrada) => (
-                <div
-                    key={entrada.id_persona_conversa}
-                    onClick={() => onSelectChat(entrada.id_persona_conversa)}
-                >
+                <div key={entrada.id_persona_conversa} onClick={() => onSelectChat(entrada.id_persona_conversa)}>
                     <div className="lista-conversaciones">
                         <ChatItem
                             avatar={entrada.id_persona_conversa}
@@ -33,15 +33,12 @@ export function ConversationList({ entradas, onSelectChat, selectedChatId, onDat
                 </div>
             ))}
 
-            {/* Aquí montamos el modal como en ActivitiesList */}
             <CommunicationModal
                 isOpen={isModalOpen}
-                onClose={() => {
-                    setIsModalOpen(false);
-                    onDataUpdate(); // Lo mismo que hace ActivitiesList
-                }}
+                onClose={handleCloseModal}
+                onMessageSent={handleNewMessageSent}
+                users={users}
             />
         </div>
     );
 }
-
