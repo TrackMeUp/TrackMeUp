@@ -18,11 +18,10 @@ export class UserController {
         }
 
         const user = result.data.user;
-        console.log("Usuario recibido:", user);
 
-            localStorage.setItem("user_id", user.user_id);
-            localStorage.setItem("user_email", user.email);
-            localStorage.setItem("user_name", user.full_name);
+        localStorage.setItem("user_id", user.user_id);
+        localStorage.setItem("user_email", user.email);
+        localStorage.setItem("user_name", user.full_name);
 
         return {
             success: true,
