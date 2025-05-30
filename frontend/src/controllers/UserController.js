@@ -18,7 +18,6 @@ export class UserController {
         }
 
         const user = result.data.user;
-        console.log("Usuario recibido:", user);
 
             localStorage.setItem("user_id", user.user_id);
             localStorage.setItem("user_email", user.email);

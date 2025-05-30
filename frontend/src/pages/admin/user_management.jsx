@@ -21,6 +21,7 @@ import {
 } from "react-bootstrap";
 
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import "../../styles/adminManagement.css";
 
 export function UserManagement() {
   const [users, setUsers] = useState([]);
@@ -44,8 +45,7 @@ export function UserManagement() {
     const res = await getUsers();
 
     if (res.success) {
-      const _users = res.data.users;
-
+      const _users = Array.isArray(res.data.users) ? res.data.users : [];
       setUsers(_users);
       setFilteredUsers(_users);
     } else {
@@ -63,7 +63,7 @@ export function UserManagement() {
     if (searchTerm) {
       const options = {
         keys: [
-          { name: "first_namef", weight: 0.4 },
+          { name: "first_name", weight: 0.4 },
           { name: "last_name1", weight: 0.3 },
           { name: "last_name2", weight: 0.2 },
           { name: "email", weight: 0.1 },
@@ -73,7 +73,6 @@ export function UserManagement() {
 
       const fuse = new Fuse(result, options);
       const searchResults = fuse.search(searchTerm);
-
       result = searchResults.map((res) => res.item);
     }
 
@@ -89,14 +88,28 @@ export function UserManagement() {
       case "admin":
         return {
           display_name: `Admin${role.access_level}`,
-          display_color: "danger",
+          badge_class: "badge-danger",
         };
       case "teacher":
-        return { display_name: "Profesor", display_color: "primary" };
+        return {
+          display_name: "Profesor",
+          badge_class: "badge-primary",
+        };
       case "student":
-        return { display_name: "Alumno", display_color: "success" };
+        return {
+          display_name: "Alumno",
+          badge_class: "badge-success",
+        };
       case "parent":
-        return { display_name: "Padre", display_color: "secondary" };
+        return {
+          display_name: "Padre",
+          badge_class: "badge-secondary",
+        };
+      default:
+        return {
+          display_name: "Usuario",
+          badge_class: "badge-secondary",
+        };
     }
   };
 
@@ -112,7 +125,6 @@ export function UserManagement() {
       access_level: user.role.access_level || 1,
       parent_student_id: user.role.student_id,
     });
-
     setShowModal(true);
   };
 
@@ -129,7 +141,10 @@ export function UserManagement() {
     }
 
     await fetchUsers();
+    closeModal();
+  };
 
+  const closeModal = () => {
     setShowModal(false);
     setEditingUser(null);
     setFormData({
@@ -144,247 +159,283 @@ export function UserManagement() {
     });
   };
 
+  const handleDeleteUser = async (user, e) => {
+    e.stopPropagation();
+
+    if (!window.confirm(`¿Eliminar a ${user.first_name} ${user.last_name1}?`)) {
+      return;
+    }
+
+    if (user.role.name === "student") {
+      const parentUsers = users.filter(
+        (u) =>
+          u.role.name === "parent" &&
+          u.role.student_id === user.role.student_id,
+      );
+
+      for (const parentUser of parentUsers) {
+        await deleteUser(parentUser.user_id);
+      }
+    }
+
+    await deleteUser(user.user_id);
+    await fetchUsers();
+  };
+
   return (
-    <Container fluid className="mt-3">
-      <Row className="mb-3">
-        <Col md={3}>
-          <Form.Group>
-            <Form.Control
-              type="text"
-              placeholder="Buscar usuarios..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </Form.Group>
-        </Col>
-        <Col md={3}>
-          <Form.Select
+    <div className="admin-page">
+      <div className="admin-header">
+        <div className="admin-controls">
+          <input
+            type="text"
+            placeholder="Buscar usuarios..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="form-control"
+            style={{ width: "250px" }}
+          />
+          <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value)}
+            className="form-control"
+            style={{ width: "200px" }}
           >
             <option value="all">Todos</option>
             <option value="admin">Administradores</option>
             <option value="teacher">Profesores</option>
             <option value="student">Alumnos</option>
             <option value="parent">Padres</option>
-          </Form.Select>
-        </Col>
-        <Col md={6} className="text-end">
-          <Button variant="success" onClick={() => setShowModal(true)}>
-            <FaPlus /> Nuevo Usuario
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Table striped hover>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Apellido 1</th>
-                <th>Apellido 2</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredUsers.map((user) => {
-                return (
-                  <tr key={user.user_id} onClick={() => editUser(user)}>
-                    <td>{user.first_name}</td>
-                    <td>{user.last_name1}</td>
-                    <td>{user.last_name2}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      <Badge bg={getRoleDisplayData(user.role).display_color}>
-                        {getRoleDisplayData(user.role).display_name}
-                      </Badge>
-                    </td>
-                    <td className="d-flex justify-content-end gap-2">
-                      <Button
-                        variant="outline-primary"
-                        size="sm"
-                        onClick={() => editUser(user)}
-                      >
-                        <FaEdit />
-                      </Button>
-                      <Button
-                        variant="outline-danger"
-                        size="sm"
-                        onClick={async (e) => {
-                          e.stopPropagation(); // Evita que se muestre el modal
-                          await deleteUser(user.user_id);
-                          await fetchUsers();
+          </select>
+          <div style={{ marginLeft: "auto" }}>
+            <button className="btn-add" onClick={() => setShowModal(true)}>
+              <FaPlus /> Nuevo Usuario
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="admin-table-container">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th style={{ width: "120px" }}>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredUsers.map((user) => {
+              const roleData = getRoleDisplayData(user.role);
+              return (
+                <tr
+                  key={user.user_id}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => editUser(user)}
+                >
+                  <td>
+                    <strong>{user.first_name}</strong>
+                  </td>
+                  <td>
+                    {user.last_name1} {user.last_name2}
+                  </td>
+                  <td
+                    style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}
+                  >
+                    {user.email}
+                  </td>
+                  <td>
+                    <span className={`badge ${roleData.badge_class}`}>
+                      {roleData.display_name}
+                    </span>
+                  </td>
+                  <td>
+                    <div className="table-actions">
+                      <button
+                        className="btn-edit"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          editUser(user);
                         }}
                       >
+                        <FaEdit />
+                      </button>
+                      <button
+                        className="btn-delete"
+                        onClick={(e) => handleDeleteUser(user, e)}
+                      >
                         <FaTrash />
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-              {!filteredUsers.length && (
-                <tr>
-                  <td colSpan="6" className="text-center py-3">
-                    No se han encontrado coincidencias
+                      </button>
+                    </div>
                   </td>
                 </tr>
-              )}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
+              );
+            })}
+            {!filteredUsers.length && (
+              <tr>
+                <td colSpan="5" className="empty-state">
+                  No se encontraron usuarios
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
-      <Modal
-        show={showModal}
-        onHide={() => {
-          setShowModal(false);
-          setEditingUser(null);
-        }}
-      >
+      <Modal size="lg" show={showModal} onHide={closeModal}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {editingUser ? "Editar Usuario" : "Añadir Nuevo Usuario"}
+            {editingUser ? "Editar Usuario" : "Nuevo Usuario"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          {/* Personal Info */}
+          <div className="form-section">
+            <div className="section-title">Información Personal</div>
             <Row>
               <Col md={12}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Nombre</Form.Label>
-                  <Form.Control
+                <div className="form-group">
+                  <label className="form-label">Nombre</label>
+                  <input
                     type="text"
                     name="first_name"
                     value={formData.first_name}
                     onChange={formInputChange}
+                    className="form-control"
                     required
                   />
-                </Form.Group>
+                </div>
               </Col>
             </Row>
             <Row>
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Primer Apellido</Form.Label>
-                  <Form.Control
+                <div className="form-group">
+                  <label className="form-label">Primer Apellido</label>
+                  <input
                     type="text"
                     name="last_name1"
                     value={formData.last_name1}
                     onChange={formInputChange}
+                    className="form-control"
                     required
                   />
-                </Form.Group>
+                </div>
               </Col>
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Segundo Apellido</Form.Label>
-                  <Form.Control
+                <div className="form-group">
+                  <label className="form-label">Segundo Apellido</label>
+                  <input
                     type="text"
                     name="last_name2"
                     value={formData.last_name2}
                     onChange={formInputChange}
+                    className="form-control"
                   />
-                </Form.Group>
+                </div>
               </Col>
             </Row>
+          </div>
+
+          {/* Account Info */}
+          <div className="form-section">
+            <div className="section-title">Información de Cuenta</div>
             <Row>
               <Col md={12}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
+                <div className="form-group">
+                  <label className="form-label">Email</label>
+                  <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={formInputChange}
+                    className="form-control"
                     required
                   />
-                </Form.Group>
+                </div>
               </Col>
             </Row>
             <Row>
               <Col md={12}>
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    {editingUser
-                      ? "Nueva Contraseña (dejar en blanco para mantener)"
-                      : "Contraseña"}
-                  </Form.Label>
-                  <Form.Control
+                <div className="form-group">
+                  <label className="form-label">
+                    {editingUser ? "Nueva Contraseña (opcional)" : "Contraseña"}
+                  </label>
+                  <input
                     type="password"
                     name="password"
                     value={formData.password}
                     onChange={formInputChange}
-                    // Opcional al editar, requerido al crear un nuevo usuario
+                    className="form-control"
                     required={!editingUser}
                   />
-                </Form.Group>
+                </div>
               </Col>
             </Row>
+          </div>
+
+          <div className="form-section">
+            <div className="section-title">Configuración de Rol</div>
             <Row>
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Rol</Form.Label>
-                  <Form.Select
+                <div className="form-group">
+                  <label className="form-label">Rol</label>
+                  <select
                     name="role"
                     value={formData.role}
                     onChange={formInputChange}
+                    className="form-control"
                   >
                     <option value="student">Alumno</option>
                     <option value="teacher">Profesor</option>
                     <option value="parent">Padre</option>
                     <option value="admin">Administrador</option>
-                  </Form.Select>
-                </Form.Group>
+                  </select>
+                </div>
               </Col>
               <Col md={6}>
                 {formData.role === "admin" && (
-                  <Form.Group className="mb-3">
-                    <Form.Label>Nivel de Acceso</Form.Label>
-                    <Form.Select
+                  <div className="form-group">
+                    <label className="form-label">Nivel de Acceso</label>
+                    <select
                       name="access_level"
                       value={formData.access_level}
                       onChange={formInputChange}
+                      className="form-control"
                     >
-                      <option value="1">Nulo</option>
-                      <option value="2">Bajo</option>
-                      <option value="3">Medio</option>
-                      <option value="4">Alto</option>
-                      <option value="5">Total</option>
-                    </Form.Select>
-                  </Form.Group>
+                      <option value="1">1 - Básico</option>
+                      <option value="2">2 - Intermedio</option>
+                      <option value="3">3 - Avanzado</option>
+                      <option value="4">4 - Supervisor</option>
+                      <option value="5">5 - Total</option>
+                    </select>
+                  </div>
                 )}
                 {formData.role === "parent" && (
-                  <Form.Group className="mb-3">
-                    <Form.Label>Alumno</Form.Label>
-                    <Form.Control
+                  <div className="form-group">
+                    <label className="form-label">ID del Alumno</label>
+                    <input
                       type="number"
                       name="parent_student_id"
-                      value={formData.parent_student_id}
+                      value={formData.parent_student_id || ""}
                       onChange={formInputChange}
+                      className="form-control"
                     />
-                  </Form.Group>
+                  </div>
                 )}
               </Col>
             </Row>
-          </Form>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setShowModal(false);
-              setEditingUser(null);
-            }}
-          >
+          <button className="btn-secondary" onClick={closeModal}>
             Cancelar
-          </Button>
-          <Button variant="primary" onClick={submitUser}>
-            {editingUser ? "Guardar Cambios" : "Añadir Usuario"}
-          </Button>
+          </button>
+          <button className="btn-add" onClick={submitUser}>
+            {editingUser ? "Guardar" : "Crear"}
+          </button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </div>
   );
 }
