@@ -13,7 +13,7 @@ export function ActivitiesList({ title, status, actividades, rol, onDataUpdate }
   if (rol === "teacher") {
     if (title === "Pendientes") {
       filteredActivities = actividades.filter(
-        a => a.status === "pending"
+        a => a.status === "pending" || a.status === "in_progress"
       );
     } else if (title === "Entregadas") {
       filteredActivities = actividades.filter(
@@ -86,16 +86,47 @@ export function ActivitiesList({ title, status, actividades, rol, onDataUpdate }
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {filteredActivities.map((actividad, index) => (
-              <Activity
-                key={actividad.submission_id}
-                actividad={actividad}
-                index={index}
-                rol={rol}
-                status={status}
-                onUpdateData={onDataUpdate}  // CORRECTO: usar onUpdateData para coincidir con Activity.jsx
-              />
-            ))}
+            {title === "Pendientes" && rol === "teacher" ? (
+              Object.entries(
+                actividades
+                  .filter(a => a.status === "pending" || a.status === "in_progress" || a.status === "completed")
+                  .reduce((acc, act) => {
+                    const key = `${act.title}||${act.subject_name}`;
+                    if (!acc[key]) acc[key] = [];
+                    acc[key].push(act);
+                    return acc;
+                  }, {})
+              ).map(([key, acts], index) => {
+                const [actTitle, subject] = key.split("||");
+
+                const totalEstudiantes = acts.length;
+                const entregadas = acts.filter(a => a.status === "completed").length;
+
+                const hayPendientes = acts.some(a => a.status === "pending" || a.status === "in_progress");
+                if (!hayPendientes) return null;
+
+                return (
+                  <div className="activity grouped-activity" key={key}>
+                    <div className="activity-subject">{subject}</div>
+                    <div className="activity-title">{actTitle}</div>
+                    <div className="activity-date">
+                      Actividad para: {totalEstudiantes} estudiante(s) — Entregas: {entregadas} / {totalEstudiantes}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              filteredActivities.map((actividad, index) => (
+                <Activity
+                  key={actividad.submission_id}
+                  actividad={actividad}
+                  index={index}
+                  rol={rol}
+                  status={status}
+                  onUpdateData={onDataUpdate}
+                />
+              ))
+            )}
             {provided.placeholder}
           </div>
         )}
@@ -116,7 +147,7 @@ export function ActivitiesList({ title, status, actividades, rol, onDataUpdate }
         isOpen={isModalOpen}
         onClose={() => {
           setIsModalOpen(false);
-          onDataUpdate(); // Refrescar actividades
+          onDataUpdate();
         }}
         subjects={subjects}
       />
