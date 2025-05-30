@@ -118,6 +118,15 @@
   cursor: pointer;
 }
 
+.event-type {
+  font-weight: bold;
+}
+
+.calendar-day:has(.event-type) {
+  border: 2px solid  #7ed957;
+  border-radius: 8px;
+  padding: 5px;
+}
 
 /* Pantallas más pequeñas */
 
