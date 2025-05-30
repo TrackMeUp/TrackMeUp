@@ -1,14 +1,24 @@
 // Página de Calendario
 
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/calendar.css'; // Incluye el estilo CSS
+import { Modal } from "../components/Calendar/Modal.jsx"
 
 const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
 export function Calendar() {
 
   const today = new Date();
+
+  const userId = parseInt(localStorage.getItem("user_id"), 10);
+  const userRole = localStorage.getItem("user_role");
+
   const [currentDate, setCurrentDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
+  const [events, setEvents] = useState({});
+  const [selectedDay, setSelectedDay] = useState(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalEvents, setModalEvents] = useState([]);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -21,6 +31,61 @@ export function Calendar() {
   const calendarDays = [];
   for (let i = 0; i < firstDayOfMonth - 1; i++) calendarDays.push(null);
   for (let i = 1; i <= daysInMonth; i++) calendarDays.push(i);
+
+  // Cargar actividades propias del usuario (estudiante o profesor)
+  useEffect(() => {
+    const fetchEvents = async () => {
+
+      try {
+        let url = "";
+
+        if (userRole === "teacher") {
+
+          url = `http://localhost:3000/api/actividades/profesor/${userId}`;
+
+        } else {
+          url = `http://localhost:3000/api/actividades/estudiante/${userId}`;
+        }
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        // Agrupar eventos por fecha
+        const eventosPorFecha = {};
+
+        data.forEach((actividad) => {
+
+          //const fechaInicio = new Date(actividad.start_date);
+          const fechaLimite = new Date(actividad.end_date);
+
+          //const eventoInicio = { ...actividad, tipoEvento: "Inicio de actividad" };
+          //const eventoLimite = { ...actividad, tipoEvento: "Límite de entrega" };
+
+          //const fechas = [fechaInicio, fechaLimite];
+          const key = `${fechaLimite.getFullYear()}-${fechaLimite.getMonth() + 1}-${fechaLimite.getDate()}`;
+
+          if (!eventosPorFecha[key]) eventosPorFecha[key] = [];
+          eventosPorFecha[key].push(actividad);
+
+        });
+
+        setEvents(eventosPorFecha);
+
+      } catch (error) {
+        console.error("Error al cargar eventos:", error);
+      }
+    };
+
+    fetchEvents();
+
+  }, [userId, userRole, currentDate]);
+
+  // Modal para visualizar actividades
+  const openModal = (day, eventos) => {
+    setSelectedDay(day);
+    setModalEvents(eventos);
+    setModalOpen(true);
+  };
 
 
   return (
@@ -38,31 +103,61 @@ export function Calendar() {
 
       <div className="calendar-grid-wrapper">
         <div className="calendar-grid">
+
           {daysOfWeek.map((day) => (
             <div key={day} className="calendar-day-name">{day}</div>
           ))}
-          
+
           {calendarDays.map((day, index) => { // Mostrar los días pasados de otro color
 
-            const isPastDay = day === null || (() => {
-              const dayDate = new Date(year, month, day);
-              
-              // Comparación de fechas
-              return dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            })();
+            if (!day) {
+
+              return <div key={index} className="calendar-day past-day"></div>;
+            }
+
+            const dateKey = `${year}-${month + 1}-${day}`;
+            const eventosDelDia = events[dateKey] || [];
+
+            const tipos = [...new Set(eventosDelDia.map(e => e.type === 'exam' ? 'Examen' : 'Entrega'))];
+            const tipoTexto = tipos.length === 2 ? 'Actividades' : (tipos[0] || '');
+
+            const dayDate = new Date(year, month, day);
+
+            const isPastDay = dayDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const isSelected = selectedDay === day;
 
             return (
-              <div
-                key={index}
-                className={`calendar-day ${isPastDay ? "past-day" : ""}`}
-                onClick={() => day && openDay(day)}
+              <div key={index}
+                className={`calendar-day ${isPastDay ? "past-day" : ""} ${isSelected ? "selected-day" : ""}`}
+                onClick={() => eventosDelDia.length > 0 && openModal(day, eventosDelDia)}
               >
-                {day || ""}
+
+                <div>{day}</div>
+                {eventosDelDia.length > 0 && (
+                  <div className="event-type">{tipoTexto}</div>
+                )}
               </div>
             );
           })}
         </div>
       </div>
+
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+
+        <h2>Actividades del {selectedDay} de {currentDate.toLocaleString("default", { month: "long" })}</h2>
+        {modalEvents.map((e, idx) => (
+          <div key={idx} className="modal-event-item-calendar">
+            <strong>{e.title}</strong><br />
+            {e.content && (
+              <>
+                <em>{e.content}</em><br />
+              </>
+            )}
+            {e.activity_content}<br />
+          </div>
+        ))}
+
+      </Modal>
     </div>
   );
-};
+}

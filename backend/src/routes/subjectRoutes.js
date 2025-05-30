@@ -9,5 +9,7 @@ router.post("/", (req, res) => SubjectController.createSubject(req, res));
 router.put("/:id", (req, res) => SubjectController.updateSubject(req, res));
 router.delete("/:id", (req, res) => SubjectController.deleteSubject(req, res));
 router.put("/:id/assignuser", (req, res) => SubjectController.assignUserToSubject(req, res));
+router.get("/:teacherId/names", SubjectController.getDistinctSubjectNames);
+router.get("/:teacherId/groups/:subjectName", SubjectController.getGroupsBySubjectAndTeacher);
 
 export default router;
