@@ -12,7 +12,9 @@ export function Home() {
         Gestor académico online
       </p>
 
+    <div className="home-img-container">
       <img src={imagenHome} alt="Imagen de Inicio" className="home-image" />
+    </div>
 
     </div>
   );

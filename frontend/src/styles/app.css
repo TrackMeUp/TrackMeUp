@@ -19,8 +19,6 @@
   padding: 16px;
   flex: 1;
   background-color: #ffffff;
-
-
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -33,21 +31,23 @@
 
 /* Menu */
 .m-contenedor {
+  position: fixed;
+  top: 90px;        /* altura header */
+  bottom: 70px;     /* altura footer */
+  left: 0;
+  width: 290px;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  /* resto de estilos */
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 16px;
   background-color: #f7f2fa;
-  border-radius: 0px 0px 12px 12px;
-  width: 290px;
+  border-radius: 0 0 12px 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  top: 90px;
-  left: 0;
-  position: fixed;
-  height: calc(100vh - 90px); 
   z-index: 999;
-  box-sizing: border-box;
-  overflow-y: auto;
 }
 
 .m-opcion {
