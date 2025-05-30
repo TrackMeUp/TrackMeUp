@@ -235,7 +235,6 @@ export function Announcements() {
   // Vista de "Estudiante"
   const StudentView = () => (
     <>
-      <h1>Tablón de anuncios</h1>
 
       {announcement.length > 0 ? (
         announcement.map((entry, index) => (
@@ -272,7 +271,6 @@ export function Announcements() {
   // Vista de "Padre"
   const ParentView = () => (
     <>
-      <h1>Tablón de anuncios</h1>
 
       {announcement.length > 0 ? (
         announcement.map((entry, index) => (
@@ -309,8 +307,6 @@ export function Announcements() {
   // Vista de "Personal docente"
   const TeacherView = () => (
     <>
-      <h1>Tablón de anuncios</h1>
-
       {announcement.length > 0 ? (
         announcement.map((entry, index) => (
           <div className="informacion-container" key={index}>
