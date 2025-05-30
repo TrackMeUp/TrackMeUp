@@ -7,10 +7,11 @@ import messageRoutes from "./routes/messageRoutes.js";
 import activityRoutes from "./routes/activityRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import academicInfoRoutes from "./routes/academicInfoRoutes.js";
-import createActivityRoutes from "./routes/createActivityRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
 import subjectRoutes from "./routes/subjectRoutes.js";
+import performanceRoutes from "./routes/performanceRoutes.js";
+import createActivityRoutes from "./routes/createActivityRoutes.js";
 import announcements from "./routes/announcementsRoutes.js";
-
 
 const app = express();
 const PORT = 3000;
@@ -25,10 +26,11 @@ app.use("/api/mensajes", messageRoutes);
 app.use("/api/actividades", activityRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/academic_info", academicInfoRoutes);
-app.use("/api/activities", createActivityRoutes);
+app.use("/api/courses", courseRoutes);
 app.use("/api/subjects", subjectRoutes);
+app.use("/api/performance", performanceRoutes);
+app.use("/api/activities", createActivityRoutes);
 app.use("/api/announcements", announcements);
-
 
 // Maneja cualquier error no controlado de forma explícita.
 // Debe ser el último middleware (`app.use`).

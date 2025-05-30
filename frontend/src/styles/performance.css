@@ -1,0 +1,448 @@
+:root {
+  --primary: royalblue;
+  --primary-muted: #d6e3fa;
+
+  --success: seagreen;
+  --success-muted: #d2f0db;
+
+  --warning: chocolate;
+  --warning-muted: #fde9cc;
+
+  --danger: crimson;
+  --danger-muted: #f9d3d3;
+
+  --secondary: slategray;
+  --secondary-muted: #d8dbe1;
+
+  --bg-light: #f8fafc;
+  --border: #e2e8f0;
+  --text-muted: #6b7280;
+
+  --radius: 8px;
+  --shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  --transition: all 0.2s ease;
+}
+
+.admin-page {
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
+.admin-header {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.admin-header h2 {
+  margin: 0;
+  color: var(--secondary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 2px;
+}
+
+.search-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-item:hover {
+  background-color: var(--bg-light);
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.student-info-header .card {
+  background: linear-gradient(135deg, var(--primary) 0%, #4c51bf 100%);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.student-info-header .card-body {
+  padding: 1.5rem;
+}
+
+.student-info-header h4 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.student-info-header .text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.student-info-header .text-end h5 {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.subject-filter-section .card {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.subject-filter-section .card-body {
+  padding: 1rem;
+}
+
+.subject-filter-section .badge {
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: var(--secondary);
+  color: white;
+}
+
+.subject-filter-section .badge:hover {
+  box-shadow: var(--shadow-card);
+  background-color: var(--secondary-muted);
+  color: var(--secondary);
+}
+
+.metric-card {
+  text-align: center;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  margin-bottom: 1.5rem;
+}
+
+.metric-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.metric-card .card-body {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.metric-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--secondary);
+}
+
+.metric-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.chart-card {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.5rem;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.chart-card .card-header {
+  background-color: var(--bg-light);
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  color: var(--secondary);
+}
+
+.chart-card .card-header h5 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.chart-card .card-body {
+  padding: 1.5rem;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.activity-table {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.activity-table th {
+  background-color: var(--bg-light);
+  border-top: none;
+  font-weight: 600;
+  color: var(--secondary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.activity-table td {
+  vertical-align: middle;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.activity-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.text-success {
+  color: var(--success) !important;
+}
+
+.text-warning {
+  color: var(--warning) !important;
+}
+
+.text-danger {
+  color: var(--danger) !important;
+}
+
+.text-info {
+  color: var(--primary) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  margin: 1rem 0;
+}
+
+.empty-state p {
+  margin: 0;
+  font-style: italic;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25rem;
+  border-color: var(--primary);
+  border-right-color: transparent;
+}
+
+.alert {
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.alert-success {
+  background-color: var(--success-muted);
+  color: var(--success);
+  border-left: 4px solid var(--success);
+}
+
+.alert-warning {
+  background-color: var(--warning-muted);
+  color: var(--warning);
+  border-left: 4px solid var(--warning);
+}
+
+.alert-danger {
+  background-color: var(--danger-muted);
+  color: var(--danger);
+  border-left: 4px solid var(--danger);
+}
+
+.alert-info {
+  background-color: var(--primary-muted);
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  background: white;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: var(--bg-light);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.form-control {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.border-left {
+  border-left-width: 4px !important;
+  border-left-style: solid !important;
+}
+
+.border-danger {
+  border-left-color: var(--danger) !important;
+}
+
+.border-warning {
+  border-left-color: var(--warning) !important;
+}
+
+.border-success {
+  border-left-color: var(--success) !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 1rem;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+
+  .metric-card {
+    margin-bottom: 1rem;
+  }
+
+  .student-info-header .text-end {
+    text-align: left !important;
+    margin-top: 1rem;
+  }
+
+  .admin-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .subject-filter-section .d-flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .metric-icon {
+    font-size: 2rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-header {
+    padding: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .chart-container {
+    height: 200px;
+  }
+
+  .activity-table th,
+  .activity-table td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
