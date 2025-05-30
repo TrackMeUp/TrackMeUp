@@ -4,27 +4,35 @@ import { ActivitiesList } from "../components/Activities/ActivitiesList";
 
 export function Activities() {
   const [actividades, setActividades] = useState([]);
-  const studentId = parseInt(localStorage.getItem("user_id"), 10);
+  const rol = localStorage.getItem("user_role");
+  const userId = parseInt(localStorage.getItem("user_id"), 10);
 
-  // Obtener actividades del estudiante al cargar
+  const fetchActividades = async () => {
+    if (!rol || !userId) return;
+
+    try {
+      const endpoint =
+        rol === "teacher"
+          ? `http://localhost:3000/api/actividades/profesor/${userId}`
+          : `http://localhost:3000/api/actividades/estudiante/${userId}`;
+
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error("Error al cargar actividades");
+
+      const data = await res.json();
+      setActividades(data);
+      console.log("Actividades cargadas:", data);
+    } catch (error) {
+      console.error("Error al cargar actividades:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchActividades = async () => {
-      try {
-        const res = await fetch(`http://localhost:3000/api/actividades/estudiante/${studentId}`);
-        const data = await res.json();
-        setActividades(data);
-      } catch (error) {
-        console.error("Error al cargar actividades:", error);
-      }
-    };
-
     fetchActividades();
-  }, [studentId]);
+  }, [rol, userId]);
 
-  // Al soltar una actividad en otra columna
   const handleDragEnd = async (result) => {
     const { destination, source, draggableId } = result;
-
     if (!destination || destination.droppableId === source.droppableId) return;
 
     const submissionId = parseInt(draggableId);
@@ -33,41 +41,37 @@ export function Activities() {
     try {
       const res = await fetch("http://localhost:3000/api/actividades/actualizar_estado", {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ submissionId, nuevoEstado }),
       });
 
       if (!res.ok) throw new Error("Error al actualizar estado");
 
-      // Recargar actividades actualizadas
-      const updated = await fetch(`http://localhost:3000/api/actividades/estudiante/${studentId}`);
-      const updatedData = await updated.json();
-      setActividades(updatedData);
+      await fetchActividades();
     } catch (error) {
-      console.error("Error actualizando actividad:", error);
+      console.error("Error actualizando estado:", error);
     }
   };
+
+  const titles = rol === "teacher"
+    ? ["Pendientes", "Entregadas", "Calificadas"]
+    : ["Pendientes", "En progreso", "Completadas"];
+
+  const statuses = ["pending", "in_progress", "completed"];
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="activities-container">
-        <ActivitiesList
-          title="Pendientes"
-          status="pending"
-          actividades={actividades}
-        />
-        <ActivitiesList
-          title="En progreso"
-          status="in_progress"
-          actividades={actividades}
-        />
-        <ActivitiesList
-          title="Completadas"
-          status="completed"
-          actividades={actividades}
-        />
+        {titles.map((title, index) => (
+          <ActivitiesList
+            key={statuses[index]}
+            title={title}
+            status={statuses[index]}
+            actividades={actividades}
+            rol={rol}
+            onDataUpdate={fetchActividades}
+          />
+        ))}
       </div>
     </DragDropContext>
   );
