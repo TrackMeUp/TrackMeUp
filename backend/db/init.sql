@@ -412,6 +412,7 @@ INSERT INTO subject (course_id, name, class_group, teacher_id) VALUES
 
 INSERT INTO student_subject (student_id, subject_id) VALUES
 (1, 1),
+(1, 9),
 (1, 13),
 (1, 17),
 (1, 23),
@@ -491,7 +492,10 @@ INSERT INTO activity (subject_id, title, content, start_date, end_date, type) VA
 (4, 'Ensayo Historia', 'Análisis de la Revolución Industrial', '2025-05-25 08:00:00', '2025-06-01 23:59:59', 'assignment'),
 (5, 'Exposición Inglés', 'Tema sobre literatura americana', '2025-06-05 11:00:00', '2025-06-05 11:30:00', 'assignment'),
 (9, 'Lectura', 'Adventures of Huckleberry Finn', '2025-05-30 11:00:00', '2025-06-28 11:30:00', 'assignment'),
-(4, 'Redacción', 'Primera Guerra Mundial', '2025-04-20 10:00:00', '2025-05-20 12:00:00', 'assignment');
+(4, 'Redaccion', 'Primera Guerra Mundial', '2025-04-20 10:00:00', '2025-05-20 12:00:00', 'assignment'),
+(9, 'Lectura', 'The Catcher in the Rye', '2025-04-20 10:00:00', '2025-05-20 12:00:00', 'assignment'),
+(4, 'Exposicion', 'Segunda Guerra Mundial', '2025-05-31 10:00:00', '2025-06-14 12:00:00', 'assignment'),
+(1, 'Tarea individual', 'Geometria', '2025-03-15 10:00:00', '2025-04-15 12:00:00', 'assignment');
 
 
 INSERT INTO submission (student_id, activity_id, grade, content, student_comment, teacher_comment, submission_date, status, start_date) VALUES
@@ -506,5 +510,8 @@ INSERT INTO submission (student_id, activity_id, grade, content, student_comment
 (4, 9, NULL, 'Examen final matemáticas', NULL, NULL, NULL, 'pending', '2025-06-15 08:00:00'),
 (10, 10, NULL, 'Examen ciencias', NULL, NULL, NULL, 'pending', '2025-06-10 09:00:00'),
 (12, 11, NULL, 'Ensayo historia.docx', NULL, NULL, NULL, 'pending', '2025-05-25 08:00:00'),
-(15, 12, NULL, 'Exposición inglés.pptx', NULL, NULL, NULL, 'pending', '2025-06-05 11:00:00');
-(1, 10, NULL, 'Primera Guerra Mundial', NULL, NULL, NULL, 'pending', '2025-04-20 10:00:00');
+(15, 12, NULL, 'Exposición inglés.pptx', NULL, NULL, NULL, 'pending', '2025-06-05 11:00:00'),
+(1, 10, NULL, 'Primera Guerra Mundial', NULL, NULL, NULL, 'pending', '2025-04-20 10:00:00'),
+(1, 11, NULL, 'The Catcher in the Rye', NULL, NULL, NULL, 'pending', '2025-04-20 10:00:00'),
+(1, 12, NULL, 'Segunda Guerra Mundial', NULL, NULL, NULL, 'pending', '2025-05-31 10:00:00'),
+(1, 13, NULL, 'Geometria', NULL, NULL, NULL, 'pending', '2025-03-15 10:00:00');
