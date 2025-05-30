@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChatItem } from './ChatItem';
 import { CommunicationModal } from './CommunicationModal'; // Importamos el modal
 
-export function ConversationList({ entradas, onSelectChat, selectedChatId, onDataUpdate }) {
+export function ConversationList({ entradas, onSelectChat, selectedChatId, onDataUpdate, users }) {
     const [isModalOpen, setIsModalOpen] = useState(false); // Estado del modal
 
     return (
@@ -40,6 +40,7 @@ export function ConversationList({ entradas, onSelectChat, selectedChatId, onDat
                     setIsModalOpen(false);
                     onDataUpdate(); // Lo mismo que hace ActivitiesList
                 }}
+                users={users}
             />
         </div>
     );

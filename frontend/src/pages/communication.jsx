@@ -5,6 +5,7 @@ import { Editor } from "../components/Communication/Editor";
 
 export function Communication() {
     const [entradas, setEntradas] = useState([]);
+    const [users, setUsers] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const [selectedChatData, setSelectedChatData] = useState(null); // Para los mensajes de la conversación seleccionada
 
@@ -24,6 +25,27 @@ export function Communication() {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+              const res = await fetch("http://localhost:3000/api/users");
+              const data = await res.json();
+          
+              if (Array.isArray(data.users)) {
+                setUsers(data.users);
+                console.log("Usuarios obtenidos:", data.users);
+              } else {
+                console.error("La API no devolvió un array de usuarios");
+              }
+            } catch (error) {
+              console.error("Error al obtener usuarios:", error);
+            }
+          };
+          
+      
+        fetchUsers();
+      }, []);
 
     // Función para manejar la selección de un chat
     const handleSelectChat = async (idPersonaConversa) => {
@@ -47,6 +69,7 @@ export function Communication() {
             <ConversationList
                 entradas={entradas}  // Datos de las conversaciones
                 onSelectChat={handleSelectChat}  // Función para manejar la selección
+                users={users}  // Lista de usuarios para mostrar en el chat
                 selectedChatId={selectedChat}  // El chat actualmente seleccionado
             />
 
