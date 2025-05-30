@@ -19,10 +19,11 @@ export function AdminView() {
                     <Link to="academic_management">
                         <button>Gestión Académica</button>
                     </Link>
-
+{/*
                     <Link to="performance_management">
                         <button>Gestión de Rendimiento Académico</button>
                     </Link>
+*/}
                 </div>
             </div>
         </div>
