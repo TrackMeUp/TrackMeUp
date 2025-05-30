@@ -179,31 +179,31 @@ CREATE TABLE submission (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO user (first_name, last_name1, last_name2, email, password) VALUES
-('Ana', 'García', 'López', 'ana.garcia@example.com', 'pass123'),
-('Luis', 'Pérez', 'Martínez', 'luis.perez@example.com', 'pass123'),
-('Marta', 'Sánchez', 'Ruiz', 'marta.sanchez@example.com', 'pass123'),
-('Carlos', 'Ramírez', 'Núñez', 'carlos.ramirez@example.com', 'pass123'),
-('Lucía', 'Torres', 'Díaz', 'lucia.torres@example.com', 'pass123'),
-('Pedro', 'Gómez', 'Ortiz', 'pedro.gomez@example.com', 'pass123'),
-('Sara', 'Molina', 'Vega', 'sara.molina@example.com', 'pass123'),
-('Elena', 'Hernández', 'Soto', 'elena.hernandez@example.com', 'pass123'),
-('David', 'Navarro', 'Cano', 'david.navarro@example.com', 'pass123'),
-('María', 'Castro', 'Rojas', 'maria.castro@example.com', 'pass123'),
-('Jorge', 'Ortega', 'Silva', 'jorge.ortega@example.com', 'pass123'),
-('Raquel', 'Delgado', 'Marín', 'raquel.delgado@example.com', 'pass123'),
-('Pablo', 'Reyes', 'Ibáñez', 'pablo.reyes@example.com', 'pass123'),
-('Inés', 'Guerrero', 'Blanco', 'ines.guerrero@example.com', 'pass123'),
-('Francisco', 'Moreno', 'Peña', 'francisco.moreno@example.com', 'pass123'),
-('Laura', 'Camacho', 'Romero', 'laura.camacho@example.com', 'pass123'),
-('Hugo', 'Serrano', 'Giménez', 'hugo.serrano@example.com', 'pass123'),
-('Carmen', 'Lara', 'Redondo', 'carmen.lara@example.com', 'pass123'),
-('Ismael', 'Rivas', 'Gallego', 'ismael.rivas@example.com', 'pass123'),
-('Alba', 'Ibáñez', 'Cruz', 'alba.ibanez@example.com', 'pass123'),
-('Roberto', 'Estevez', 'Medina', 'roberto.estevez@example.com', 'pass123'),
-('Paula', 'Nieves', 'Barroso', 'paula.nieves@example.com', 'pass123'),
-('Gustavo', 'Roldán', 'Acosta', 'gustavo.roldan@example.com', 'pass123'),
-('Silvia', 'Rosales', 'Perales', 'silvia.rosales@example.com', 'pass123'),
-('Miguel', 'Carrillo', 'Crespo', 'miguel.carrillo@example.com', 'pass123');
+('Ana', 'García', 'López', 'ana.garcia@example.com', 'pass123'), -- Admin
+('Luis', 'Pérez', 'Martínez', 'luis.perez@example.com', 'pass123'), -- Profe
+('Marta', 'Sánchez', 'Ruiz', 'marta.sanchez@example.com', 'pass123'), -- Profe
+('Carlos', 'Ramírez', 'Núñez', 'carlos.ramirez@example.com', 'pass123'), -- Alumno
+('Lucía', 'Torres', 'Díaz', 'lucia.torres@example.com', 'pass123'), -- Alumno
+('Pedro', 'Gómez', 'Ortiz', 'pedro.gomez@example.com', 'pass123'), -- Padre
+('Sara', 'Molina', 'Vega', 'sara.molina@example.com', 'pass123'), -- Padre
+('Elena', 'Hernández', 'Soto', 'elena.hernandez@example.com', 'pass123'), -- Admin
+('David', 'Navarro', 'Cano', 'david.navarro@example.com', 'pass123'), -- Profe
+('María', 'Castro', 'Rojas', 'maria.castro@example.com', 'pass123'), -- Alumno
+('Jorge', 'Ortega', 'Silva', 'jorge.ortega@example.com', 'pass123'), -- Padre
+('Raquel', 'Delgado', 'Marín', 'raquel.delgado@example.com', 'pass123'), -- Alumno
+('Pablo', 'Reyes', 'Ibáñez', 'pablo.reyes@example.com', 'pass123'), -- Profe
+('Inés', 'Guerrero', 'Blanco', 'ines.guerrero@example.com', 'pass123'), -- Padre
+('Francisco', 'Moreno', 'Peña', 'francisco.moreno@example.com', 'pass123'), -- Alumno
+('Laura', 'Camacho', 'Romero', 'laura.camacho@example.com', 'pass123'), -- Profe
+('Hugo', 'Serrano', 'Giménez', 'hugo.serrano@example.com', 'pass123'), -- Alumno
+('Carmen', 'Lara', 'Redondo', 'carmen.lara@example.com', 'pass123'), -- Padre
+('Ismael', 'Rivas', 'Gallego', 'ismael.rivas@example.com', 'pass123'), -- Profe
+('Alba', 'Ibáñez', 'Cruz', 'alba.ibanez@example.com', 'pass123'), -- Alumno
+('Roberto', 'Estevez', 'Medina', 'roberto.estevez@example.com', 'pass123'), -- Padre
+('Paula', 'Nieves', 'Barroso', 'paula.nieves@example.com', 'pass123'), -- Alumno
+('Gustavo', 'Roldán', 'Acosta', 'gustavo.roldan@example.com', 'pass123'), -- Profe
+('Silvia', 'Rosales', 'Perales', 'silvia.rosales@example.com', 'pass123'), -- Admin
+('Miguel', 'Carrillo', 'Crespo', 'miguel.carrillo@example.com', 'pass123'); -- Profe
 
 INSERT INTO admin (user_id, access_level) VALUES
 (1, 5),
@@ -239,31 +239,10 @@ INSERT INTO parent (user_id, student_id) VALUES
 (21, 6);
 
 INSERT INTO course (name, start_year, end_year) VALUES
-('Primero Básico', 2023, 2024),
-('Segundo Básico', 2023, 2024),
-('Tercero Básico', 2023, 2024),
-('Cuarto Básico', 2023, 2024),
-('Quinto Básico', 2023, 2024),
-('Sexto Básico', 2023, 2024),
-('Séptimo Básico', 2023, 2024),
-('Octavo Básico', 2023, 2024),
-('Primero Medio', 2023, 2024),
-('Segundo Medio', 2023, 2024),
-('Tercero Medio', 2023, 2024),
-('Cuarto Medio', 2023, 2024),
-('Prekinder', 2023, 2024),
-('Kinder', 2023, 2024),
-('1° Ciclo', 2023, 2024),
-('2° Ciclo', 2023, 2024),
-('Educación Especial', 2023, 2024),
-('Básica Modular', 2023, 2024),
-('Media Modular', 2023, 2024),
-('Electivo Ciencias', 2023, 2024),
-('Electivo Humanista', 2023, 2024),
-('Tecnología', 2023, 2024),
-('Artes', 2023, 2024),
-('Música', 2023, 2024),
-('Educación Física', 2023, 2024);
+('1º ESO', 2023, 2024),
+('2º ESO', 2024, 2025),
+('3º ESO', 2025, 2026),
+('4º ESO', 2026, 2027);
 
 INSERT INTO message (author_user_id, recipient_user_id, date, content) VALUES
 (16, 4, '2025-03-26 03:12:41', '¿Vamos a repasar antes del examen?'),
@@ -331,41 +310,152 @@ INSERT INTO message (author_user_id, recipient_user_id, date, content) VALUES
 ;
 
 INSERT INTO subject (course_id, name, class_group, teacher_id) VALUES
-(1, 'Matemáticas', 'A', 1),
-(1, 'Lenguaje', 'A', 2),
-(2, 'Ciencias', 'A', 3),
+-- Profesor 1: Lengua en cursos 1-4 grupos A, B, C
+(1, 'Lengua', 'A', 1),
+(1, 'Lengua', 'B', 1),
+(1, 'Lengua', 'C', 1),
+(2, 'Lengua', 'A', 1),
+(2, 'Lengua', 'B', 1),
+(2, 'Lengua', 'C', 1),
+(3, 'Lengua', 'A', 1),
+(3, 'Lengua', 'B', 1),
+(3, 'Lengua', 'C', 1),
+(4, 'Lengua', 'A', 1),
+(4, 'Lengua', 'B', 1),
+(4, 'Lengua', 'C', 1),
+
+-- Profesor 2: Matemáticas cursos 1 y 2 grupos A y B
+(1, 'Matemáticas', 'A', 2),
+(1, 'Matemáticas', 'B', 2),
+(2, 'Matemáticas', 'A', 2),
+(2, 'Matemáticas', 'B', 2),
+
+-- Profesor 3: Ciencias Naturales cursos 1-3 grupos A y B
+(1, 'Ciencias Naturales', 'A', 3),
+(1, 'Ciencias Naturales', 'B', 3),
+(2, 'Ciencias Naturales', 'A', 3),
+(2, 'Ciencias Naturales', 'B', 3),
+(3, 'Ciencias Naturales', 'A', 3),
+(3, 'Ciencias Naturales', 'B', 3),
+
+-- Profesor 4: Historia cursos 2-4 grupos A y B
 (2, 'Historia', 'A', 4),
+(2, 'Historia', 'B', 4),
+(3, 'Historia', 'A', 4),
+(3, 'Historia', 'B', 4),
+(4, 'Historia', 'A', 4),
+(4, 'Historia', 'B', 4),
+
+-- Profesor 5: Inglés cursos 1 y 2 grupos A y B; cursos 3 y 4 grupos A, B, C
+(1, 'Inglés', 'A', 5),
+(1, 'Inglés', 'B', 5),
+(2, 'Inglés', 'A', 5),
+(2, 'Inglés', 'B', 5),
+(3, 'Inglés', 'A', 5),
 (3, 'Inglés', 'B', 5),
+(3, 'Inglés', 'C', 5),
+(4, 'Inglés', 'A', 5),
+(4, 'Inglés', 'B', 5),
+(4, 'Inglés', 'C', 5),
+
+-- Profesor 6: Educación Física cursos 1-3 grupos A y B
+(1, 'Educación Física', 'A', 6),
+(1, 'Educación Física', 'B', 6),
+(2, 'Educación Física', 'A', 6),
+(2, 'Educación Física', 'B', 6),
+(3, 'Educación Física', 'A', 6),
 (3, 'Educación Física', 'B', 6),
-(4, 'Artes', 'B', 7),
-(4, 'Tecnología', 'B', 8),
-(5, 'Matemáticas', 'A', 1),
-(6, 'Lenguaje', 'A', 2),
-(7, 'Ciencias', 'A', 3),
-(8, 'Historia', 'A', 4),
-(9, 'Inglés', 'B', 5),
-(10, 'Educación Física', 'B', 6),
-(11, 'Artes', 'B', 7),
-(12, 'Tecnología', 'B', 8),
-(13, 'Matemáticas', 'A', 1),
-(14, 'Lenguaje', 'A', 2),
-(15, 'Ciencias', 'A', 3),
-(16, 'Historia', 'A', 4),
-(17, 'Inglés', 'B', 5),
-(18, 'Educación Física', 'B', 6),
-(19, 'Artes', 'B', 7),
-(20, 'Tecnología', 'B', 8),
-(21, 'Física', 'A', 1);
+
+-- Profesor 7: Artes Visuales cursos 2 y 3 grupos A, B y C
+(2, 'Artes Visuales', 'A', 7),
+(2, 'Artes Visuales', 'B', 7),
+(2, 'Artes Visuales', 'C', 7),
+(3, 'Artes Visuales', 'A', 7),
+(3, 'Artes Visuales', 'B', 7),
+(3, 'Artes Visuales', 'C', 7),
+
+-- Profesor 8: Música cursos 1 y 4 grupos A y B
+(1, 'Música', 'A', 8),
+(1, 'Música', 'B', 8),
+(4, 'Música', 'A', 8),
+(4, 'Música', 'B', 8);
+
+-- Profesor 2 (Matemáticas + Física Aplicada)
+(1, 'Física Aplicada', 'A', 2),
+(2, 'Física Aplicada', 'B', 2),
+
+-- Profesor 3 (Ciencias Naturales + Biología)
+(1, 'Biología', 'A', 3),
+(2, 'Biología', 'B', 3),
+
+-- Profesor 4 (Historia + Geografía)
+(3, 'Geografía', 'A', 4),
+(4, 'Geografía', 'B', 4),
+
+-- Profesor 5 (Inglés + Literatura Universal)
+(3, 'Literatura Universal', 'A', 5),
+(4, 'Literatura Universal', 'B', 5),
+
+-- Profesor 6 (Educación Física + Salud)
+(3, 'Salud', 'A', 6),
+(2, 'Salud', 'B', 6),
+
+-- Profesor 7 (Artes Visuales + Música)
+(2, 'Música', 'A', 7),
+(3, 'Música', 'B', 7),
+
+-- Profesor 8 (Música + Tecnología)
+(1, 'Tecnología', 'A', 8),
+(4, 'Tecnología', 'B', 8);
+
+
 
 INSERT INTO student_subject (student_id, subject_id) VALUES
-(1, 1), (1, 2), (1, 3), (1, 4),
-(2, 1), (2, 2),
-(3, 4), (3, 5),
-(4, 6), (4, 7), 
-(5, 8), (5, 9),
-(6, 10), (6, 11),
-(7, 12), (7, 13),
-(8, 14), (8, 15);
+(1, 1),
+(1, 13),
+(1, 17),
+(1, 23),
+(1, 29),
+(1, 39),
+(1, 45),
+(1, 51),
+(2, 2),
+(2, 14),
+(2, 18),
+(2, 24),
+(2, 30),
+(2, 40),
+(2, 46),
+(2, 52),
+(3, 3),
+(3, 15),
+(3, 19),
+(3, 25),
+(3, 31),
+(3, 41),
+(3, 47),
+(3, 53),
+(4, 4),
+(4, 16),
+(4, 20),
+(4, 26),
+(4, 32),
+(4, 42),
+(4, 48),
+(4, 54),
+(5, 5),
+(5, 28),
+(5, 34),
+(5, 43),
+(5, 50),
+(6, 6),
+(6, 35),
+(6, 44),
+(7, 7),
+(7, 37),
+(8, 8),
+(8, 38);
+
 
 INSERT INTO schedule (subject_id, weekday, start_time, end_time) VALUES
 (1, 'monday', '08:00:00', '09:00:00'),
