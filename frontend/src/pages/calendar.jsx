@@ -50,27 +50,23 @@ export function Calendar() {
         const res = await fetch(url);
         const data = await res.json();
 
-        console.log(data);
-
         // Agrupar eventos por fecha
         const eventosPorFecha = {};
 
         data.forEach((actividad) => {
 
-          const fechaInicio = new Date(actividad.start_date);
+          //const fechaInicio = new Date(actividad.start_date);
           const fechaLimite = new Date(actividad.end_date);
 
-          const eventoInicio = { ...actividad, tipoEvento: "Inicio de actividad" };
-          const eventoLimite = { ...actividad, tipoEvento: "Límite de entrega" };
+          //const eventoInicio = { ...actividad, tipoEvento: "Inicio de actividad" };
+          //const eventoLimite = { ...actividad, tipoEvento: "Límite de entrega" };
 
-          const fechas = [fechaInicio, fechaLimite];
+          //const fechas = [fechaInicio, fechaLimite];
+          const key = `${fechaLimite.getFullYear()}-${fechaLimite.getMonth() + 1}-${fechaLimite.getDate()}`;
 
-          fechas.forEach((fecha, i) => {
+          if (!eventosPorFecha[key]) eventosPorFecha[key] = [];
+          eventosPorFecha[key].push(actividad);
 
-            const key = `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
-            if (!eventosPorFecha[key]) eventosPorFecha[key] = [];
-            eventosPorFecha[key].push(i === 0 ? eventoInicio : eventoLimite);
-          });
         });
 
         setEvents(eventosPorFecha);
@@ -122,8 +118,8 @@ export function Calendar() {
             const dateKey = `${year}-${month + 1}-${day}`;
             const eventosDelDia = events[dateKey] || [];
 
-            const tipos = [...new Set(eventosDelDia.map(e => e.type === 'exam' ? 'Examen' : 'Actividad'))];
-            const tipoTexto = tipos.length === 2 ? 'Examen \n Actividad' : (tipos[0] || '');
+            const tipos = [...new Set(eventosDelDia.map(e => e.type === 'exam' ? 'Examen' : 'Entrega'))];
+            const tipoTexto = tipos.length === 2 ? 'Actividades' : (tipos[0] || '');
 
             const dayDate = new Date(year, month, day);
 
