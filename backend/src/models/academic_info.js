@@ -11,6 +11,7 @@ class AcademicInfo {
             CONCAT(c.start_year, '-', c.end_year) AS academic_year,
             s.subject_id,
             s.name AS subject_name,
+            s.class_group,
             sch.weekday AS day_of_week,
             sch.start_time,
             sch.end_time
@@ -38,6 +39,7 @@ class AcademicInfo {
                 subjects[row.subject_id] = {
                     subject_id: row.subject_id,
                     subject_name: row.subject_name,
+                    class_group: row.class_group,
                     schedule: []
                 };
                 courseInfo.subjects.push(subjects[row.subject_id]);
@@ -83,6 +85,7 @@ class AcademicInfo {
             c.name AS course_name,
             CONCAT(c.start_year, '-', c.end_year) AS academic_year,
             s.subject_id,
+            s.class_group,
             s.name AS subject_name,
             sch.weekday AS day_of_week,
             sch.start_time,
@@ -110,6 +113,7 @@ class AcademicInfo {
                 subjects[row.subject_id] = {
                     subject_id: row.subject_id,
                     subject_name: row.subject_name,
+                    class_group: row.class_group,
                     schedule: []
                 };
                 courseInfo.subjects.push(subjects[row.subject_id]);

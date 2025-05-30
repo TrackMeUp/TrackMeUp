@@ -59,7 +59,7 @@ export function AcademicInfo() {
 
                     Array.isArray(infoAcademica.subjects) ? infoAcademica.subjects.map((subject, idx) => ({
 
-                        texto: subject.subject_name || `Asignatura ${idx + 1}`,
+                        texto: (subject.subject_name + " | Grupo: " + subject.class_group) || `Asignatura ${idx + 1}`,
                         info: Array.isArray(subject.schedule) ? subject.schedule.map(h => `${h.day}: ${h.start} - ${h.end}`).join(", ") : "Horario no disponible"
                     })) : []
                 }
@@ -83,7 +83,7 @@ export function AcademicInfo() {
 
                     Array.isArray(infoAcademica.subjects) ? infoAcademica.subjects.map((subject, idx) => ({
 
-                        texto: subject.subject_name || `Asignatura ${idx + 1}`,
+                        texto:(subject.subject_name + " | Grupo: " + subject.class_group) || `Asignatura ${idx + 1}`,
                         info: Array.isArray(subject.schedule) ? subject.schedule.map(h => `${h.day}: ${h.start} - ${h.end}`).join(", ") : "Horario no disponible"
                     })) : []
                 }
@@ -103,11 +103,11 @@ export function AcademicInfo() {
                 ]}
                 />
 
-                <Articulo titulo="Información académica" entradas={
+                <Articulo titulo="Asignaturas y horarios" entradas={
 
                     Array.isArray(infoAcademica.subjects) ? infoAcademica.subjects.map((subject, idx) => ({
 
-                        texto: subject.subject_name || `Asignatura ${idx + 1}`,
+                        texto: (subject.subject_name + " | Grupo: " + subject.class_group) || `Asignatura ${idx + 1}`,
                         info: Array.isArray(subject.schedule) ? subject.schedule.map(h => `${h.day}: ${h.start} - ${h.end}`).join(", ") : "Horario no disponible"
                     })) : []
                 }
