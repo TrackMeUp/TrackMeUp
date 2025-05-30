@@ -424,6 +424,17 @@ class Subject {
     );
     return rows;
   }
+
+  static async getByTeacherId(teacherUserId) {
+    try {
+      const [rows] = await pool.execute("SELECT * FROM subject WHERE teacher_id = ?", [teacherUserId]);
+      console.log(rows);
+
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Subject;
