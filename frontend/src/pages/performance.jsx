@@ -295,7 +295,7 @@ export function Performance() {
               yAxisID: "y",
             },
             {
-              label: "Tasa de Completitud (%)",
+              label: "Tasa de Finalización (%)",
               data: Object.values(
                 performanceData.performance.time_analytics.monthly_trends,
               ).map((m) => m.completion_rate || 0),
@@ -553,7 +553,7 @@ export function Performance() {
                     )}
                     %
                   </div>
-                  <p className="metric-label">Tasa Completitud</p>
+                  <p className="metric-label">Tasa Finalización</p>
                 </Card.Body>
               </Card>
             </Col>
@@ -779,7 +779,7 @@ export function Performance() {
                   <Card.Header>
                     <h5>
                       <FaChartLine className="me-2" />
-                      Tendencias Mensuales: Calificaciones vs Completitud
+                      Tendencias Mensuales: Calificaciones vs Finalización
                     </h5>
                   </Card.Header>
                   <Card.Body>
@@ -818,7 +818,7 @@ export function Performance() {
                               max: 100,
                               title: {
                                 display: true,
-                                text: "Tasa de Completitud (%)",
+                                text: "Tasa de Finalización (%)",
                               },
                               grid: {
                                 drawOnChartArea: false,
@@ -1178,7 +1178,7 @@ export function Performance() {
                         type: "success",
                         icon: "🌟",
                         title: "¡Excelente Compromiso!",
-                        text: "Mantienes una alta tasa de completitud. ¡Sigue así!",
+                        text: "Mantienes una alta tasa de finalización. ¡Sigue así!",
                       });
                     }
 
