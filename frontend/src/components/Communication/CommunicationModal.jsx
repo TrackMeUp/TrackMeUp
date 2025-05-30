@@ -1,48 +1,56 @@
 import { useState } from "react";
 import {
-  Button,
-  Form,
-  Modal,
-  Alert,
-  Spinner,
-  ListGroup,
-  ButtonGroup,
+  Button, Form, Modal, Alert, Spinner, ListGroup, ButtonGroup,
 } from "react-bootstrap";
 
-export function CommunicationModal({ isOpen, onClose, users }) {
+export function CommunicationModal({ isOpen, onClose, users, onMessageSent }) {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [roleFilter, setRoleFilter] = useState("all"); // "all" | "teacher" | "student"
+  const [roleFilter, setRoleFilter] = useState("all");
 
-  // Filtrar usuarios por nombre y rol (excluyendo admins)
+  const userId = parseInt(localStorage.getItem("user_id"), 10);
+
   const filteredUsers = (users || [])
-    .filter((user) => user.role?.name !== "admin")
+    .filter((user) => user.role?.name !== "admin" && user.user_id !== userId)
     .filter((user) => {
-      const nameMatch = user.first_name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const roleMatch =
-        roleFilter === "all" || user.role?.name === roleFilter;
+      const nameMatch = user.first_name.toLowerCase().includes(searchTerm.toLowerCase());
+      const roleMatch = roleFilter === "all" || user.role?.name === roleFilter;
       return nameMatch && roleMatch;
     });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedUserId || !message.trim()) return;
+
     setLoading(true);
     setError(null);
 
-    setTimeout(() => {
-      setLoading(false);
-      onClose();
+    try {
+      const res = await fetch("http://localhost:3000/api/mensajes/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          authorId: userId,
+          recipientId: selectedUserId,
+          content: message
+        }),
+      });
+
+      if (!res.ok) throw new Error("Error al enviar mensaje");
+
+      setMessage("");
       setSelectedUserId(null);
       setSearchTerm("");
-      setMessage("");
       setRoleFilter("all");
-    }, 1000);
+      onMessageSent(selectedUserId);
+    } catch (err) {
+      setError("No se pudo enviar el mensaje.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,29 +62,12 @@ export function CommunicationModal({ isOpen, onClose, users }) {
         {error && <Alert variant="danger">{error}</Alert>}
 
         <Form onSubmit={handleSubmit}>
-          {/* Botones de filtro por rol */}
           <ButtonGroup className="mb-3">
-            <Button
-              variant={roleFilter === "all" ? "primary" : "outline-primary"}
-              onClick={() => setRoleFilter("all")}
-            >
-              Todos
-            </Button>
-            <Button
-              variant={roleFilter === "teacher" ? "primary" : "outline-primary"}
-              onClick={() => setRoleFilter("teacher")}
-            >
-              Profesores
-            </Button>
-            <Button
-              variant={roleFilter === "student" ? "primary" : "outline-primary"}
-              onClick={() => setRoleFilter("student")}
-            >
-              Estudiantes
-            </Button>
+            <Button variant={roleFilter === "all" ? "primary" : "outline-primary"} onClick={() => setRoleFilter("all")}>Todos</Button>
+            <Button variant={roleFilter === "teacher" ? "primary" : "outline-primary"} onClick={() => setRoleFilter("teacher")}>Profesores</Button>
+            <Button variant={roleFilter === "student" ? "primary" : "outline-primary"} onClick={() => setRoleFilter("student")}>Estudiantes</Button>
           </ButtonGroup>
 
-          {/* Buscador */}
           <Form.Group className="mb-3">
             <Form.Label>Buscar usuario</Form.Label>
             <Form.Control
@@ -88,17 +79,8 @@ export function CommunicationModal({ isOpen, onClose, users }) {
             />
           </Form.Group>
 
-          {/* Lista de usuarios */}
-          <ListGroup
-            style={{
-              maxHeight: "150px",
-              overflowY: "auto",
-              marginBottom: "15px",
-            }}
-          >
-            {filteredUsers.length === 0 && (
-              <ListGroup.Item>No hay usuarios que coincidan</ListGroup.Item>
-            )}
+          <ListGroup style={{ maxHeight: "150px", overflowY: "auto", marginBottom: "15px" }}>
+            {filteredUsers.length === 0 && <ListGroup.Item>No hay usuarios que coincidan</ListGroup.Item>}
             {filteredUsers.map((user) => (
               <ListGroup.Item
                 key={user.user_id}
@@ -111,7 +93,6 @@ export function CommunicationModal({ isOpen, onClose, users }) {
             ))}
           </ListGroup>
 
-          {/* Mensaje */}
           <Form.Group className="mb-3">
             <Form.Label>Mensaje</Form.Label>
             <Form.Control
@@ -124,26 +105,9 @@ export function CommunicationModal({ isOpen, onClose, users }) {
           </Form.Group>
 
           <div className="text-end">
-            <Button
-              variant="secondary"
-              onClick={onClose}
-              disabled={loading}
-              style={{ marginRight: "10px" }}
-            >
-              Cancelar
-            </Button>
-            <Button
-              variant="primary"
-              type="submit"
-              disabled={!selectedUserId || !message.trim() || loading}
-            >
-              {loading ? (
-                <>
-                  <Spinner animation="border" size="sm" /> Enviando...
-                </>
-              ) : (
-                "Enviar"
-              )}
+            <Button variant="secondary" onClick={onClose} disabled={loading} style={{ marginRight: "10px" }}>Cancelar</Button>
+            <Button variant="primary" type="submit" disabled={!selectedUserId || !message.trim() || loading}>
+              {loading ? <><Spinner animation="border" size="sm" /> Enviando...</> : "Enviar"}
             </Button>
           </div>
         </Form>

@@ -18,8 +18,8 @@ export function Editor({ authorId, recipientId, onMessageSent }) {
       });
 
       if (response.ok) {
-        setMensaje(""); // Limpiar textarea
-        onMessageSent(); // Refrescar mensajes
+        setMensaje("");
+        onMessageSent();
       } else {
         console.error("Error al enviar el mensaje");
       }
