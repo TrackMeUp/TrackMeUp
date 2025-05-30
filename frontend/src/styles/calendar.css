@@ -89,7 +89,7 @@
 
 /* Modal */
 
-.modal-overlay {
+.modal-overlay-calendar {
   position: fixed;
   top: 0;
   left: 0;
@@ -102,7 +102,7 @@
   z-index: 1000;
 }
 
-.modal-content {
+.modal-content-calendar {
   background: white;
   padding: 2rem;
   border-radius: 10px;
@@ -110,7 +110,7 @@
   width: 90%;
 }
 
-.modal-close {
+.modal-close-calendar {
   float: right;
   background: none;
   border: none;

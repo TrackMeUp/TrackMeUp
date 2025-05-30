@@ -150,8 +150,13 @@ export function Calendar() {
 
         <h2>Actividades del {selectedDay} de {currentDate.toLocaleString("default", { month: "long" })}</h2>
         {modalEvents.map((e, idx) => (
-          <div key={idx} className="modal-event-item">
+          <div key={idx} className="modal-event-item-calendar">
             <strong>{e.title}</strong><br />
+            {e.content && (
+              <>
+                <em>{e.content}</em><br />
+              </>
+            )}
             {e.activity_content}<br />
           </div>
         ))}
