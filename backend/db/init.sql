@@ -118,7 +118,7 @@ CREATE TABLE student_subject (
 CREATE TABLE schedule (
   schedule_id INT NOT NULL AUTO_INCREMENT,
   subject_id INT NOT NULL,
-  weekday ENUM('monday', 'tuesday', 'wednesday', 'thursday', 'friday') NOT NULL,
+  weekday ENUM('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes') NOT NULL,
   start_time TIME NOT NULL,
   end_time TIME NOT NULL,
   PRIMARY KEY (schedule_id),
@@ -466,16 +466,16 @@ INSERT INTO student_subject (student_id, subject_id) VALUES
 (9, 29);
 
 INSERT INTO schedule (subject_id, weekday, start_time, end_time) VALUES
-(1, 'monday', '08:00:00', '09:00:00'),
-(2, 'monday', '09:15:00', '10:15:00'),
-(3, 'tuesday', '08:00:00', '09:00:00'),
-(4, 'tuesday', '09:15:00', '10:15:00'),
-(5, 'wednesday', '10:30:00', '11:30:00'),
-(6, 'wednesday', '11:45:00', '12:45:00'),
-(7, 'thursday', '08:00:00', '09:00:00'),
-(8, 'thursday', '09:15:00', '10:15:00'),
-(9, 'friday', '10:30:00', '11:30:00'),
-(10, 'friday', '11:45:00', '12:45:00');
+(1, 'Lunes', '08:00:00', '09:00:00'),
+(2, 'Lunes', '09:15:00', '10:15:00'),
+(3, 'Martes', '08:00:00', '09:00:00'),
+(4, 'Martes', '09:15:00', '10:15:00'),
+(5, 'Miércoles', '10:30:00', '11:30:00'),
+(6, 'Miércoles', '11:45:00', '12:45:00'),
+(7, 'Jueves', '08:00:00', '09:00:00'),
+(8, 'Jueves', '09:15:00', '10:15:00'),
+(9, 'Viernes', '10:30:00', '11:30:00'),
+(10, 'Viernes', '11:45:00', '12:45:00');
 
 
 INSERT INTO bulletin_board_entry (subject_id, content, attachment_url, title) VALUES
