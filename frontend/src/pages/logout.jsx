@@ -10,8 +10,9 @@ export function LogOut() {
     useEffect(() => {
         localStorage.clear();
         sessionStorage.clear();  // Limpia la sesión activa
-        navigate('/login');
+        //navigate('/login');
 
+        window.location.href = "/login";
     }, [navigate]);
     
     return null;
